@@ -1,0 +1,26 @@
+#holder-radio-contenido
+{
+	width:320px;
+	float:left;
+	margin-top:-18px;
+	background:rgba(255,255,255,0.6);
+	height:200px;
+
+	text-align: left;
+	text-transform: uppercase;	
+	text-align:center;
+}
+#holder-radio-contenido h3
+{
+	font-family: 'Oswald';
+	font-weight: bold;
+	font-size: 14px;
+	margin-top:30px;
+}
+#holder-radio-contenido p
+{
+	font-family: 'Oswald';
+	font-weight: bold;
+	font-size: 16px;
+	text-decoration:underline;
+}

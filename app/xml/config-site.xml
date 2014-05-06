@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<site>
+	<!--titulo de la app-->
+	<title>Paceña</title>	
+
+	<!--descripcion de la app-->
+	<description>Paceña App</description>
+
+	<!--version-->
+	<version>1</version>	
+
+	<!--facebook app id-->
+	<fbappid>1379407915645966</fbappid>
+
+	<!--server-->
+	<!--server>http://192.168.235.153/pacena/public/</server-->	
+	<server>http://www.mdinteractivo.com/pacena/</server>	
+
+	<!--secciones del sitio-->
+	<seccions>
+		<seccion id="1" color-text="white" key="noticias"  activa="true" color="red">Noticias y curiosidades</seccion>
+		<seccion id="2" color-text="black" key="fixture"   activa="true" color="yellow">Fixture del mundial</seccion>
+		<seccion id="3" color-text="white" key="polla"     activa="true" color="red">Polla mundialera</seccion>
+		<seccion id="4" color-text="black" key="pantallas" activa="true" color="yellow">Dónde ver el mundial</seccion>
+		<seccion id="5" color-text="white" key="radio"     activa="true" color="red">Escucha el partido en vivo</seccion>
+		<seccion id="6" color-text="black" key="fotos"     activa="true" color="yellow">Fotos y videos</seccion>
+	</seccions>
+		
+</site>
