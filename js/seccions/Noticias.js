@@ -32,15 +32,16 @@
 			$(divVolver).css({'background-size' : '16px', 'background-position' : 'left'});			
 			$(divVolver).css({'color':'#000'});
 
-		if(objApp.isTouch())
-			$(divVolver).bind('touchend' , doCloseNoticia);
-		else
-			$(divVolver).bind('click' , doCloseNoticia);
-			
+		
 		var titulo = document.createElement('h1');
 			$(titulo).text('NOTICIAS Y CURIOSIDADES');
 			$(titulo).css({'color' : '#FFF', 'margin-left' : 30});
 			$(holderTituloNoticia).append(titulo);
+
+		/*if(objApp.isTouch())
+			$(divVolver).bind('touchend' , doCloseNoticia);
+		else*/
+			$(divVolver).bind('click' , doCloseNoticia);
 		
 		var icono = new Image();
 			icono.width = 64;

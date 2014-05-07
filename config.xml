@@ -29,7 +29,7 @@
 	<preference name="splashscreen" value="splash" />
 	
 	<preference name="splashscreen" value="splash" />
-	<preference name="SplashScreenDelay" value="5000" />
+	<!--preference name="SplashScreenDelay" value="5000" /-->
 	<!--ICONS-->		
 	<icon src="icon.png" />
     <gap:splash src="splash.png" />
