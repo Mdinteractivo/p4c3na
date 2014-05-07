@@ -83,12 +83,10 @@
 					array_items.push(objItemPantalla);
 				});
 			}
-			else
-				//objApp.error('Actualmente no hay pantallas');				
-		
-			
+				
 			for(var i = 0; i < array_items.length; ++i)	
 			{
+				console.log('Lala');
 				array_items[i].inicializar(delay);
 				delay +=200;
 			}
