@@ -20,6 +20,10 @@
 			$(divVolver).css({'background' : 'url(img/general/volver_'+colorTexto+'.png) no-repeat'});
 			$(divVolver).css({'background-size' : '16px', 'background-position' : 'left'});			
 			$(divVolver).css({'color':colorTexto});
+
+		if(objApp.isTouch())
+			$(divVolver).bind('touchend' , doVolver);
+		else
 			$(divVolver).bind('click' , doVolver);
 		
 		var titulo = document.createElement('h1');
