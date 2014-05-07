@@ -60,7 +60,7 @@ var objApp;
 	
 		function onDeviceOffLine()
 		{
-			navigator.splashscreen.show();
+			navigator.splashscreen.show()
 			navigator.notification.alert('Debes conectarte a internet para usar la aplicacion', function(){}, 'ALERT');						
 		}
 		
