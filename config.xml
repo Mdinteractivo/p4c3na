@@ -6,6 +6,7 @@
 	versionCode="10" 
 	version   = "1.0.0">
 
+	<preference name="phonegap-version" value="3.3.0" />
 	<name>Paceña</name>
 	
 	<description>
