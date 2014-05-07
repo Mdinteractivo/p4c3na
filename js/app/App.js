@@ -42,7 +42,7 @@ var objApp;
 		{		
 		  	console.log('Ready function');
 
-			navigator.notification.alert('Device ready', function(){}, 'ALERT');	
+			//navigator.notification.alert('Device ready', function(){}, 'ALERT');	
 		   	console.log('Paso alert');						
 			
 			objApp.Navigate('inicio', null);
@@ -74,6 +74,7 @@ var objApp;
 		
 		function onErrorXML()
 		{
+			console.log('xml error');	
 			self.error('Error al inicializar la aplicación.');
 		}
 		self.getMenu = function()
