@@ -34,14 +34,16 @@ var objApp;
 
 		self.initialize = function() 
 		{
+		   console.log('Inicializar');
 		   document.addEventListener('deviceready', onDeviceReady, false);
 		}		
 			
 		function onDeviceReady()
 		{		
+		  	console.log('Ready function');
+
 			navigator.notification.alert('Device ready', function(){}, 'ALERT');	
-						
-			navigator.splashscreen.hide();
+		   	console.log('Paso alert');						
 			
 			objApp.Navigate('inicio', null);
 			
@@ -55,6 +57,8 @@ var objApp;
 	
 		function onCompleteXML(xmlSite)
 		{
+			console.log('xml');						
+
 			document.title   = $(xmlSite).find('site').find('title').text();
 			
 			self.SERVER      = $(xmlSite).find('site').find('server').text();
