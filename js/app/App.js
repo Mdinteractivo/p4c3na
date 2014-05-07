@@ -34,12 +34,13 @@ var objApp;
 
 		self.initialize = function() 
 		{
-			//onDeviceReady();
 		   document.addEventListener('deviceready', onDeviceReady, false);
 		}		
 			
 		function onDeviceReady()
-		{					
+		{		
+			navigator.notification.alert('Device ready', function(){}, 'ALERT');	
+					
 			if(self.internet())
 			{
 				navigator.splashscreen.hide()
