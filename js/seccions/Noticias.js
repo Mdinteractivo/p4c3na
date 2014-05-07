@@ -101,6 +101,8 @@
 		}
 		function doCloseNoticia()
 		{
+			objApp.error('close noticia');
+			
 			$(holderNoticia).fadeOut(500);
 			$(holderItems).delay(500).transition({opacity : 1}).transition({scale : 1, duration : 500});
 		}						
