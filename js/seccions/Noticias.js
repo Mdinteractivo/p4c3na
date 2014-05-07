@@ -93,7 +93,7 @@
 			animando = true;	
 			$(holderNoticiaContenido).empty();
 			
-			/*var imagen = new Image();
+			var imagen = new Image();
 				imagen.width = 320;
 				imagen.src = objApp.SERVER+'global/img/noticias/'+$(nodo).find('imagen').text();
 				$(holderNoticiaContenido).append(imagen);
@@ -105,7 +105,7 @@
 			
 			var p = document.createElement('p');
 				$(holderNoticiaContenido).append(p);
-				$(p).text($(nodo).find('descripcion').text());	*/	
+				$(p).text($(nodo).find('descripcion').text());		
 			
 			$(holderItems).transition({scale : 0.5, duration : 500}).transition({opacity : 0});
 			$(holderNoticia).stop().delay(500).fadeIn(500, function(){animando = false;});	
