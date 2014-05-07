@@ -46,6 +46,8 @@ var objApp;
 		   	console.log('Paso alert');						
 			
 			objApp.Navigate('inicio', null);
+
+		   	console.log('Paso navigate');						
 			
 			$.ajax
 			({
@@ -67,14 +69,13 @@ var objApp;
 			self.DESCRIPTION = $(xmlSite).find('site').find('description').text();
 
 			$(xmlSite).find('site').find('seccions').find('seccion').each(function(index, element) 
-			{
+			{						
 			   seccionsSite.push($(this));
 			});						
 		}
 		
 		function onErrorXML()
 		{
-			console.log('xml error');	
 			self.error('Error al inicializar la aplicación.');
 		}
 		self.getMenu = function()
