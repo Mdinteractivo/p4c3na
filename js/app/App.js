@@ -34,33 +34,40 @@ var objApp;
 
 		self.initialize = function() 
 		{
-		   console.log('Inicializar');
 		   document.addEventListener('deviceready', onDeviceReady, false);
+		   document.addEventListener("offline", onDeviceOffLine, false);
+		   document.addEventListener("online", onDeviceOnLine, false);
 		}		
 			
 		function onDeviceReady()
 		{		
-		  	console.log('Ready function');
-
-			//navigator.notification.alert('Device ready', function(){}, 'ALERT');	
-		   	console.log('Paso alert');						
-			
-			objApp.Navigate('inicio', null);
-
-		   	console.log('Paso navigate');						
-			
-			$.ajax
-			({
-				url : 'xml/config-site.xml',
-				success : onCompleteXML,
-				error : onErrorXML
-			});
+			if(self.internet())
+			{
+				navigator.splashscreen.hide();
+							
+				objApp.Navigate('inicio', null);
+				
+				$.ajax
+				({
+					url : 'xml/config-site.xml',
+					success : onCompleteXML,
+					error : onErrorXML
+				});
+			}
+			else
+				onDeviceOffLine();
 		}	
 	
+		function onDeviceOffLine()
+		{
+			navigator.splashscreen.show();
+			navigator.notification.alert('Debes conectarte a internet para usar la aplicacion', function(){}, 'ALERT');						
+		}
+		
+		function onDeviceOnLine(){}		
+		
 		function onCompleteXML(xmlSite)
 		{
-			console.log('xml');						
-
 			document.title   = $(xmlSite).find('site').find('title').text();
 			
 			self.SERVER      = $(xmlSite).find('site').find('server').text();
@@ -116,20 +123,7 @@ var objApp;
 	    }
 		self.error = function(error)
 		{
-			var texto;
-			
-			if(!self.internet)
-				texto = 'Debes conectarte a internet para usar la aplicacion';
-			else
-				texto = error;
-			try
-			{		
-				navigator.notification.alert(texto, function(){}, 'ALERT');
-			}
-			catch(e)
-			{
-				alert(texto);
-			}
+			navigator.notification.alert(error, function(){}, 'ALERT');
 		}	
     
 		self.isTouch = function () 

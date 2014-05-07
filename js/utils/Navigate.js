@@ -7,14 +7,12 @@
 		var objContenido;
 		
 		self.to = function(seccionName, nodo)
-		{					
+		{	
 			$(div_holder).transition({scale : 0.5, duration : 500}).transition({x : -1000, duration : 500}, 800 , 'linear').
 			fadeOut(200, function()
 			{	
 				$(div_holder).empty();		
-				
-				console.log(seccionName);
-
+					
 				switch(seccionName)
 				{
 					case 'inicio' : 
