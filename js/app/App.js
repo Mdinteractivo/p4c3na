@@ -43,7 +43,7 @@ var objApp;
 		{		
 			if(self.internet())
 			{
-				navigator.splashscreen.hide();
+				//navigator.splashscreen.hide();
 							
 				objApp.Navigate('inicio', null);
 				
@@ -126,7 +126,14 @@ var objApp;
 	    }
 		self.error = function(error)
 		{
-			navigator.notification.alert(error, function(){}, 'ALERT');
+			try
+			{
+				navigator.notification.alert(error, function(){}, 'ALERT');		
+			}
+			catch(e)
+			{
+				alert(error);
+			}
 		}	
     
 		self.isTouch = function () 

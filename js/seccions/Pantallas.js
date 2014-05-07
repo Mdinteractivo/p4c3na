@@ -67,7 +67,7 @@
 			
 		function onErrorXML()
 		{
-			objApp.error('Ha ocurrido un error, por favor intenta más tarde');
+			//objApp.error('Ha ocurrido un error, por favor intenta más tarde');
 		}		
 		function onCompleteXML(xml)
 		{

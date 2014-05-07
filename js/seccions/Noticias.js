@@ -76,7 +76,7 @@
 		
 		function onErrorXML()
 		{
-			objApp.error('Ha ocurrido un error, por favor intenta más tarde');
+			//objApp.error('Ha ocurrido un error, por favor intenta más tarde');
 		}
 		self.showNoticia = function(nodo)
 		{
