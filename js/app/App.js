@@ -4,6 +4,7 @@ var objApp;
 {	
 	App.Navigate;
 	App.Cargador;
+	App.CheckConnection;
 	
 	function App()
 	{
@@ -31,6 +32,7 @@ var objApp;
 		$(holderSeccion).css({scale : 0.5, duration : 500}).css({x : -1000, duration : 500})
 		
 		App.Navigate = new Navigate();
+		App.CheckConnection = new CheckConection();
 
 		self.initialize = function() 
 		{
@@ -60,13 +62,12 @@ var objApp;
 	
 		function onDeviceOffLine()
 		{
-			navigator.splashscreen.show()
-			navigator.notification.alert('Debes conectarte a internet para usar la aplicacion', function(){}, 'ALERT');						
+			App.CheckConnection.mostrar();						
 		}
 		
 		function onDeviceOnLine()
 		{
-			navigator.splashscreen.hide();
+			App.CheckConnection.ocultar();
 		}		
 		
 		function onCompleteXML(xmlSite)
