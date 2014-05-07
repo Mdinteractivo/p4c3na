@@ -70,7 +70,7 @@
 			
 		function onErrorXML()
 		{
-			//objApp.error('Ha ocurrido un error, por favor intenta más tarde');
+			objApp.error('Ha ocurrido un error, por favor intenta más tarde');
 		}		
 		function onCompleteXML(xml)
 		{
@@ -84,7 +84,7 @@
 				});
 			}
 			else
-				objApp.error('Actualmente no hay pantallas');				
+				//objApp.error('Actualmente no hay pantallas');				
 		
 			
 			for(var i = 0; i < array_items.length; ++i)	

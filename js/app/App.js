@@ -44,9 +44,7 @@ var objApp;
 		function onDeviceReady()
 		{		
 			if(self.internet())
-			{
-				//navigator.splashscreen.hide();
-							
+			{							
 				objApp.Navigate('inicio', null);
 				
 				$.ajax
