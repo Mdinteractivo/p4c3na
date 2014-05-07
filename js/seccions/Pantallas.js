@@ -136,7 +136,7 @@
 			$(holderMapa).fadeOut(500);
 			$(holderItems).delay(500).transition({opacity : 1}).transition({scale : 1, duration : 500});
 			
-			animando = true;
+			animando = false;
 		}	
 		
 		//self.showMap();	
