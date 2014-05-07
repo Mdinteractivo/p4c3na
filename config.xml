@@ -73,6 +73,5 @@
     <gap:plugin name="org.apache.cordova.dialogs" />
     <gap:plugin name="com.phonegap.plugins.pushplugin" />
     <gap:plugin name="org.apache.cordova.splashscreen" />
-    <gap:plugin name="com.phonegap.plugin.statusbar" />
 		
 </widget>
