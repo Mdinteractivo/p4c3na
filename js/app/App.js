@@ -29,18 +29,35 @@ var objApp;
 			$(wholeWrapper).append(holderSeccion);
 	
 		$(holderSeccion).css({scale : 0.5, duration : 500}).css({x : -1000, duration : 500})
-					
-		$.ajax
-		({
-			url : 'xml/config-site.xml',
-			success : onCompleteXML,
-			error : onErrorXML
-		});	
 		
-		/*objects*/
 		App.Navigate = new Navigate();
-		//App.Cargador = new Cargador();
-		
+
+		self.initialize = function() 
+		{
+			onDeviceReady();
+		   //document.addEventListener('deviceready', onDeviceReady, false);
+		}		
+			
+		function onDeviceReady()
+		{					
+			if(self.internet())
+			{
+				//navigator.splashscreen.hide()
+				objApp.Navigate('inicio', null);
+				
+				$.ajax
+				({
+					url : 'xml/config-site.xml',
+					success : onCompleteXML,
+					error : onErrorXML
+				});
+			}
+			else
+			{
+				self.error('no hay internet');
+			}
+		}	
+	
 		function onCompleteXML(xmlSite)
 		{
 			document.title   = $(xmlSite).find('site').find('title').text();
@@ -112,20 +129,22 @@ var objApp;
 			{
 				alert(texto);
 			}
-		}
-				
+		}	
+    
+		self.isTouch = function () 
+		{  
+		  try 
+		  {  
+			document.createEvent("TouchEvent");  
+			return true;  
+		  } 
+		  catch (e) 
+		  {  
+			return false;  
+		  }  
+		}					
 	}
 	
 	window.App = App;
 	
 })(window);
-
-$(document).ready(function(e) 
-{
-    objApp = new App();
-});
-
-$(window).load(function()
-{
-	objApp.Navigate('inicio', null);
-});

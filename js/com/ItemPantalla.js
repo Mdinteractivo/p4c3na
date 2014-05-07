@@ -24,7 +24,11 @@
 			$(verMapa).css({'width' : 80, 'float' : 'left', 'height' : 37});
 			$(self.div).append(verMapa);
 			$(verMapa).append('<span>VER MAPA</span>');
-			$(verMapa).bind('click', doClick);
+			
+		if(objApp.isTouch)
+			$(verMapa).bind('touchend' , doClick);
+		else
+			$(verMapa).bind('click' , doClick);			
 			
 		function doClick()
 		{

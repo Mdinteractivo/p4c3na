@@ -10,7 +10,11 @@
 		
 		self.div = document.createElement('div');
 		self.div.className = 'btn-menu';
-		$(self.div).bind('click' , doClick);
+		
+		if(objApp.isTouch)
+			$(self.div).bind('touchend' , doClick);
+		else
+			$(self.div).bind('click' , doClick);
 		
 		$(self.div).css({'background' : 'url(img/general/menu/'+color+'_item.png) no-repeat'});
 		$(self.div).css({'background-size' : '320px 68px'});

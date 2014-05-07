@@ -21,6 +21,11 @@
 			$(linkRadio).text('www.foxsportsradio.com');
 			$(wrapperRadio).append(linkRadio);
 			$(linkRadio).bind('click' , doClick);
+
+		if(objApp.isTouch)
+			$(linkRadio).bind('touchend', doClick);
+		else
+			$(linkRadio).bind('click', doClick);
 			
 		var holderTransmitiendo = document.createElement('div');
 			

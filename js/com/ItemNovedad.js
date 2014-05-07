@@ -6,8 +6,12 @@
 		
 		self.div = document.createElement('div');
 		self.div.className = 'item-novedad';
-		$(self.div).bind('click' , doClick);
-		
+
+		if(objApp.isTouch)
+			$(self.div).bind('touchend' , doClick);
+		else
+			$(self.div).bind('click' , doClick);
+					
 		if(indice == 0)
 			$(self.div).css({'margin-top' : -8});
 		
