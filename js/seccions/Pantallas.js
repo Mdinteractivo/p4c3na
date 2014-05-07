@@ -3,7 +3,8 @@
 	function Pantallas(nodo)
 	{
 		var self = this;
-
+		var animando = false;
+		
 		self.div = document.createElement('div');
 		self.div.className = 'class-cero';	
 					
@@ -84,13 +85,20 @@
 		}
 		self.showMap = function(nodo)
 		{
+			if(animando)
+				return;
+			
+			animando = true;
+			
 			$(mapaWrapper).empty();
 			$(holderDireccion).empty();
 			$(holderDireccion).append($(nodo).find('nombre').text()+' '+$(nodo).find('direccion').text());
 			
 			$(holderItems).transition({scale : 0.5, duration : 500}).transition({opacity : 0});
-			$(holderMapa).delay(500).fadeIn(500, function ()
+			$(holderMapa).stop().delay(500).fadeIn(500, function ()
 			{
+				animando = false;
+
 				var lat  = Number($(nodo).find('latitud').text());
 				var long = Number($(nodo).find('longitud').text());
 		
@@ -120,8 +128,15 @@
 		
 		function doCloseMap()
 		{
+			if(animando)
+				return;
+				
+			animando = true;
+	
 			$(holderMapa).fadeOut(500);
 			$(holderItems).delay(500).transition({opacity : 1}).transition({scale : 1, duration : 500});
+			
+			animando = true;
 		}	
 		
 		//self.showMap();	

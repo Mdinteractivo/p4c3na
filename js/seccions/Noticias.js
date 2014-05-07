@@ -4,6 +4,7 @@
 	{
 		var self = this;
 		var arrayMenu = objApp.getMenu();
+		var animando = false;
 		
 		self.div = document.createElement('div');
 		self.div.className = 'class-cero';
@@ -39,8 +40,8 @@
 
 		if(objApp.isTouch())
 		{
-			$(divVolver).bind('touchend' , doCloseNoticia);
-			$(titulo).bind('touchend' , doCloseNoticia);
+			$(divVolver).bind('touchstart' , doCloseNoticia);
+			$(titulo).bind('touchstart' , doCloseNoticia);
 		}
 		else
 		{
@@ -86,9 +87,13 @@
 		}
 		self.showNoticia = function(nodo)
 		{
+			if(animando)
+				return;
+			
+			animando = true;	
 			$(holderNoticiaContenido).empty();
 			
-			var imagen = new Image();
+			/*var imagen = new Image();
 				imagen.width = 320;
 				imagen.src = objApp.SERVER+'global/img/noticias/'+$(nodo).find('imagen').text();
 				$(holderNoticiaContenido).append(imagen);
@@ -100,15 +105,21 @@
 			
 			var p = document.createElement('p');
 				$(holderNoticiaContenido).append(p);
-				$(p).text($(nodo).find('descripcion').text());		
+				$(p).text($(nodo).find('descripcion').text());	*/	
 			
 			$(holderItems).transition({scale : 0.5, duration : 500}).transition({opacity : 0});
-			$(holderNoticia).delay(500).fadeIn(500);	
+			$(holderNoticia).stop().delay(500).fadeIn(500, function(){animando = false;});	
 		}
 		function doCloseNoticia()
 		{
-			$(holderNoticia).fadeOut(500);
+			if(animando)
+				return;
+
+			animando = true;	
+				
+			$(holderNoticia).stop().fadeOut(500);
 			$(holderItems).delay(500).transition({opacity : 1}).transition({scale : 1, duration : 500});
+			animando = false;	
 		}						
 	}
 	
