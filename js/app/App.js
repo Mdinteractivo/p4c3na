@@ -64,7 +64,10 @@ var objApp;
 			navigator.notification.alert('Debes conectarte a internet para usar la aplicacion', function(){}, 'ALERT');						
 		}
 		
-		function onDeviceOnLine(){}		
+		function onDeviceOnLine()
+		{
+			navigator.splashscreen.hide();
+		}		
 		
 		function onCompleteXML(xmlSite)
 		{
