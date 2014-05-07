@@ -32,7 +32,7 @@
 			$(divVolver).css({'background-size' : '16px', 'background-position' : 'left'});			
 			$(divVolver).css({'color':'#000'});
 
-		if(objApp.isTouch)
+		if(objApp.isTouch())
 			$(divVolver).bind('touchend' , doCloseNoticia);
 		else
 			$(divVolver).bind('click' , doCloseNoticia);

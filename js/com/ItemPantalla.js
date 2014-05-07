@@ -25,7 +25,7 @@
 			$(self.div).append(verMapa);
 			$(verMapa).append('<span>VER MAPA</span>');
 			
-		if(objApp.isTouch)
+		if(objApp.isTouch())
 			$(verMapa).bind('touchend' , doClick);
 		else
 			$(verMapa).bind('click' , doClick);			

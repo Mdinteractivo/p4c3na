@@ -11,7 +11,7 @@
 		self.div = document.createElement('div');
 		self.div.className = 'btn-menu';
 		
-		if(objApp.isTouch)
+		if(objApp.isTouch())
 			$(self.div).bind('touchend' , doClick);
 		else
 			$(self.div).bind('click' , doClick);
