@@ -34,15 +34,15 @@ var objApp;
 
 		self.initialize = function() 
 		{
-			onDeviceReady();
-		   //document.addEventListener('deviceready', onDeviceReady, false);
+			//onDeviceReady();
+		   document.addEventListener('deviceready', onDeviceReady, false);
 		}		
 			
 		function onDeviceReady()
 		{					
 			if(self.internet())
 			{
-				//navigator.splashscreen.hide()
+				navigator.splashscreen.hide()
 				objApp.Navigate('inicio', null);
 				
 				$.ajax
