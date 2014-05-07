@@ -157,4 +157,17 @@ body
 	left:0;
 }
 
+.btn-volver-seccion
+{
+	width:50px;
+	height:23px;
+	top:16px;
+	font-family: 'Oswald';
+	font-size:12px;
+	padding-top:10px;	
+	margin-left:3px;
+	position:absolute;
+	left:0;
+}
+
 

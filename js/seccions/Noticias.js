@@ -26,11 +26,11 @@
 			$(holderNoticia).append(holderTituloNoticia);
 
 		var divVolver = document.createElement('div');
-			divVolver.className = 'btn-volver-inicio';
+			divVolver.className = 'btn-volver-seccion';
 			$(holderTituloNoticia).append(divVolver);
 			$(divVolver).css({'background' : 'url(img/general/volver_white.png) no-repeat'});
 			$(divVolver).css({'background-size' : '16px', 'background-position' : 'left'});			
-			$(divVolver).css({'color':'#000' , 'background': '#000'});
+			$(divVolver).css({'color':'#000'});
 
 		if(objApp.isTouch())
 			$(divVolver).bind('touchend' , doCloseNoticia);
@@ -39,7 +39,7 @@
 			
 		var titulo = document.createElement('h1');
 			$(titulo).text('NOTICIAS Y CURIOSIDADES');
-			$(titulo).css({'color' : '#FFF'});
+			$(titulo).css({'color' : '#FFF', 'margin-left' : 30});
 			$(holderTituloNoticia).append(titulo);
 		
 		var icono = new Image();
@@ -101,8 +101,6 @@
 		}
 		function doCloseNoticia()
 		{
-			objApp.error('close noticia');
-			
 			$(holderNoticia).fadeOut(500);
 			$(holderItems).delay(500).transition({opacity : 1}).transition({scale : 1, duration : 500});
 		}						

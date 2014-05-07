@@ -27,11 +27,11 @@
 			$(holderMapa).append(holderTituloMapa);
 
 		var divVolver = document.createElement('div');
-			divVolver.className = 'btn-volver-inicio';
+			divVolver.className = 'btn-volver-seccion';
 			$(holderTituloMapa).append(divVolver);
 			$(divVolver).css({'background' : 'url(img/general/volver_black.png) no-repeat'});
 			$(divVolver).css({'background-size' : '16px', 'background-position' : 'left'});			
-			$(divVolver).css({'color':'#000'});
+			$(divVolver).css({'color':'#000', 'margin-left' : 30});
 
 		if(objApp.isTouch())
 			$(divVolver).bind('touchend' , doCloseMap);
@@ -85,6 +85,7 @@
 		self.showMap = function(nodo)
 		{
 			$(mapaWrapper).empty();
+			$(holderDireccion).empty();
 			$(holderDireccion).append($(nodo).find('nombre').text()+' '+$(nodo).find('direccion').text());
 			
 			$(holderItems).transition({scale : 0.5, duration : 500}).transition({opacity : 0});
