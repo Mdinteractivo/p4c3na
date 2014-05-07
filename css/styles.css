@@ -130,6 +130,7 @@ body
 	position:relative;
 	padding-top:9px;
 	text-align:center;
+	z-index: 10;	
 }
 .wrapper-titulo-seccion h1
 {

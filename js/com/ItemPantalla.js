@@ -6,6 +6,7 @@
 		
 		self.div = document.createElement('div');
 		self.div.className = 'item-pantalla';
+		$(self.div).css({'opacity' : 0});
 		
 		if(indice == 0)
 			$(self.div).css({'margin-top' : -8});
@@ -33,7 +34,12 @@
 		function doClick()
 		{
 			parent.showMap(nodo);
-		}	
+		}
+
+		self.inicializar = function(DELAY)
+		{
+			$(self.div).css({scale : 0.5}).delay(DELAY).transition({opacity : 1, scale : 1, duration : 500});
+		}			
 	}
 	
 	window.ItemPantalla = ItemPantalla;

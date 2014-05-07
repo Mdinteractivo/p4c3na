@@ -5,6 +5,8 @@
 		var self = this;
 		var arrayMenu = objApp.getMenu();
 		var animando = false;
+		var array_items = [];
+		var delay = 200;		
 		
 		self.div = document.createElement('div');
 		self.div.className = 'class-cero';
@@ -75,10 +77,18 @@
 				{
 					objItemNovedad = new ItemNovedad($(this), self, index);
 					$(holderItems).append(objItemNovedad.div);
+					array_items.push(objItemNovedad);
 				});
 			}
 			else
 				objApp.error('Actualmente no hay noticias');
+				
+				
+			for(var i = 0; i < array_items.length; ++i)	
+			{
+				array_items[i].inicializar(delay);
+				delay +=200;
+			}	
 		}
 		
 		function onErrorXML()

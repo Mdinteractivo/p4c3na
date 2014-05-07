@@ -6,6 +6,7 @@
 		
 		self.div = document.createElement('div');
 		self.div.className = 'item-novedad';
+		$(self.div).css({'opacity' : 0});
 
 		if(objApp.isTouch())
 			$(self.div).bind('touchend' , doClick);
@@ -32,7 +33,12 @@
 		function doClick()
 		{
 			parent.showNoticia(nodo);
-		}	
+		}
+
+		self.inicializar = function(DELAY)
+		{
+			$(self.div).css({scale : 0.5}).delay(DELAY).transition({opacity : 1, scale : 1, duration : 500});
+		}				
 	}
 	
 	window.ItemNovedad = ItemNovedad;

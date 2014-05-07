@@ -4,7 +4,9 @@
 	{
 		var self = this;
 		var animando = false;
-		
+		var array_items = [];
+		var delay = 200;
+				
 		self.div = document.createElement('div');
 		self.div.className = 'class-cero';	
 					
@@ -78,11 +80,20 @@
 				{
 					objItemPantalla = new ItemPantalla($(this), self, index);
 					$(holderItems).append(objItemPantalla.div);
+					array_items.push(objItemPantalla);
 				});
 			}
 			else
 				objApp.error('Actualmente no hay pantallas');				
+		
+			
+			for(var i = 0; i < array_items.length; ++i)	
+			{
+				array_items[i].inicializar(delay);
+				delay +=200;
+			}
 		}
+
 		self.showMap = function(nodo)
 		{
 			if(animando)
@@ -138,8 +149,6 @@
 			
 			animando = false;
 		}	
-		
-		//self.showMap();	
 	}
 	
 	window.Pantallas = Pantallas;
