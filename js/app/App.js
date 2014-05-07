@@ -40,23 +40,17 @@ var objApp;
 		function onDeviceReady()
 		{		
 			navigator.notification.alert('Device ready', function(){}, 'ALERT');	
-					
-			if(self.internet())
-			{
-				navigator.splashscreen.hide()
-				objApp.Navigate('inicio', null);
-				
-				$.ajax
-				({
-					url : 'xml/config-site.xml',
-					success : onCompleteXML,
-					error : onErrorXML
-				});
-			}
-			else
-			{
-				self.error('no hay internet');
-			}
+						
+			navigator.splashscreen.hide();
+			
+			objApp.Navigate('inicio', null);
+			
+			$.ajax
+			({
+				url : 'xml/config-site.xml',
+				success : onCompleteXML,
+				error : onErrorXML
+			});
 		}	
 	
 		function onCompleteXML(xmlSite)
