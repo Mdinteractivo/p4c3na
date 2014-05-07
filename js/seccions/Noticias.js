@@ -30,7 +30,7 @@
 			$(holderTituloNoticia).append(divVolver);
 			$(divVolver).css({'background' : 'url(img/general/volver_white.png) no-repeat'});
 			$(divVolver).css({'background-size' : '16px', 'background-position' : 'left'});			
-			$(divVolver).css({'color':'#000'});
+			$(divVolver).css({'color':'#000' , 'background': '#000'});
 
 		if(objApp.isTouch())
 			$(divVolver).bind('touchend' , doCloseNoticia);
