@@ -83,6 +83,6 @@
 	   <param name="APP_NAME" value="Paceña" />
 	</gap:plugin>
 	
-	<gap:plugin name="ChildBrowser" />
+	<gap:plugin name="com.phonegap.plugins.childbrowser" />
 		
 </widget>
