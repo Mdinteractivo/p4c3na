@@ -86,7 +86,6 @@
 				
 			for(var i = 0; i < array_items.length; ++i)	
 			{
-				console.log('Lala');
 				array_items[i].inicializar(delay);
 				delay +=200;
 			}
@@ -117,6 +116,8 @@
 				{
 					zoom: 16,
 					center: myLatlng,
+					zoomControl : false,
+					scaleControl : false,
 					mapTypeId: google.maps.MapTypeId.ROADMAP
 				}
 				

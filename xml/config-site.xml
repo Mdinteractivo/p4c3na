@@ -14,8 +14,8 @@
 	<fbappid>1379407915645966</fbappid>
 
 	<!--server-->
-	<!--server>http://192.168.235.153/pacena/public/</server-->	
-	<server>http://www.mdinteractivo.com/pacena/</server>	
+	<server>http://192.168.235.153/pacena/public/</server>	
+	<!--server>http://www.mdinteractivo.com/pacena/</server-->	
 
 	<!--secciones del sitio-->
 	<seccions>

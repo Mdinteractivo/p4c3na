@@ -29,7 +29,11 @@
 
 					case 'radio' : 
 						objContenido = new Radio(nodo); 
-					break;														
+					break;	
+
+					case 'fotos' : 
+						objContenido = new FotosVideos(nodo); 
+					break;																			
 				}	
 				
 				$(div_holder).html(objContenido.div);		

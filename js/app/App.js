@@ -32,6 +32,7 @@ var objApp;
 		$(holderSeccion).css({scale : 0.5, duration : 500}).css({x : -1000, duration : 500})
 		
 		App.Navigate = new Navigate();
+		//App.Cargador = new Cargador();
 		App.CheckConnection = new CheckConection();
 
 		self.initialize = function() 
