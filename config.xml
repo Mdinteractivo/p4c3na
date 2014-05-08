@@ -78,7 +78,7 @@
     <!--gap:plugin name="com.phonegap.plugins.pushplugin" /-->
     <gap:plugin name="org.apache.cordova.splashscreen" />
 	
-	<gap:plugin name="FacebookConnect">
+	<gap:plugin name="com.phonegap.plugins.facebookconnect" version="0.4.0">
 	   <param name="APP_ID" value="228961960645729" />
 	   <param name="APP_NAME" value="Paceña" />
 	</gap:plugin>
