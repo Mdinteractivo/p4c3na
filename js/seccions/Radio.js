@@ -58,6 +58,8 @@
 		
 		function onCompleteXML(xml)
 		{
+			objApp.ocultarCargador();
+			
 			if($(xml).find('partido').length == 0)
 				$(holderPartido).append('Actualmente no hay transmision.');
 			else

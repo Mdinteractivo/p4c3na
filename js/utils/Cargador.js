@@ -20,6 +20,6 @@ function Cargador()
 		$(self.div).fadeOut('slow');
 	}
 		
-	self.mostrar();
+	self.ocultar();
 		
 }

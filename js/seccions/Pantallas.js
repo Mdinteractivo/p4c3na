@@ -6,6 +6,12 @@
 		var animando = false;
 		var array_items = [];
 		var delay = 200;
+		var ALTO_HEADER = 180;
+		var altoItems = 65;
+		
+		var altoPantalla = window.innerHeight - ALTO_HEADER;
+		var multiplo = Math.ceil((altoPantalla / altoItems));	
+		var alturaFinal = (altoItems * multiplo)  - 10;
 				
 		self.div = document.createElement('div');
 		self.div.className = 'class-cero';	
@@ -18,6 +24,12 @@
 			$(holderItems).append(objTituloSeccion.div);	
 			$(self.div).append('<div class="clear"></div>');
 
+		var divScroll = document.createElement('div');
+			divScroll.className = 'divScroll';
+			$(holderItems).append(divScroll);
+			$(divScroll).css({'height' : altoPantalla});
+		
+		//MAPA
 		var holderMapa = document.createElement('div');
 			holderMapa.className = 'holder-mapa-pantalla';
 			$(self.div).append(holderMapa);
@@ -74,12 +86,14 @@
 		}		
 		function onCompleteXML(xml)
 		{
+			objApp.ocultarCargador();
+
 			if($(xml).find('xml').find('tienda').length != 0)
 			{
 				$(xml).find('xml').find('tienda').each(function(index, element) 
 				{
 					objItemPantalla = new ItemPantalla($(this), self, index);
-					$(holderItems).append(objItemPantalla.div);
+					$(divScroll).append(objItemPantalla.div);
 					array_items.push(objItemPantalla);
 				});
 			}

@@ -9,7 +9,6 @@
 	font-weight: normal;
 	font-style: normal;
 }
-
 body
 {
 	position:relative;
@@ -21,16 +20,23 @@ body
     padding:0;
     outline:none;
 	background:url(../img/general/background.jpg) no-repeat;
-	background-size:auto;
+	background-size:auto;		
 }
 #app
 {
 	width:100%;
 	height:100%;
 }
+.divScroll
+{
+	width:100%;
+	float:left;
+	overflow-y:scroll;
+	-webkit-overflow-scrolling: touch;
+}
 #holder-seccion-loader
 {
-	/*background:rgba(255,255,255,0.6);*/
+  /*background:rgba(255,255,255,0.6);*/
 	width:100%;
 	height:auto;
 	margin:0 auto;
@@ -210,19 +216,19 @@ body
 	z-index:10;	
 	left:0;
 	top:0;
-	background:none;	
+	background:transparent;
 }
 #holder_loader
 {
-    background: url(../img/general/ajax-loader.gif) no-repeat center;
-    border-radius: 10px 10px 10px 10px;
+    background: #FFF url(../img/general/loader.GIF) no-repeat center;
+    border-radius: 20px 20px 20px 20px;
     position: absolute;
 	top:50%;
 	left:50%;
-	margin-left:-25px;
-	margin-top:-25px;
-    width: 50px;
-    height: 50px;
+	margin-left:-15px;
+	margin-top:-15px;
+    width: 30px;
+    height: 30px;
 }
 
 

@@ -6,6 +6,13 @@
 		var animando = false;
 		var array_items = [];
 		var delay = 200;		
+
+		var ALTO_HEADER = 180;
+		var altoItems = 65;
+		
+		var altoPantalla = window.innerHeight - ALTO_HEADER;
+		var multiplo = Math.ceil((altoPantalla / altoItems));	
+		var alturaFinal = (altoItems * multiplo)  - 10;
 		
 		self.div = document.createElement('div');
 		self.div.className = 'class-cero';
@@ -15,7 +22,12 @@
 			$(holderItems).css({'width' : 320, 'float' : 'left'});
 			
 		var objTituloSeccion = new TituloSeccion(nodo);
-			$(holderItems).append(objTituloSeccion.div);			
+			$(holderItems).append(objTituloSeccion.div);
+
+		var divScroll = document.createElement('div');
+			divScroll.className = 'divScroll';
+			$(holderItems).append(divScroll);
+			$(divScroll).css({'height' : altoPantalla});						
 
 		var holderMedia = document.createElement('div');
 			holderMedia.className = 'holder-media-item';
@@ -36,7 +48,7 @@
 	
 		var titulo = document.createElement('h1');
 			$(titulo).text('FOTOS Y VIDEOS');
-			$(titulo).css({'color' : '#FFF', 'margin-left' : 30});
+			$(titulo).css({'color' : '#000', 'margin-left' : 30});
 			$(holderTituloMedia).append(titulo);
 
 		if(objApp.isTouch())
@@ -69,12 +81,14 @@
 
 		function onCompleteXML(xml)
 		{
+			objApp.ocultarCargador();
+
 			if($(xml).find('xml').find('media').length != 0)
 			{
 				$(xml).find('xml').find('media').each(function(index, element) 
 				{
 					objMedia = new ItemMedia($(this), self, index);
-					$(holderItems).append(objMedia.div);
+					$(divScroll).append(objMedia.div);
 					array_items.push(objMedia);
 				});
 			}

@@ -17,11 +17,11 @@ var objApp;
 		self.DESCRIPTION;	
 		self.FB_APP_ID;
 		self.SERVER;
-		
+						
 		var wholeWrapper = document.createElement('div');
 			wholeWrapper.id = 'app';
 			$(wholeWrapper).appendTo('body');	
-		
+					
 		var objHeader = new Header(true);
 			$(wholeWrapper).append(objHeader.div);
 			
@@ -32,7 +32,7 @@ var objApp;
 		$(holderSeccion).css({scale : 0.5, duration : 500}).css({x : -1000, duration : 500})
 		
 		App.Navigate = new Navigate();
-		//App.Cargador = new Cargador();
+		App.Cargador = new Cargador();
 		App.CheckConnection = new CheckConection();
 
 		self.initialize = function() 
@@ -44,6 +44,10 @@ var objApp;
 			
 		function onDeviceReady()
 		{		
+			//$('.class-cero').css({'height' : $(window).height()});
+			//var uuid = device.uuid;
+			//var platform = device.platform;
+			
 			if(self.internet())
 			{							
 				objApp.Navigate('inicio', null);
@@ -147,7 +151,16 @@ var objApp;
 		  {  
 			return false;  
 		  }  
+		}
+		self.mostrarCargador = function()
+		{
+			App.Cargador.mostrar();
 		}					
+		self.ocultarCargador = function()
+		{
+			App.Cargador.ocultar();
+		}					
+
 	}
 	
 	window.App = App;

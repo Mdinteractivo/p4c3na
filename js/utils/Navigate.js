@@ -17,6 +17,8 @@
 				{
 					case 'inicio' : 
 						objContenido = new Inicio(); 
+						objApp.ocultarCargador();
+						
 					break;
 					
 					case 'noticias' : 
@@ -33,12 +35,18 @@
 
 					case 'fotos' : 
 						objContenido = new FotosVideos(nodo); 
-					break;																			
+					break;	
+					
+					case 'registro' : 
+						objContenido = new Registro(); 
+					break;																								
 				}	
 				
 				$(div_holder).html(objContenido.div);		
 			});
-
+			
+			objApp.mostrarCargador();
+			
 			$(div_holder).fadeIn(200).transition({x : 0, duration : 500}).transition({scale : 1, duration : 500});
 		}			
 	}
