@@ -1,0 +1,44 @@
+#holder-registro
+{
+	width:320px;
+	height:auto;
+	background:rgba(255,255,255,0.6);
+	float:left;	
+	margin-top: -18px;	
+}
+.wrapper-titulo-registro
+{
+	width: 100%;
+	height: 59px;
+	float: left;
+	position: relative;
+	padding-top: 9px;
+	text-align: left;
+}
+.wrapper-titulo-registro h1
+{
+	font-family: 'Oswald';
+	font-weight: bold;
+	font-size: 18px;
+	text-transform: uppercase;
+	margin: 0;
+	padding: 0;
+	margin-top: 13px;
+	margin-left:50px;
+}
+#inner-holder-registro-loader
+{
+	width:320px;
+	height:160px;
+	position:relative;	
+}
+#btn-connect
+{
+	width:235px;
+	height:38px;
+	position:absolute;
+	left:50%;
+	top:50%;
+	margin-left:-117px;
+	margin-top:-17px;
+}

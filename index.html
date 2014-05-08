@@ -14,10 +14,16 @@
 <link href="css/pantallas.css" rel="stylesheet" type="text/css" />
 <link href="css/novedades.css" rel="stylesheet" type="text/css" />
 <link href="css/radio.css" rel="stylesheet" type="text/css" />
+<link href="css/registro.css" rel="stylesheet" type="text/css" />
 <link href="css/media.css" rel="stylesheet" type="text/css" />
 
 <!--javascript libs-->
 <script src="cordova.js"></script>
+<script src="childbrowser.js"></script>
+<script src="PushNotification.js"></script>
+<script src="cdv-plugin-fb-connect.js"></script>
+<script src="facebook-js-sdk.js"></script>
+    
 <script type="text/javascript" src="js/lib/jquery.js"></script>
 <script type="text/javascript" src="js/lib/jquerytransit.js"></script>
 <script type="text/javascript" src="js/lib/jqueryes.js"></script>
@@ -28,6 +34,7 @@
 <script type="text/javascript" src="js/utils/Navigate.js"></script>
 <script type="text/javascript" src="js/utils/Cargador.js"></script>
 <script type="text/javascript" src="js/utils/CheckConection.js"></script>
+<script type="text/javascript" src="js/utils/facebook.js"></script>
 <!--com-->
 <script type="text/javascript" src="js/com/BtnMenu.js"></script>
 <script type="text/javascript" src="js/com/Header.js"></script>
@@ -35,6 +42,7 @@
 <script type="text/javascript" src="js/com/ItemPantalla.js"></script>
 <script type="text/javascript" src="js/com/ItemNovedad.js"></script>
 <script type="text/javascript" src="js/com/ItemMedia.js"></script>
+<script type="text/javascript" src="js/com/BtnConnect.js"></script>
 
 <!--application-->
 <script type="text/javascript" src="js/app/App.js"></script>
@@ -43,6 +51,7 @@
 <script type="text/javascript" src="js/seccions/Noticias.js"></script>
 <script type="text/javascript" src="js/seccions/Pantallas.js"></script>
 <script type="text/javascript" src="js/seccions/Radio.js"></script>
+<script type="text/javascript" src="js/seccions/Registro.js"></script>
 <script type="text/javascript" src="js/seccions/FotosVideos.js"></script>
 
 <script type="text/javascript">
@@ -52,11 +61,12 @@ $(document).ready(function(e)
 	objApp = new App();
 	objApp.initialize();
 });	
-
+			
 </script>
 
 </head>
 
 <body>
+	<div id="fb-root"></div>
 </body>
 </html>

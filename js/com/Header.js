@@ -17,8 +17,8 @@
 		var holderUserName = document.createElement('div');
 			holderUserName.id = 'holder-user-name';
 			$(self.div).append(holderUserName);
-			$(holderUserName).append('<h3>BIENVENIDO</h3>');
-			$(holderUserName).append('<p>Juan Carlos</p>');
+			//$(holderUserName).append('<h3>BIENVENIDO</h3>');
+			//$(holderUserName).append('<p>Juan Carlos</p>');
 		
 		var logo = new Image();
 			logo.src = 'img/general/logo-pacena.png';

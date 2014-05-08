@@ -8,8 +8,8 @@
 		self.div.className = 'item-pantalla';
 		$(self.div).css({'opacity' : 0});
 		
-		if(indice == 0)
-			$(self.div).css({'margin-top' : -8});
+		/*if(indice == 0)
+			$(self.div).css({'margin-top' : -8});*/
 
 		var textoVertical = document.createElement('div');
 			$(textoVertical).css({'width' : 30, 'float' : 'left', 'height' : 55});

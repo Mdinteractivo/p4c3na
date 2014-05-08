@@ -13,8 +13,8 @@
 		else
 			$(self.div).bind('click' , doClick);
 					
-		if(indice == 0)
-			$(self.div).css({'margin-top' : -8});
+		/*if(indice == 0)
+			$(self.div).css({'margin-top' : -8});*/
 		
 		var imagenWrapper = document.createElement('div');
 			imagenWrapper.className = 'imagen-item-novedad';

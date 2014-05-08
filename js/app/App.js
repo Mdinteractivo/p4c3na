@@ -44,13 +44,12 @@ var objApp;
 			
 		function onDeviceReady()
 		{		
-			//$('.class-cero').css({'height' : $(window).height()});
 			//var uuid = device.uuid;
 			//var platform = device.platform;
 			
 			if(self.internet())
 			{							
-				objApp.Navigate('inicio', null);
+				objApp.Navigate('registro', null);
 				
 				$.ajax
 				({
@@ -81,6 +80,15 @@ var objApp;
 			self.VERSION     = $(xmlSite).find('site').find('version').text();
 			self.FB_APP_ID   = $(xmlSite).find('site').find('fbappid').text();
 			self.DESCRIPTION = $(xmlSite).find('site').find('description').text();
+
+		    try 
+			{
+             	FB.init({ appId: $(xmlSite).find('site').find('fbappid').text(), nativeInterface: CDV.FB, useCachedDialogs: false });   
+            } 
+			catch (e) 
+			{
+                 alert(e);
+            }
 
 			$(xmlSite).find('site').find('seccions').find('seccion').each(function(index, element) 
 			{						
