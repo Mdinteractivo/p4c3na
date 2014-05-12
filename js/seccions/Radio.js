@@ -10,10 +10,14 @@
 		var objTituloSeccion = new TituloSeccion(nodo);
 			$(self.div).append(objTituloSeccion.div);	
 			$(self.div).append('<div class="clear"></div>');
-		
+
+		var divScroll = document.createElement('div');
+			divScroll.className = 'divScroll';
+			$(self.div).append(divScroll);
+					
 		var wrapperRadio = document.createElement('div');
 			wrapperRadio.id = 'holder-radio-contenido';
-			$(self.div).append(wrapperRadio);
+			$(divScroll).append(wrapperRadio);
 			
 		$(wrapperRadio).append('<h3>Haz click en el siguiente link para oir la transmisión:</h3>');				
 		

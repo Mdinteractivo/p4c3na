@@ -12,7 +12,7 @@
 		
 		var altoPantalla = window.innerHeight - ALTO_HEADER;
 		var multiplo = Math.ceil((altoPantalla / altoItems));	
-		var alturaFinal = (altoItems * multiplo)  - 10;
+		var alturaFinal = (altoItems * multiplo)  - 20;
 		
 		self.div = document.createElement('div');
 		self.div.className = 'class-cero';
@@ -133,7 +133,7 @@
 				$(p).text($(nodo).find('texto').text());		
 			
 			$(holderItems).transition({scale : 0.5, duration : 500}).transition({opacity : 0});
-			$(holderMedia).stop().delay(500).fadeIn(500, function(){animando = false;});	
+			$(holderMedia).stop().delay(500).fadeIn(500, function(){animando = false;});
 		}
 		function doCloseMedia()
 		{

@@ -15,8 +15,8 @@
 	<fbatoken>df02bff23c08c17bb05970bbc294526f</fbatoken>
 	
 	<!--server-->
-	<!--server>http://192.168.235.153/pacena/public/</server-->	
-	<server>http://www.mdinteractivo.com/pacena/</server>	
+	<server>http://192.168.235.153/pacena/public/</server>	
+	<!--server>http://www.mdinteractivo.com/pacena/</server-->	
 
 	<!--secciones del sitio-->
 	<seccions>

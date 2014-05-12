@@ -9,7 +9,7 @@
 		$(self.div).css({'opacity' : 0});
 
 		if(objApp.isTouch())
-			$(self.div).bind('touchend' , doClick);
+			$(self.div).bind('click' , doClick);
 		else
 			$(self.div).bind('click' , doClick);
 					

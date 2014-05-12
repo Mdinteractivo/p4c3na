@@ -61,7 +61,10 @@
 		
 		self.doConnect = function()
 		{
-			alert('DO CONNECT');
+			Facebook.init(function($data)
+			{
+				objApp.login_con_facebook($data.me.id);			
+			})
 		}	
 	}
 	

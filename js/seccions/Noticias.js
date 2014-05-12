@@ -12,7 +12,7 @@
 		
 		var altoPantalla = window.innerHeight - ALTO_HEADER;
 		var multiplo = Math.ceil((altoPantalla / altoItems));	
-		var alturaFinal = (altoItems * multiplo)  - 10;		
+		var alturaFinal = (altoItems * multiplo)  - 20;		
 		
 		self.div = document.createElement('div');
 		self.div.className = 'class-cero';
@@ -112,7 +112,7 @@
 		{
 			if(animando)
 				return;
-			
+
 			animando = true;	
 			$(holderNoticiaContenido).empty();
 			

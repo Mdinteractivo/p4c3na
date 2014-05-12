@@ -1,0 +1,83 @@
+#holder-datos-usuario
+{
+	width:300px;
+	height:auto;
+	background:rgba(255,255,255,0.6);
+	float:left;	
+	margin-top: 10px;
+	min-height:200px;
+	padding:10px 10px;	
+}
+
+#left-holder-datos-usuario
+{
+	width:100px;
+	height:100%;
+	float:left;
+	min-height:200px;
+}
+#left-holder-datos-usuario div
+{
+	width:100px;
+	height:110px;
+	background:#FFF url(../img/general/loader.GIF) no-repeat;
+	background-position: center center;	
+}
+#right-holder-datos-usuario
+{
+	width:190px;
+	height:100%;
+	float:left;
+	min-height:200px;
+	padding-left:10px;
+	word-wrap:break-word;	
+}
+#right-holder-datos-usuario p
+{
+	padding:0;
+	margin-top:0;
+}
+.holder-profile-titulo
+{
+	width:100%;
+	float:left;
+	margin-bottom:5px;
+	font-family: 'Oswald';
+	font-weight: bold;
+	font-size: 13px;
+	text-transform: uppercase;
+	text-decoration:underline;
+	color:#000;
+}
+.holder-profile-texto
+{
+	color:#333;
+	width:100%;
+	float:left;
+	margin-bottom:10px;
+	font-family: 'Oswald';
+	font-weight: bold;
+	font-size: 12px;
+	text-transform: uppercase;	
+}
+#right-holder-datos-usuario ul
+{
+	margin:0;
+	padding:0;
+}
+#right-holder-datos-usuario ul li
+{
+	padding:0;
+	list-style-type:none;
+	margin-bottom:5px;
+}
+#holder-participaciones-polla
+{
+	width:320px;
+	float:left;
+}
+#holder-proximos-polla
+{
+	width:320px;
+	float:left;
+}

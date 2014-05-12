@@ -11,7 +11,8 @@ var objApp;
 		var self = this;
 		var xmlSite;
 		var seccionsSite = [];
-		
+		var ALTO_HEADER = 180;
+
 		self.VERSION;	
 		self.TITLE;	
 		self.DESCRIPTION;	
@@ -21,6 +22,8 @@ var objApp;
 		var wholeWrapper = document.createElement('div');
 			wholeWrapper.id = 'app';
 			$(wholeWrapper).appendTo('body');	
+			$(wholeWrapper).css({'height' : window.innerHeight});
+			//$(wholeWrapper).bind('scroll', doScroll);		
 					
 		var objHeader = new Header(true);
 			$(wholeWrapper).append(objHeader.div);
@@ -49,7 +52,7 @@ var objApp;
 			
 			if(self.internet())
 			{							
-				objApp.Navigate('registro', null);
+				objApp.Navigate('inicio', null);
 				
 				$.ajax
 				({
@@ -87,7 +90,7 @@ var objApp;
             } 
 			catch (e) 
 			{
-                 alert(e);
+                // alert(e);
             }
 
 			$(xmlSite).find('site').find('seccions').find('seccion').each(function(index, element) 
@@ -167,8 +170,22 @@ var objApp;
 		self.ocultarCargador = function()
 		{
 			App.Cargador.ocultar();
-		}					
-
+		}	
+		
+		self.login_con_facebook = function(uid)
+		{
+			self.error(uid);
+		}	
+		
+		function doScroll()
+		{
+			var scrollTop = $(this).scrollTop();
+			
+			if(scrollTop > ALTO_HEADER)
+				$('.wrapper-titulo-seccion').css({'position' : 'absolute', 'top' : 0, 'left' : 0});
+			else
+				$('.wrapper-titulo-seccion').css({'position' : 'relative'});
+		}			
 	}
 	
 	window.App = App;
