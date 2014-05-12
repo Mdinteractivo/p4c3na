@@ -27,12 +27,21 @@ body
 	width:100%;
 	height:100%;
 }
+.divBlur
+{
+	filter: blur(6px);
+	height:55px;
+	width:10px;
+	position:absolute;
+	right:0;
+	top:0;
+}
 .divScroll
 {
 	width:100%;
 	float:left;
 	margin-top:60px;
-	overflow-y:scroll;
+	overflow-y:auto;
 	-webkit-overflow-scrolling: touch;
 }
 #holder-seccion-loader

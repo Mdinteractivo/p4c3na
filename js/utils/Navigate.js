@@ -8,7 +8,7 @@
 		
 		self.to = function(seccionName, nodo)
 		{	
-			$('#app').css({	'overflow-y' :'auto', '-webkit-overflow-scrolling' : 'touch'});
+			$('#app').css({	'overflow-y' :'auto'});
 			
 			$(div_holder).transition({scale : 0.5, duration : 500}).transition({x : -1000, duration : 500}, 800 , 'linear').
 			fadeOut(200, function()
@@ -26,6 +26,10 @@
 					case 'noticias' : 
 						objContenido = new Noticias(nodo); 
 					break;	
+
+					case 'fixture' : 
+						objContenido = new Fixture(nodo); 
+					break;						
 					
 					case 'pantallas' : 
 						objContenido = new Pantallas(nodo); 
@@ -44,7 +48,7 @@
 					break;
 
 					case 'polla' : 
-						$('#app').css({	'overflow-y' :'scroll', '-webkit-overflow-scrolling' : 'touch'});
+						//$('#app').css({	'overflow-y' :'scroll', '-webkit-overflow-scrolling' : 'touch'});
 						objContenido = new Polla(nodo); 
 					break;																													
 				}	

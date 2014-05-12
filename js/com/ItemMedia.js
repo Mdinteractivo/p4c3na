@@ -25,14 +25,21 @@
 			var imagen = new Image();
 				imagen.width = 92;
 				imagen.src = objApp.SERVER+'global/img/media/'+$(nodo).find('archivo').text();
-				$(imagenWrapper).append(imagen);
-			
-			var tituloPantalla = document.createElement('div');
-				$(tituloPantalla).css({'width' : 218, 'float' : 'left', 'height' : 55});
-				$(self.div).append(tituloPantalla);
-				$(tituloPantalla).append('<h4>'+$(nodo).find('titulo').text()+'</h4>');
+				$(imagenWrapper).append(imagen);			
 		}	
-
+		else
+		{
+			var imagen = new Image();
+				imagen.width = 92;
+				imagen.src = objApp.SERVER+'global/img/media/default_video.png';
+				$(imagenWrapper).append(imagen);			
+		}
+		
+		var tituloPantalla = document.createElement('div');
+			$(tituloPantalla).css({'width' : 218, 'float' : 'left', 'height' : 55});
+			$(self.div).append(tituloPantalla);
+			$(tituloPantalla).append('<h4>'+$(nodo).find('titulo').text()+'</h4>');
+		
 		function doClick()
 		{
 			parent.showMedia(nodo);

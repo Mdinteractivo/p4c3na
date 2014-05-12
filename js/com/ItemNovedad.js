@@ -26,7 +26,7 @@
 			$(imagenWrapper).append(imagen);
 		
 		var tituloPantalla = document.createElement('div');
-			$(tituloPantalla).css({'width' : 200, 'float' : 'left', 'height' : 55});
+			$(tituloPantalla).css({'width' : 200, 'float' : 'left', 'height' : 25, 'overflow' : 'hidden', 'margin-top' : 18});
 			$(self.div).append(tituloPantalla);
 			$(tituloPantalla).append('<h4>'+$(nodo).find('titulo').text()+'</h4>');
 

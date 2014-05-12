@@ -6,7 +6,6 @@
 		var animando = false;
 		var array_items = [];
 		var delay = 200;		
-
 		var ALTO_HEADER = 180;
 		var altoItems = 65;
 		
@@ -116,16 +115,24 @@
 			animando = true;	
 			$(holderMediaContenido).empty();
 			
-			var imagen = new Image();
-				imagen.width = 320;
-				imagen.src = objApp.SERVER+'global/img/media/'+$(nodo).find('archivo').text();
-				$(holderMediaContenido).append(imagen);
-				$(imagen).css({'float' : 'left', 'display' : 'none'});
-				$(imagen).load(function()
-				{
-					$(this).fadeIn();
-				});
-					
+			if(parseInt($(nodo).find('boolVideo').text()) == 0)
+			{
+				var imagen = new Image();
+					imagen.width = 320;
+					imagen.src = objApp.SERVER+'global/img/media/'+$(nodo).find('archivo').text();
+					$(holderMediaContenido).append(imagen);
+					$(imagen).css({'float' : 'left', 'display' : 'none'});
+					$(imagen).load(function()
+					{
+						$(this).fadeIn();
+					});
+			}
+			else
+			{
+					$(holderMediaContenido).append
+					('<iframe width="320" height="180" src="http://www.youtube.com/embed/'+$(nodo).find('archivo').text()+'?rel=0" frameborder="0" allowfullscreen></iframe>');
+			}
+			
 			$(holderMediaContenido).append('<h3>'+$(nodo).find('titulo').text()+'</h3>');
 			
 			var p = document.createElement('p');
@@ -137,6 +144,8 @@
 		}
 		function doCloseMedia()
 		{
+			$(holderMediaContenido).empty();
+
 			if(animando)
 				return;
 
@@ -145,7 +154,7 @@
 			$(holderMedia).stop().fadeOut(500);
 			$(holderItems).delay(500).transition({opacity : 1}).transition({scale : 1, duration : 500});
 			animando = false;	
-		}						
+		}								
 	}
 	
 	window.FotosVideos = FotosVideos;

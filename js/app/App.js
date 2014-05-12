@@ -22,7 +22,7 @@ var objApp;
 		var wholeWrapper = document.createElement('div');
 			wholeWrapper.id = 'app';
 			$(wholeWrapper).appendTo('body');	
-			$(wholeWrapper).css({'height' : window.innerHeight});
+			//$(wholeWrapper).css({'height' : window.innerHeight});
 			//$(wholeWrapper).bind('scroll', doScroll);		
 					
 		var objHeader = new Header(true);

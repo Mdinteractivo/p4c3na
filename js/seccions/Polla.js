@@ -3,7 +3,9 @@
 	function Polla(nodo)
 	{
 		var self = this;
-
+		var ALTO_HEADER = 180;
+		var altoPantalla = (window.innerHeight - ALTO_HEADER) - 10;
+		
 		self.div = document.createElement('div');
 		self.div.className = 'class-cero';
 		
@@ -14,6 +16,7 @@
 		var divScroll = document.createElement('div');
 			divScroll.className = 'divScroll';
 			$(self.div).append(divScroll);
+			$(divScroll).css({'height' : altoPantalla});
 			
 		var holderDatosUsuario = document.createElement('div');
 			holderDatosUsuario.id = 'holder-datos-usuario';

@@ -1,0 +1,65 @@
+.place-holder-grupo
+{
+	width:320px;
+	height:180px;
+	float:left;
+	margin-bottom:10px;
+	background:rgba(255,255,255,0.6);	
+}
+.vertical-fixture
+{
+	width:30px;
+	height:180px;
+	float:left;	
+}
+.vertical-fixture P
+{
+	font-family: 'Oswald';
+	font-weight: bold;
+	font-size: 17px;
+	text-decoration: none;
+	margin-top: 80px;
+	width: 90px;
+	text-align: center;
+	margin-left: -29px;	
+}
+.holder-selecciones
+{
+	width:270px;
+	float:left;
+	height:180px;
+}
+.seleccion-div
+{
+	width: 105px;
+	height: 70px;
+	float: left;
+	margin-left: 20px;
+	margin-top: 12px;
+	overflow: hidden;
+	text-align:center;	
+}
+.seleccion-div p
+{
+	font-family: 'Oswald';
+	font-weight: bold;
+	font-size: 14px;
+	margin:0;
+	padding:0;
+}
+.item-versus
+{
+	width:320px;
+	height:55px;
+	float:left;
+	margin-top:10px;
+	background:rgba(255,255,255,0.6);
+}
+.holder-grupo-contenido
+{
+	width: 320px;
+	height: auto;
+	float: left;
+	overflow-y:auto;
+	-webkit-overflow-scrolling: touch;	
+}
