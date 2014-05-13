@@ -50,10 +50,11 @@
 .item-versus
 {
 	width:320px;
-	height:55px;
+	height:75px;
 	float:left;
 	margin-top:10px;
 	background:rgba(255,255,255,0.6);
+	opacity:0;
 }
 .holder-grupo-contenido
 {
@@ -62,4 +63,41 @@
 	float: left;
 	overflow-y:auto;
 	-webkit-overflow-scrolling: touch;	
+}
+.holder-banderas-partidos
+{
+	width:135px;
+	height:75px;
+	position:relative;
+	float:left;
+}
+.holder-banderas-partidos P
+{
+	font-family: 'Oswald';
+	font-weight: bold;
+	font-size: 22px;
+	color:#FFF;
+	text-shadow: 2px 2px 2px rgba(0, 0, 0, 1);
+	text-transform:uppercase;
+	position:absolute;
+	top:0px;
+	left:48px;	
+}
+.holder-detalles-partido
+{
+	float : left;
+	width: 185px;
+	height : 68px;
+	text-align:center;
+	overflow:hidden;
+	padding-top:7px;
+
+}
+.holder-detalles-partido p
+{
+	padding:0;
+	margin:0;
+	font-family: 'Oswald';
+	font-size: 14px;
+	color:#000;		
 }

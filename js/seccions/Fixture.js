@@ -88,7 +88,7 @@
 			else
 			{
 				//octavos, cuartos, semi y final
-				//objContenido = new Versus(xml);
+				objContenido = new Versus(xml);
 			}
 			$(divScroll).append(objContenido.div);	
 		}
@@ -146,6 +146,7 @@ function FasesDeGrupo(xml, parent)
 	var self = this;
 	var placeHolderGrupo;
 	var grupoActual = 'R';
+	var delay = 200;
 	
 	self.div = document.createElement('div');
 	
@@ -157,9 +158,11 @@ function FasesDeGrupo(xml, parent)
 			{
 				grupoActual = $(this).find('grupo').text();
 				
-				placeHolderGrupo = new PlaceHolderGrupo($(this).find('grupo').text(), self);
+				placeHolderGrupo = new PlaceHolderGrupo($(this).find('grupo').text(), self, delay);
 				$(self.div).append(placeHolderGrupo.div);
 			}
+			
+			delay +=200;
 			
 			placeHolderGrupo.add($(this));	
 			/*objItemNovedad = new ItemNovedad($(this), self, index);
@@ -176,12 +179,13 @@ function FasesDeGrupo(xml, parent)
 	}		
 }
 
-function PlaceHolderGrupo(grupo, parent)
+function PlaceHolderGrupo(grupo, parent, DELAY)
 {
 	var self = this;
 	self.div = document.createElement('div');
 	self.div.className = 'place-holder-grupo';
 	$(self.div).bind('click' , doClick);
+	$(self.div).css({scale : 0.5}).delay(DELAY).transition({opacity : 1, scale : 1, duration : 500});
 	
 	var vertical = document.createElement('div');
 		vertical.className = 'vertical-fixture';
@@ -231,6 +235,9 @@ function PlaceHolderGrupo(grupo, parent)
 function Versus(xml)
 {
 	var self = this;
+	var array_items = [];
+	var DELAY = 200;
+	
 	self.div = document.createElement('div');
 	
 	if($(xml).find('partido').length == 0)
@@ -238,11 +245,106 @@ function Versus(xml)
 	else
 	{
 		$(xml).find('partido').each(function(index, element) 
-		{
-        	var itemVersus = document.createElement('div');
+		{						
+			var itemVersus = document.createElement('div');
 				itemVersus.className = 'item-versus';
-				$(self.div).append(itemVersus);  
-        });	
+				$(self.div).append(itemVersus); 
+				$(itemVersus).css({'opacity' : 0}); 
+				
+			var holderBanderas = document.createElement('div');
+				holderBanderas.className = 'holder-banderas-partidos';	
+        		$(itemVersus).append(holderBanderas);
+				
+			var bandera1 = new Image();
+				bandera1.src = objApp.SERVER+'global/img/banderas/bandera'+$(this).find('idLocal').text()+'.png?ac=1';
+				bandera1.width = 71;
+				$(holderBanderas).append(bandera1);
+				$(bandera1).css({'position' : 'absolute', 'left' : 5 , 'top' : 5});
+				
+			var bandera2 = new Image();
+				bandera2.src = objApp.SERVER+'global/img/banderas/bandera'+$(this).find('idVisita').text()+'.png?ac=1';
+				bandera2.width = 71;
+				$(holderBanderas).append(bandera2);	
+				$(bandera2).css({'position' : 'absolute', 'left' : 57 , 'top' : 28});
+			
+			var textoVs = document.createElement('p');
+				$(textoVs).text('VS');
+				$(holderBanderas).append(textoVs);	
+			
+			var holderTextos = document.createElement('div');
+				holderTextos.className = 'holder-detalles-partido';
+				$(itemVersus).append(holderTextos);
+				$(holderTextos).append('<p>'+$(this).find('local').text()+' VS '+$(this).find('visitante').text()+'</p>');
+				$(holderTextos).append('<p>'+getStringFecha($(this).find('fecha').text())+'</p>');
+				$(holderTextos).append('<p>'+$(this).find('estadio').text()+'</p>');
+				
+			array_items.push(itemVersus);			
+		});	
+		
+		for(var i = 0; i < array_items.length; ++i)	
+		{
+			$(array_items[i]).css({scale : 0.5}).delay(DELAY).transition({opacity : 1, scale : 1, duration : 500});
+			DELAY +=200;
+		}	
+	}
+	
+	function getStringFecha(fecha)
+	{
+		//2014-05-28 19:04:39
+		var aux = fecha.split(' ');
+		var date = aux[0];
+		var hour = aux[1];
+		
+		var auxHora = hour.split(':');	
+		var hourOutSeconds = auxHora[0] +':'+ auxHora[1];
+		
+		var auxFecha = date.split('-');
+		var day = auxFecha[2];
+		var mesNumber = auxFecha[1];
+		var anio = auxFecha[0];
+		var mesString;
+		
+		switch(mesNumber)
+		{
+			case '01':
+				mesString = 'Ene.';
+			break;
+			case '02':
+				mesString = 'Feb.';
+			break;
+			case '03':
+				mesString = 'Mar.';
+			break;
+			case '04':
+				mesString = 'Abr.';
+			break;
+			case '05':
+				mesString = 'May.';
+			break;
+			case '06':
+				mesString = 'Jun.';
+			break;	
+			case '07':
+				mesString = 'Jul.';
+			break;
+			case '08':
+				mesString = 'Ago.';
+			break;
+			case '09':
+				mesString = 'Set.';
+			break;
+			case '10':
+				mesString = 'Oct.';
+			break;
+			case '11':
+				mesString = 'Nov.';
+			break;
+			case '12':
+				mesString = 'Dic.';
+			break;																			
+		}	
+		
+		return (day +' '+mesString+' '+anio+' - '+hourOutSeconds+' Hora Local');
 	}
 	
 }
