@@ -11,6 +11,7 @@ var objApp;
 		var self = this;
 		var xmlSite;
 		var seccionsSite = [];
+		var historial = [];
 		var ALTO_HEADER = 180;
 		var uuid;
 		var xmlDataUser;
@@ -73,13 +74,19 @@ var objApp;
 		{
 			App.CheckConnection.mostrar();						
 		}
+		
 		function onDeviceOnLine()
 		{
 			App.CheckConnection.ocultar();
 		}
+		
 		function backKeyDown()
 		{
-			return;
+			if(historial[historial.length-1] == 'inicio')
+			{
+				navigator.app.exitApp();
+    			e.preventDefault();
+			}
 		}				
 		function onCompleteXML(xmlSite)
 		{
@@ -95,7 +102,7 @@ var objApp;
 			{
              	FB.init({ appId: $(xmlSite).find('site').find('fbappid').text(), nativeInterface: CDV.FB, useCachedDialogs: false });   
             } 
-			catch (e) { /* alert(e);*/ }
+			catch (e){}
 
 			$(xmlSite).find('site').find('seccions').find('seccion').each(function(index, element) 
 			{						
@@ -133,7 +140,13 @@ var objApp;
 		
 		function onErrorXML()
 		{
-			self.error('Error al inicializar la aplicación.');
+			self.error('Error al inicializar la aplicación. La aplicación se cerrará');
+			
+			setTimeout(function()
+			{
+				navigator.app.exitApp();
+			
+			}, 3000);
 		}
 		
 		self.getMenu = function()
@@ -143,6 +156,7 @@ var objApp;
 
 		self.Navigate = function(seccion, nodo)
 		{
+			historial.push(seccion);
 			App.Navigate.to(seccion, nodo);
 		}
 		self.internet = function() 
@@ -210,16 +224,6 @@ var objApp;
 		{
 			self.error(uid);
 		}	
-		
-		function doScroll()
-		{
-			var scrollTop = $(this).scrollTop();
-			
-			if(scrollTop > ALTO_HEADER)
-				$('.wrapper-titulo-seccion').css({'position' : 'absolute', 'top' : 0, 'left' : 0});
-			else
-				$('.wrapper-titulo-seccion').css({'position' : 'relative'});
-		}			
 	}
 	
 	window.App = App;

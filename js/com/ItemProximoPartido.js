@@ -35,28 +35,46 @@
 				
 		var btnPronostico  = new Image();
 			btnPronostico.className = 'btn-pronostico';
-			btnPronostico.src = 'img/secciones/polla/btn-pronostico.png';
+			btnPronostico.src = 'img/secciones/polla/btn-pronostico.png?ac=1';
 			btnPronostico.width = 38;
 			$(self.div).append(btnPronostico);
 
-		if(objApp.isTouch())
-			$(btnPronostico).bind('touchend' , showApuesta);
-		else
-			$(btnPronostico).bind('click' , showApuesta);		
+		var btnEditarPronostico = document.createElement('div');
+			btnEditarPronostico.className = 'btn-editar-pronostico-oculto';
+			$(self.div).append(btnEditarPronostico);
+			$(btnEditarPronostico).text('EDITAR');
 
+		if(objApp.isTouch())
+		{
+			$(btnPronostico).bind('touchend' , showApuesta);
+			$(btnEditarPronostico).bind('touchend' , showApuesta);
+		}
+		else
+		{
+			$(btnPronostico).bind('click' , showApuesta);	
+			$(btnEditarPronostico).bind('click' , showApuesta);	
+		}
+		
 		if(bool)
 		{
 			$(holderTextos).css({'width' : 145, 'font-size' : 12, 'padding-top' : 10});
 			
 			if(parseInt($(nodo).find('apuesta').find('aposto').text()) != 0)
-				$(btnPronostico).css({'display' : 'none'});			
+			{
+				$(btnPronostico).css({'display' : 'none'});		
+				$(btnEditarPronostico).css({'display' : 'block'});	
+			}
 			else
+			{
 				$(btnPronostico).css({'display' : 'block'});			
+				$(btnEditarPronostico).css({'display' : 'none'});	
+			}
 		}
 		else
 		{
 			$(holderTextos).css({'width' : 185, 'font-size' : 14, 'padding-top' : 6});
 			$(btnPronostico).css({'display' : 'none'});
+			$(btnEditarPronostico).css({'display' : 'none'});	
 		}
 
 		self.inicializar = function(DELAY)

@@ -179,7 +179,8 @@
 			$(titulo).text('Próximos partidos');
 			$(titulo).css({'color' : '#FFF', 'margin-left' : 30});
 			$(holderPanelProximosTitulo).append(titulo);
-			$(holderPanelProximosTitulo).bind('click' , doClickApuestas);		
+			
+			$(holderProximos).bind('click' , doClickApuestas);		
 
 		var icono = new Image();
 			icono.width = 64;
@@ -223,9 +224,11 @@
 			objApp.Navigate('proximos', nodo);
 		}
 		
-		function onErrorXML(){}
-		objApp.ocultarCargador();
-		
+		function onErrorXML()
+		{
+			objApp.error('Ha ocurrido un error con la conexión');	
+		}
+				
 		self.showLightbox = function(obj)
 		{
 			if(animando)
@@ -248,7 +251,9 @@
 			$(holderLightBox).stop().fadeOut(500);
 			$(holderItems).delay(500).transition({opacity : 1}).transition({scale : 1, duration : 500});
 			animando = false;	
-		}								
+		}
+		
+		objApp.ocultarCargador();						
 	}
 	
 	window.Polla = Polla;

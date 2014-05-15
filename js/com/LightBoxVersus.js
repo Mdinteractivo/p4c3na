@@ -111,11 +111,25 @@ function LightBoxVersus(nodo, parent)
 		else
 			$(btnEditar).bind('click' , doEditar);	
 
-
 	var btnCompartir = document.createElement('div'); 
 		btnCompartir.id = 'btn-compartir';
 		$(holderBotones).append(btnCompartir);
-				
+			
+			
+	if(parseInt($(nodo).find('apuesta').find('aposto').text()) == 1)
+	{
+		$(inputLocal).val($(nodo).find('apuesta').find('apuestasLocalGoles').text());
+		$(inputVisitante).val($(nodo).find('apuesta').find('apuestasVisitantesGoles').text());
+		
+		$(btnEnviar).css({'display' : 'none'});
+		$(btnEditar).css({'display' : 'block'});
+		
+		$(inputLocal).attr('disabled' ,'disabled');
+		$(inputVisitante).attr('disabled' ,'disabled');
+
+		checkUp();
+	}		
+			
 	function checkUp()
 	{
 		console.log('up');
@@ -193,28 +207,23 @@ function LightBoxVersus(nodo, parent)
 		
 		if(estado == 1)
 		{
-			objApp.error('Tu apuesta ha sido guardada correctamente');
 			$(btnCompartir).css({'display' : 'block'});	
 			$(btnEnviar).css({'display' : 'none'});
 			$(btnEditar).css({'display' : 'block'});
 			
 			$(inputLocal).attr('disabled' ,'disabled');
 			$(inputVisitante).attr('disabled' ,'disabled');
+
+			objApp.error('Tu apuesta ha sido guardada correctamente');
 							
 			parent.refrescarLista();
 		}
 		else if(estado == 2)
-		{
 			objApp.error('No puedes apostar en este momento, el partido ya ha comenzado');
-		}
 		else if(estado == 3)
-		{
 			objApp.error('Error, por favor verifica los datos');
-		}
 		else
-		{
 			objApp.error('Ha ocurrido un error, por favor intenta más tarde.');
-		}
 	}
 	
 	function doEditar()
