@@ -72,7 +72,6 @@
 			holderNoticiaContenido.id = 'holder-noticia-contenido';
 			$(holderNoticia).append(holderNoticiaContenido);
 		
-
 		$.ajax
 		({
 			url : objApp.SERVER+'ws/ws-novedades.php',
@@ -128,7 +127,7 @@
 			
 			var p = document.createElement('p');
 				$(holderNoticiaContenido).append(p);
-				$(p).text($(nodo).find('descripcion').text());		
+				$(p).html($(nodo).find('descripcion').text());		
 			
 			$(holderItems).transition({scale : 0.5, duration : 500}).transition({opacity : 0});
 			$(holderNoticia).stop().delay(500).fadeIn(500, function(){animando = false;});	

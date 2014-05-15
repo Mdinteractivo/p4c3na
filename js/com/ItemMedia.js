@@ -31,7 +31,7 @@
 		{
 			var imagen = new Image();
 				imagen.width = 92;
-				imagen.src = objApp.SERVER+'global/img/media/default_video.png';
+				imagen.src = 'http://i.ytimg.com/vi/'+$(nodo).find('archivo').text()+'/default.jpg';
 				$(imagenWrapper).append(imagen);			
 		}
 		

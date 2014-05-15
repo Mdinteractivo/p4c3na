@@ -48,9 +48,12 @@
 					break;
 
 					case 'polla' : 
-						//$('#app').css({	'overflow-y' :'scroll', '-webkit-overflow-scrolling' : 'touch'});
 						objContenido = new Polla(nodo); 
-					break;																													
+					break;	
+					
+					case 'proximos' : 
+						objContenido = new ProximosPartidos(nodo); 
+					break;																																		
 				}	
 				
 				$(div_holder).html(objContenido.div);		

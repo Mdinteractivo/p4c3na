@@ -4,18 +4,33 @@
 	{
 		var self = this;
 		var ALTO_HEADER = 180;
-		var altoPantalla = (window.innerHeight - ALTO_HEADER) - 10;
+		var altoPantalla = (window.innerHeight - ALTO_HEADER) + 5;
+		var animando = false;
+		var dataXml = null;
 		
 		self.div = document.createElement('div');
 		self.div.className = 'class-cero';
-		
+
+		$.ajax
+		({
+			url  : objApp.SERVER+'ws/ws-getDatosUsuario.php',
+			type : 'POST',
+			data : {'id' : objApp.idUsuario},
+			success : onCompleteXML,
+			error : onErrorXML
+		});	
+
+		var holderItems = document.createElement('div');
+			$(self.div).append(holderItems);
+			$(holderItems).css({'width' : 320, 'float' : 'left'});
+						
 		var objTituloSeccion = new TituloSeccion(nodo);
-			$(self.div).append(objTituloSeccion.div);	
+			$(holderItems).append(objTituloSeccion.div);	
 			$(self.div).append('<div class="clear"></div>');
 			
 		var divScroll = document.createElement('div');
 			divScroll.className = 'divScroll';
-			$(self.div).append(divScroll);
+			$(holderItems).append(divScroll);
 			$(divScroll).css({'height' : altoPantalla});
 			
 		var holderDatosUsuario = document.createElement('div');
@@ -42,7 +57,6 @@
 		var nombreApellido = document.createElement('p');
 			nombreApellido.className = 'holder-profile-texto';
 			$(rightDatosUsuario).append(nombreApellido);
-			$(nombreApellido).text('Juan Carlos Gonzalez');
 		
 		/**/
 		var correoTitulo = document.createElement('p');
@@ -53,7 +67,6 @@
 		var correo = document.createElement('p');
 			correo.className = 'holder-profile-texto';
 			$(rightDatosUsuario).append(correo);
-			$(correo).text('jonzalez@gmail.com');
 			
 		/**/
 		var fechaTitulo = document.createElement('p');
@@ -64,31 +77,46 @@
 		var fecha = document.createElement('p');
 			fecha.className = 'holder-profile-texto';
 			$(rightDatosUsuario).append(fecha);
-			$(fecha).text('15/10/1985');			
 
 		/**/
 		var clasificacionTitulo = document.createElement('p');
 			clasificacionTitulo.className = 'holder-profile-titulo';
 			$(rightDatosUsuario).append(clasificacionTitulo);
-			$(clasificacionTitulo).append('Clasificació Gral : <span style="color:#333; text-decoration:none">30000</span>');
+			$(clasificacionTitulo).append('Clasificación Gral :');
+			
+		var clasificacionGralTexto = document.createElement('p');
+			clasificacionGralTexto.className = 'holder-profile-texto';
+			$(rightDatosUsuario).append(clasificacionGralTexto);	
 
 		/**/
 		var clasificacionAmigosTitulo = document.createElement('p');
 			clasificacionAmigosTitulo.className = 'holder-profile-titulo';
 			$(rightDatosUsuario).append(clasificacionAmigosTitulo);
-			$(clasificacionAmigosTitulo).append('Clasificación entre amigos : <span style="color:#333; text-decoration:none">200</span>');
+			$(clasificacionAmigosTitulo).append('Clasificación entre amigos :');
+
+		var clasificacionAmigosTexto = document.createElement('p');
+			clasificacionAmigosTexto.className = 'holder-profile-texto';
+			$(rightDatosUsuario).append(clasificacionAmigosTexto);	
 
 		/**/
 		var puntos = document.createElement('p');
 			puntos.className = 'holder-profile-titulo';
 			$(rightDatosUsuario).append(puntos);
-			$(puntos).append('Puntos : <span style="color:#333; text-decoration:none">2</span>');
+			$(puntos).append('Puntos :');
 
+		var puntosTexto = document.createElement('p');
+			puntosTexto.className = 'holder-profile-texto';
+			$(rightDatosUsuario).append(puntosTexto);
+			
 		/**/
 		var pronosticos = document.createElement('p');
 			pronosticos.className = 'holder-profile-titulo';
 			$(rightDatosUsuario).append(pronosticos);
-			$(pronosticos).append('Pronósticos : <span style="color:#333; text-decoration:none">6</span>');
+			$(pronosticos).append('Pronósticos :');
+
+		var pronosticosTexto = document.createElement('p');
+			pronosticosTexto.className = 'holder-profile-texto';
+			$(rightDatosUsuario).append(pronosticosTexto);
 
 		var equiposTitulo = document.createElement('p');
 			equiposTitulo.className = 'holder-profile-titulo';
@@ -97,15 +125,17 @@
 
 		var ulEquipos = document.createElement('ul');
 			ulEquipos.className = 'holder-profile-texto';
-			$(rightDatosUsuario).append(ulEquipos);
-			
-			$(ulEquipos).append('<li>Uruguay</li>');
-			$(ulEquipos).append('<li>Brasil</li>');
-			$(ulEquipos).append('<li>Alemania</li>');
-			$(ulEquipos).append('<li>Francia</li>');
-			$(ulEquipos).append('<li>Argentina</li>');
-			
+			$(rightDatosUsuario).append(ulEquipos);	
 
+		var divHolderEditar = document.createElement('div');
+			divHolderEditar.id = 'div-holder-editar-btn';
+			$(holderDatosUsuario).append(divHolderEditar);
+
+		var btnEditar = document.createElement('div');
+			btnEditar.id = 'btn-editar';
+			$(divHolderEditar).append(btnEditar);
+			$(btnEditar).text('EDITAR');
+		
 		/*PANEL PARTICIPACIONES*/
 		var holderParticipaciones = document.createElement('div');
 			holderParticipaciones.id = 'holder-participaciones-polla';
@@ -116,7 +146,7 @@
 			$(holderPanelParticipacionesTitulo).css({'background' : 'url(img/general/menu/red_item.png) no-repeat'});
 			$(holderPanelParticipacionesTitulo).css({'background-size' : '320px 68px'});
 			$(holderParticipaciones).append(holderPanelParticipacionesTitulo);
-	
+		
 		var titulo = document.createElement('h1');
 			$(titulo).text('Partidos Jugados');
 			$(titulo).css({'color' : '#FFF', 'margin-left' : 30});
@@ -148,7 +178,8 @@
 		var titulo = document.createElement('h1');
 			$(titulo).text('Próximos partidos');
 			$(titulo).css({'color' : '#FFF', 'margin-left' : 30});
-			$(holderPanelProximosTitulo).append(titulo);		
+			$(holderPanelProximosTitulo).append(titulo);
+			$(holderPanelProximosTitulo).bind('click' , doClickApuestas);		
 
 		var icono = new Image();
 			icono.width = 64;
@@ -157,14 +188,77 @@
 			$(icono).css({'position' : 'absolute' , 'right' : 5, 'top' : 0});		
 		
 		var holderProximosContenido = document.createElement('div');
-			holderProximosContenido.id = 'holder-noticia-contenido';
+			holderProximosContenido.id = 'holder-proximos-partidos-contenido';
 			$(holderProximos).append(holderProximosContenido);
-			$(holderProximosContenido).css({'min-height' : 200});
 		
+		function onCompleteXML(xml)
+		{
+			var imgProfile = new Image();
+				imgProfile.width = 100;
+				imgProfile.src = 'http://graph.facebook.com/'+$(xml).find('personales').find('fb_uid').text()+'/picture?width=100&height=100';
+				
+			$(holderFoto).append(imgProfile);
+			$(nombreApellido).text($(xml).find('personales').find('nombre').text());
+			$(correo).text($(xml).find('personales').find('email').text());
+			$(fecha).text($(xml).find('personales').find('fechaNacimiento').text());			
+			$(clasificacionGralTexto).append($(xml).find('personales').find('clasificacionGral').text());
+			$(clasificacionAmigosTexto).append('200');
+			$(puntosTexto).append($(xml).find('personales').find('puntos').text());
+			$(pronosticosTexto).append($(xml).find('personales').find('pronosticos').text());
+			
+			$(xml).find('favoritos').find('seleccion').each(function(index, element) 
+			{
+                $(ulEquipos).append('<li>'+$(this).find('seleccionNombre').text()+'</li>');
+            });
+			
+			$(xml).find('proximosPartidos').find('partido').each(function(index, element) 
+			{						
+				var itemProximo = new ItemProximoPartido(this, false, null)
+				$(holderProximosContenido).append(itemProximo.div); 
+			});	
+		}	
+				
+		function doClickApuestas()
+		{
+			objApp.Navigate('proximos', nodo);
+		}
+		
+		function onErrorXML(){}
 		objApp.ocultarCargador();
 		
+		self.showLightbox = function(obj)
+		{
+			if(animando)
+				return;
+
+			animando = true;	
+			$(holderLightBoxContenido).empty();
+			$(holderLightBoxContenido).append(obj.div);
+			
+			$(holderItems).transition({scale : 0.5, duration : 500}).transition({opacity : 0});
+			$(holderLightBox).stop().delay(500).fadeIn(500, function(){animando = false;});	
+		}
+		function doCloseLighBox()
+		{
+			if(animando)
+				return;
+
+			animando = true;	
+				
+			$(holderLightBox).stop().fadeOut(500);
+			$(holderItems).delay(500).transition({opacity : 1}).transition({scale : 1, duration : 500});
+			animando = false;	
+		}								
 	}
 	
 	window.Polla = Polla;
 
 })(window);
+
+function LightBoxApuesta(xml)
+{
+	var self = this;
+		
+	self.div = document.createElement('div');
+	$(self.div).css({'width' : 320, 'height' : 200});
+}

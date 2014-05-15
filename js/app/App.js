@@ -12,7 +12,10 @@ var objApp;
 		var xmlSite;
 		var seccionsSite = [];
 		var ALTO_HEADER = 180;
-
+		var uuid;
+		var xmlDataUser;
+		
+		self.idUsuario;
 		self.VERSION;	
 		self.TITLE;	
 		self.DESCRIPTION;	
@@ -22,8 +25,6 @@ var objApp;
 		var wholeWrapper = document.createElement('div');
 			wholeWrapper.id = 'app';
 			$(wholeWrapper).appendTo('body');	
-			//$(wholeWrapper).css({'height' : window.innerHeight});
-			//$(wholeWrapper).bind('scroll', doScroll);		
 					
 		var objHeader = new Header(true);
 			$(wholeWrapper).append(objHeader.div);
@@ -40,20 +41,23 @@ var objApp;
 
 		self.initialize = function() 
 		{
+		   //Inicializo eventos
 		   document.addEventListener('deviceready', onDeviceReady, false);
 		   document.addEventListener("offline", onDeviceOffLine, false);
 		   document.addEventListener("online", onDeviceOnLine, false);
+		   document.addEventListener("backbutton", backKeyDown, false);
 		}		
 			
 		function onDeviceReady()
 		{		
-			//var uuid = device.uuid;
+			//Obtengo datos del dispositivo
+
+			//device.uuid;
 			//var platform = device.platform;
+			uuid = 123456789;
 			
 			if(self.internet())
-			{							
-				objApp.Navigate('inicio', null);
-				
+			{											
 				$.ajax
 				({
 					url : 'xml/config-site.xml',
@@ -69,14 +73,17 @@ var objApp;
 		{
 			App.CheckConnection.mostrar();						
 		}
-		
 		function onDeviceOnLine()
 		{
 			App.CheckConnection.ocultar();
-		}		
-		
+		}
+		function backKeyDown()
+		{
+			return;
+		}				
 		function onCompleteXML(xmlSite)
 		{
+			//Me traigo toda la informacion de la aplicacion
 			document.title   = $(xmlSite).find('site').find('title').text();
 			
 			self.SERVER      = $(xmlSite).find('site').find('server').text();
@@ -88,25 +95,52 @@ var objApp;
 			{
              	FB.init({ appId: $(xmlSite).find('site').find('fbappid').text(), nativeInterface: CDV.FB, useCachedDialogs: false });   
             } 
-			catch (e) 
-			{
-                // alert(e);
-            }
+			catch (e) { /* alert(e);*/ }
 
 			$(xmlSite).find('site').find('seccions').find('seccion').each(function(index, element) 
 			{						
 			   seccionsSite.push($(this));
-			});						
+			});	
+			
+			//Chequeo si ya existe este dispositivo
+			checkExisteDispositivo();
+		}
+		
+		function checkExisteDispositivo()
+		{
+			$.ajax
+			({
+				url  : objApp.SERVER+'ws/ws-checkDispositivo.php',
+				type : 'POST',
+				data : {'uuid' : uuid},
+				success : onCompleteCheckDispositivo
+			});				
+		}
+		function onCompleteCheckDispositivo(xml)
+		{
+			if(parseInt($(xml).find('existe').text()) == 1)
+			{
+				xmlDataUser = xml;
+				self.idUsuario = $(xml).find('idUsuario').text();
+				
+				console.log('id de usuario: '+self.idUsuario+'-------------');
+				
+				objApp.Navigate('inicio', null);
+			}
+			else
+				self.error('Uusario no existe registrarlo');
 		}
 		
 		function onErrorXML()
 		{
 			self.error('Error al inicializar la aplicación.');
 		}
+		
 		self.getMenu = function()
 		{
 			return seccionsSite;
 		}
+
 		self.Navigate = function(seccion, nodo)
 		{
 			App.Navigate.to(seccion, nodo);

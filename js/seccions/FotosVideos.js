@@ -137,7 +137,7 @@
 			
 			var p = document.createElement('p');
 				$(holderMediaContenido).append(p);
-				$(p).text($(nodo).find('texto').text());		
+				$(p).html($(nodo).find('texto').text());		
 			
 			$(holderItems).transition({scale : 0.5, duration : 500}).transition({opacity : 0});
 			$(holderMedia).stop().delay(500).fadeIn(500, function(){animando = false;});

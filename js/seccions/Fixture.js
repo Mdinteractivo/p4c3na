@@ -9,9 +9,7 @@
 		var ALTO_HEADER = 180;
 		var altoItems = 65;
 		var animando = false;
-		var altoPantalla = window.innerHeight - ALTO_HEADER;
-		var multiplo = Math.ceil((altoPantalla / altoItems));	
-		var alturaFinal = (altoItems * multiplo)  - 20;		
+		var altoPantalla = (window.innerHeight - ALTO_HEADER)  - 20;
 		
 		self.div = document.createElement('div');
 		self.div.className = 'class-cero';
@@ -32,7 +30,6 @@
 			holderGrupo.className = 'holder-noticia-item';
 			$(self.div).append(holderGrupo);
 			$(holderGrupo).css({'height' : altoPantalla});
-
 		
 		var holderTituloGrupo = document.createElement('div');
 			holderTituloGrupo.className = 'wrapper-titulo-noticia';
@@ -65,7 +62,9 @@
 		
 		var holderGrupoContenido = document.createElement('div');
 			holderGrupoContenido.id = 'holder-grupo-contenido';
+			holderGrupoContenido.className = 'divScroll';
 			$(holderGrupo).append(holderGrupoContenido);
+			$(holderGrupoContenido).css({'height' : (altoPantalla - 20), 'margin-top' : 0});
 
 		$.ajax
 		({
@@ -241,7 +240,7 @@ function Versus(xml)
 	self.div = document.createElement('div');
 	
 	if($(xml).find('partido').length == 0)
-		objApp.error('No ahay partidos para esta fase');
+		objApp.error('Ha ocurrido un error, por favor intenta más tarde.');
 	else
 	{
 		$(xml).find('partido').each(function(index, element) 
