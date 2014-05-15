@@ -53,9 +53,13 @@ var objApp;
 		{		
 			//Obtengo datos del dispositivo
 
-			//device.uuid;
-			//var platform = device.platform;
-			uuid = 123456789;
+			var uuid = device.uuid;
+			var platform = device.platform;
+			
+			navigator.notification.alert('Uuid: '+uuid+' Plataforma: '+platform, function(){}, 'ALERT');	
+			
+			return;	
+			//uuid = 123456789;
 			
 			if(self.internet())
 			{											
