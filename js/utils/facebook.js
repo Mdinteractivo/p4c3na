@@ -3,6 +3,7 @@ function Facebook(){
 	var self = this;
 	var access_token = 0;
 	var callback;
+	var inter;
 	this.init = function(){
 
 		FB.init({
@@ -14,6 +15,9 @@ function Facebook(){
 	}
 
 	function get_obj_user(){
+		clearTimeout(inter)
+		objApp.mostrarCargador()
+
 			$.ajax({
 			  dataType: "json",
 			  url: 'https://graph.facebook.com/me?access_token=' + access_token,
@@ -21,10 +25,11 @@ function Facebook(){
 			  success: function(json){
 
 			  		callback(json, access_token)
-
+			  		objApp.ocultarCargador()
 			  },
 			  error: function(){
 			  		objApp.error('Ocurrio un error. (error 1)');
+			  		objApp.ocultarCargador()
 			  }
 			});
 	}
@@ -35,7 +40,7 @@ function Facebook(){
 		callback = $callback
 		objApp.mostrarCargador()
 
-		 setTimeout(function (){
+		 inter =  setTimeout(function (){
 		 	objApp.ocultarCargador()
 		 }, 3000);
 		 
