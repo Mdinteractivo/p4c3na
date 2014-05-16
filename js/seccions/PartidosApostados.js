@@ -58,46 +58,6 @@ function PartidosApostados(nodo)
 		$(divScroll).css({'height' : altoPantalla, 'margin-top' : 0});
 		$(divScroll).css({'background':'rgba(255,255,255,0.6)'});
 
-	/*--------------------------------------------------------*/
-	
-		var holderApuesta = document.createElement('div');
-			holderApuesta.className = 'holder-noticia-item';
-			$(self.div).append(holderApuesta);
-		
-		var holderTituloApuesta = document.createElement('div');
-			holderTituloApuesta.className = 'wrapper-titulo-noticia';
-			$(holderTituloApuesta).css({'background' : 'url(img/general/menu/red_item.png) no-repeat'});
-			$(holderTituloApuesta).css({'background-size' : '320px 68px'});
-			$(holderApuesta).append(holderTituloApuesta);
-
-		var divVolverApuesta = document.createElement('div');
-			divVolverApuesta.className = 'btn-volver-seccion';
-			$(holderTituloApuesta).append(divVolverApuesta);
-			$(divVolverApuesta).css({'background' : 'url(img/general/volver_white.png) no-repeat'});
-			$(divVolverApuesta).css({'background-size' : '16px', 'background-position' : 'left'});			
-			$(divVolverApuesta).css({'color':'#000'});
-	
-		var titulo = document.createElement('h1');
-			$(titulo).text('PRONÓSTICO');
-			$(titulo).css({'color' : '#FFF', 'margin-left' : 95});
-			$(holderTituloApuesta).append(titulo);
-
-		if(objApp.isTouch())
-			$(divVolverApuesta).bind('touchstart' , doCloseApuesta);
-		else
-			$(divVolverApuesta).bind('click' , doCloseApuesta);
-
-		var icono = new Image();
-			icono.width = 64;
-			icono.src = 'img/general/menu/noticias.png?ac=1';
-			$(holderTituloApuesta).append(icono);	
-			$(icono).css({'position' : 'absolute' , 'right' : 5, 'top' : 0});		
-		
-		var holderApuestaContenido = document.createElement('div');
-			holderApuestaContenido.id = 'holder-apuesta-contenido';
-			$(holderApuesta).append(holderApuestaContenido);	
-
-
 	function onCompleteXML(xml)
 	{
 		objApp.ocultarCargador();

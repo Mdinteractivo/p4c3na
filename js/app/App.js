@@ -21,7 +21,7 @@ var objApp;
 		self.VERSION;	
 		self.TITLE;	
 		self.DESCRIPTION;	
-		self.FB_APP_ID = '496101553812055';
+		self.FB_APP_ID = '242841712583589';
 		self.SERVER;
 						
 		var wholeWrapper = document.createElement('div');
@@ -65,7 +65,7 @@ var objApp;
 			//var uuid = device.uuid;
 			//var platform = device.platform;
 			
-			uuid = 123456789;
+			uuid = 123456780;
 			
 			if(self.is_phonegap()){
 

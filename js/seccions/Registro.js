@@ -64,7 +64,9 @@
 		self.doConnect = function($obj_usario, $access_token)
 		{
 			var data = new Object();
-			if($obj_usario == null){
+			
+			if($obj_usario == null)
+			{
 				data.access_token = ''
 				data.uid = 100005636947233;
 				data.usuario_nombre = 'Martin Luz';
@@ -72,7 +74,9 @@
 				data.usuario_ciudad_origen = 'Montevideo';
 				data.usuario_ciudad_actual = 'Montevideo';
 				data.usuario_fecha_nacimento = '26/10/1987';
-			}else{
+			}
+			else
+			{
 
 				data.access_token = $access_token;
 				data.uid = $obj_usario.id;
@@ -81,11 +85,10 @@
 				data.usuario_ciudad_origen = $obj_usario.hometown.name;
 				data.usuario_ciudad_actual = $obj_usario.hometown.name;
 				data.usuario_fecha_nacimento = $obj_usario.birthday;
-
 			}
 			
-			alert(
-				
+			alert
+			(				
 				'access_token: ' + data.access_token + '\n' + 
 				'uid: ' + data.uid + '\n' + 
 				'usuario_nombre: ' + data.usuario_nombre + '\n' + 
@@ -95,8 +98,6 @@
 				'usuario_fecha_nacimento: ' + data.usuario_fecha_nacimento + '\n'
 
 				);
-			
-			console.log(data)
 
 			goDatosApp(data);
 		}	
@@ -129,6 +130,10 @@ function DatosApp(parent, data)
 		imgProfile.width = 100;
 		imgProfile.src = 'http://graph.facebook.com/'+data.uid+'/picture?width=100&height=120';
 		$(rightHolder).append(imgProfile);		
+
+	var divButtons = document.createElement('div');
+		$(self.div).append(divButtons);
+		
 
 	var btnNext = document.createElement('div');
 		btnNext.className = 'btn-next';

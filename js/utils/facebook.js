@@ -67,7 +67,7 @@ function Facebook(){
 						     objApp.error('User cancelled login or did not fully authorize.');
 
 						   }
-					}, {scope: 'user_birthday, user_hometown, email, publish_stream, publish_actions'})
+					}, {scope: 'user_birthday, user_hometown, email, publish_actions'})
 	         	}
          });
 
