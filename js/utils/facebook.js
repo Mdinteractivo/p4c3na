@@ -43,7 +43,7 @@ function Facebook(){
      	
 	          	if (response.status == 'connected') {
 
-						access_token = app.usuario.access_token = response.authResponse.accessToken;
+						access_token = response.authResponse.accessToken;
 						objApp.ocultarCargador()
 						get_obj_user()
 
