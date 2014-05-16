@@ -33,41 +33,106 @@
 			$(holderRegistro).append(innerRegistroLoader);
 			$(innerRegistroLoader).css({opacity : 0});
 			
-		innerNavigate('connect');
+		goConnect();
 			
-		function innerNavigate(innerSeccion)
+		
+		function goConnect()
 		{
-			$(innerRegistroLoader).transition({opacity : 0,  duration : 500}, 800 , 'linear');
-			$(innerRegistroLoader).empty();
-			
-			switch(innerSeccion)
-			{
-				case 'connect':
-					
-					var btnConnect = new BtnConnect(self);
-					$(innerRegistroLoader).append(btnConnect.div);
-				
-				break;
-
-				case 'registroApp':
-					
-				
-				break;				
-				
-			}
-			
-			$(innerRegistroLoader).transition({opacity : 1,  duration : 500}, 800 , 'linear');
+			var btnConnect = new BtnConnect(self);
+			innerNavigate(btnConnect);
 		}	
 		
-		self.doConnect = function()
+		function goDatosApp(data)
 		{
-			Facebook.init(function($data)
+			var datosApp = new DatosApp(self, data);
+			innerNavigate(datosApp);
+		}
+			
+		function innerNavigate(object)
+		{
+			$(innerRegistroLoader).transition({opacity : 0,  duration : 500}, 1000 , 'linear');
+			$(innerRegistroLoader).empty();
+			
+			setTimeout(function()
 			{
-				objApp.login_con_facebook($data.me.id);			
-			})
+				$(innerRegistroLoader).append(object.div);
+				$(innerRegistroLoader).transition({opacity : 1,  duration : 500}, 1000 , 'linear');
+			
+			}, 1000);
+		}	
+		
+		self.doConnect = function($obj_usario, $access_token)
+		{
+			var data = new Object();
+			if($obj_usario == null){
+				data.access_token = ''
+				data.uid = 100005636947233;
+				data.usuario_nombre = 'Martin Luz';
+				data.usuario_email  = 'mluzdesign@gmail.com	' ;
+				data.usuario_ciudad_origen = 'Montevideo';
+				data.usuario_ciudad_actual = 'Montevideo';
+				data.usuario_fecha_nacimento = '26/10/1987';
+			}else{
+
+				data.access_token = $access_token;
+				data.uid = $obj_usario.id;
+				data.usuario_nombre = $obj_usario.name;
+				data.usuario_email  = $obj_usario.email;
+				data.usuario_ciudad_origen = $obj_usario.hometown.name;
+				data.usuario_ciudad_actual = $obj_usario.hometown.name;
+				data.usuario_fecha_nacimento = $obj_usario.birthday;
+
+			}
+			
+			alert(
+				
+				'access_token: ' + data.access_token + '\n' + 
+				'uid: ' + data.uid + '\n' + 
+				'usuario_nombre: ' + data.usuario_nombre + '\n' + 
+				'usuario_email: ' + data.usuario_email + '\n' + 
+				'usuario_ciudad_origen: ' + data.usuario_ciudad_origen + '\n' + 
+				'usuario_ciudad_actual: ' + data.usuario_ciudad_actual + '\n' + 
+				'usuario_fecha_nacimento: ' + data.usuario_fecha_nacimento + '\n'
+
+				);
+			
+			console.log(data)
+
+			goDatosApp(data);
 		}	
 	}
 	
 	window.Registro = Registro;
 
 })(window);
+
+function DatosApp(parent, data)
+{
+	var self = this;
+	self.div = document.createElement('div');
+	$(self.div).css({'height' : 250});
+	
+	var leftHolder = document.createElement('div');
+		$(self.div).append(leftHolder);
+		$(leftHolder).css({'width' : 200, 'height' : 200, 'float' : 'left', 'margin-top' : 15});
+	
+	$(leftHolder).append('<p class="p-registro-app-title">Nombre de usuario: <span>'+data.usuario_nombre+'</span></p>');
+	$(leftHolder).append('<p class="p-registro-app-title">Ciudad de origen: <span>'+data.usuario_ciudad_origen+'</span></p>');
+	$(leftHolder).append('<p class="p-registro-app-title">Ciudad Actual: <span>'+data.usuario_ciudad_actual+'</span></p>');
+	$(leftHolder).append('<p class="p-registro-app-title">Fecha de nacimiento: <span>'+data.usuario_fecha_nacimento+'</span></p>');
+	
+	var rightHolder = document.createElement('div');
+		$(self.div).append(rightHolder);
+		$(rightHolder).css({'width' : 100, 'height' : 120, 'float' : 'left', 'margin-top' : 30, 'margin-left' : 5, 'overflow' : 'hidden'});
+	
+	var imgProfile = new Image();
+		imgProfile.width = 100;
+		imgProfile.src = 'http://graph.facebook.com/'+data.uid+'/picture?width=100&height=120';
+		$(rightHolder).append(imgProfile);		
+
+	var btnNext = document.createElement('div');
+		btnNext.className = 'btn-next';
+		$(self.div).append(btnNext);
+		$(btnNext).text('SIGUIENTE');	
+		$(btnNext).css({'top' : 190});
+}

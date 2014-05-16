@@ -9,7 +9,7 @@
 		var ALTO_HEADER = 180;
 		var altoItems = 65;
 		var animando = false;
-		var altoPantalla = (window.innerHeight - ALTO_HEADER)  - 20;
+		var altoPantalla = (window.innerHeight - ALTO_HEADER) - 10;
 		
 		self.div = document.createElement('div');
 		self.div.className = 'class-cero';

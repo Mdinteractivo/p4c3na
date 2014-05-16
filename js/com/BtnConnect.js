@@ -19,7 +19,18 @@
 			
 		function doClick()
 		{
-			parent.doConnect();
+			if(objApp.is_phonegap()){
+
+				objApp._Facebook.conectar(function($obj_usario, $access_token){
+					parent.doConnect($obj_usario, $access_token)
+				})
+
+			}else{
+
+				parent.doConnect(null)
+
+			}
+			
 		}	
 		
 	}

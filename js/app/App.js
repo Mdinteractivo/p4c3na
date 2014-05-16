@@ -16,11 +16,12 @@ var objApp;
 		var uuid;
 		var xmlDataUser;
 		
+		self._Facebook;
 		self.idUsuario;
 		self.VERSION;	
 		self.TITLE;	
 		self.DESCRIPTION;	
-		self.FB_APP_ID;
+		self.FB_APP_ID = '496101553812055';
 		self.SERVER;
 						
 		var wholeWrapper = document.createElement('div');
@@ -48,19 +49,39 @@ var objApp;
 		   document.addEventListener("online", onDeviceOnLine, false);
 		   document.addEventListener("backbutton", backKeyDown, false);
 		}		
-			
+		self.is_phonegap =  function (){
+
+			try {
+			    if(device.platform == ''){}
+			    return true;  
+			} catch (e) {  
+			    return false;   
+			}
+
+		}
 		function onDeviceReady()
 		{		
 			//Obtengo datos del dispositivo
+			//var uuid = device.uuid;
+			//var platform = device.platform;
+			
+			uuid = 123456789;
+			
+			if(self.is_phonegap()){
 
-			var uuid = device.uuid;
-			var platform = device.platform;
-			
-			navigator.notification.alert('Uuid: '+uuid+' Plataforma: '+platform, function(){}, 'ALERT');	
-			
-			return;	
-			//uuid = 123456789;
-			
+				uuid = device.uuid;
+				
+				if ((typeof cordova == 'undefined') && (typeof Cordova == 'undefined')) alert('Cordova variable does not exist. Check that you have included cordova.js correctly');
+				if (typeof CDV == 'undefined') alert('CDV variable does not exist. Check that you have included cdv-plugin-fb-connect.js correctly');
+				if (typeof FB == 'undefined') alert('FB variable does not exist. Check that you have included the Facebook JS SDK file.');
+			  
+	    		//self._ManagePush = new ManagePush();
+
+		    	self._Facebook = new Facebook();
+		    	self._Facebook.init();
+
+   			}
+
 			if(self.internet())
 			{											
 				$.ajax
@@ -135,11 +156,10 @@ var objApp;
 				self.idUsuario = $(xml).find('idUsuario').text();
 				
 				console.log('id de usuario: '+self.idUsuario+'-------------');
-				
 				objApp.Navigate('inicio', null);
 			}
 			else
-				self.error('Uusario no existe registrarlo');
+				objApp.Navigate('registro', null);
 		}
 		
 		function onErrorXML()

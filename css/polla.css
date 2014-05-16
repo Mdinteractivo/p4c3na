@@ -207,6 +207,14 @@
 	margin-top: -18px;
 	background: rgba(255,255,255,0.6);
 }
+#holder-partidos-jugados-contenido
+{
+	width:320px;
+	float:left;
+	margin-top: -18px;	
+	background: rgba(255,255,255,0.6);
+	padding-bottom:10px;	
+}
 .btn-editar-pronostico-oculto
 {
 	width: 38px;
@@ -222,4 +230,55 @@
 	color:#FFF;
 	text-transform:uppercase;
 	padding-top:8px;	
+}
+.holder-detalles-proximo-partido
+{
+	float : left;
+	height : 68px;
+	text-align:left;
+	overflow:hidden;
+	padding-top:7px;
+	padding:0;
+	margin:0;
+	font-family: 'Oswald';
+	color:#000;	
+	font-size:14px;	
+}
+.holder-detalles-proximo-partido p
+{
+	padding:0;
+	margin:0;
+}
+.item-partido-jugados-polla
+{
+	width: 320px;
+	height: 85px;
+	float: left;
+	margin-top: 10px;
+	position: relative;
+}
+.holder-detalles-partido-jugado
+{
+	float: left;
+	height: 85px;
+	text-align: left;
+	overflow: hidden;
+	padding: 0;
+	margin: 0;
+	font-family: 'Oswald';
+	color: #000;
+	font-size: 14px;
+}
+.holder-detalles-partido-jugado p
+{
+	padding:0;
+	margin:0;
+}
+.mensaje  
+{
+	font-family: 'Oswald';
+	color: #000;
+	font-size: 19px;
+	margin-left:50px;
+	margin-top:40px;
 }

@@ -10,9 +10,9 @@
 		var ALTO_HEADER = 180;
 		var altoItems = 65;
 		
-		var altoPantalla = window.innerHeight - ALTO_HEADER;
-		var multiplo = Math.ceil((altoPantalla / altoItems));	
-		var alturaFinal = (altoItems * multiplo)  - 20;		
+		var altoPantalla = (window.innerHeight - ALTO_HEADER) - 5;
+		/*var multiplo = Math.ceil((altoPantalla / altoItems));	
+		var alturaFinal = (altoItems * multiplo)  - 20;	*/	
 		
 		self.div = document.createElement('div');
 		self.div.className = 'class-cero';

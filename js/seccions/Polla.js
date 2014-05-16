@@ -4,7 +4,7 @@
 	{
 		var self = this;
 		var ALTO_HEADER = 180;
-		var altoPantalla = (window.innerHeight - ALTO_HEADER) + 5;
+		var altoPantalla = (window.innerHeight - ALTO_HEADER) + 10;
 		var animando = false;
 		var dataXml = null;
 		
@@ -31,7 +31,7 @@
 		var divScroll = document.createElement('div');
 			divScroll.className = 'divScroll';
 			$(holderItems).append(divScroll);
-			$(divScroll).css({'height' : altoPantalla});
+			$(divScroll).css({'height' : altoPantalla, 'margin-top' : 40});
 			
 		var holderDatosUsuario = document.createElement('div');
 			holderDatosUsuario.id = 'holder-datos-usuario';
@@ -159,9 +159,9 @@
 			$(icono).css({'position' : 'absolute' , 'right' : 5, 'top' : 0});		
 		
 		var holderParticipacionesContenido = document.createElement('div');
-			holderParticipacionesContenido.id = 'holder-noticia-contenido';
+			holderParticipacionesContenido.id = 'holder-partidos-jugados-contenido';
 			$(holderParticipaciones).append(holderParticipacionesContenido);
-			$(holderParticipacionesContenido).css({'min-height' : 200});
+			$(holderParticipacionesContenido).css({'min-height' : 100});
 
 
 		/*PANEL PROXIMOS*/
@@ -214,9 +214,22 @@
 			
 			$(xml).find('proximosPartidos').find('partido').each(function(index, element) 
 			{						
-				var itemProximo = new ItemProximoPartido(this, false, null)
+				var itemProximo = new ItemProximoPartido(this, false, null);
 				$(holderProximosContenido).append(itemProximo.div); 
 			});	
+			
+			if($(xml).find('partidosJugados').find('partido').length == 0)
+			{
+				$(holderParticipacionesContenido).append('<p class="mensaje">Aún no has realizado apuestas.</p>');
+			}
+			else
+			{
+				$(xml).find('partidosJugados').find('partido').each(function(index, element) 
+				{						
+					var itemPartidoJugado = new ItemPartidoJugado(this, self);
+					$(holderParticipacionesContenido).append(itemPartidoJugado.div);
+				});	
+			}
 		}	
 				
 		function doClickApuestas()
@@ -260,10 +273,10 @@
 
 })(window);
 
-function LightBoxApuesta(xml)
+/*function LightBoxApuesta(xml)
 {
 	var self = this;
 		
 	self.div = document.createElement('div');
 	$(self.div).css({'width' : 320, 'height' : 200});
-}
+}*/

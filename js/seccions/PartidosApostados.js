@@ -1,4 +1,4 @@
-function ProximosPartidos(nodo)
+function PartidosApostados(nodo)
 {
 	var self = this;
 	var ALTO_HEADER = 180;
