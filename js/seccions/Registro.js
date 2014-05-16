@@ -82,9 +82,17 @@
 				data.uid = $obj_usario.id;
 				data.usuario_nombre = $obj_usario.name;
 				data.usuario_email  = $obj_usario.email;
-				data.usuario_ciudad_origen = $obj_usario.hometown.name;
-				data.usuario_ciudad_actual = $obj_usario.hometown.name;
-				data.usuario_fecha_nacimento = $obj_usario.birthday;
+
+					try{
+						data.usuario_ciudad_origen = $obj_usario.hometown.name;
+						data.usuario_ciudad_actual = $obj_usario.hometown.name;
+					}catch(e){}
+				
+					try{
+						data.usuario_fecha_nacimento = $obj_usario.birthday;
+					}catch(e){}
+				
+				
 			}
 			
 			alert
@@ -115,7 +123,7 @@ function DatosApp(parent, data)
 	
 	var leftHolder = document.createElement('div');
 		$(self.div).append(leftHolder);
-		$(leftHolder).css({'width' : 200, 'height' : 200, 'float' : 'left', 'margin-top' : 15});
+		$(leftHolder).css({'width' : 200, 'min-height' : 165, 'float' : 'left', 'margin-top' : 15});
 	
 	$(leftHolder).append('<p class="p-registro-app-title">Nombre de usuario: <span>'+data.usuario_nombre+'</span></p>');
 	$(leftHolder).append('<p class="p-registro-app-title">Ciudad de origen: <span>'+data.usuario_ciudad_origen+'</span></p>');
@@ -131,13 +139,13 @@ function DatosApp(parent, data)
 		imgProfile.src = 'http://graph.facebook.com/'+data.uid+'/picture?width=100&height=120';
 		$(rightHolder).append(imgProfile);		
 
-	var divButtons = document.createElement('div');
-		$(self.div).append(divButtons);
-		
+	var divButton = document.createElement('div');
+		$(self.div).append(divButton);
+		$(divButton).css({'width' : '100%', 'height' : 60, 'float' : 'left', 'position' : 'relative'});
 
 	var btnNext = document.createElement('div');
 		btnNext.className = 'btn-next';
-		$(self.div).append(btnNext);
+		$(divButton).append(btnNext);
 		$(btnNext).text('SIGUIENTE');	
-		$(btnNext).css({'top' : 190});
+		$(btnNext).css({'top' : 10});
 }
