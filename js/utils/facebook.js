@@ -45,7 +45,7 @@ function Facebook(){
 		 }, 3000);
 		 
      	 FB.getLoginStatus(function(response) {
-     	
+     			console.log(response)
 	          	if (response.status == 'connected') {
 
 						access_token = response.authResponse.accessToken;
@@ -55,6 +55,9 @@ function Facebook(){
 				} else {
 						
 		            FB.login(function(response2) {
+
+		            	console.log(response2)
+
 						  if (response2.authResponse) {
 
 								access_token = response2.authResponse.accessToken;
