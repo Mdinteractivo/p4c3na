@@ -27,7 +27,7 @@
 
 			}else{
 
-				parent.doConnect(null)
+				parent.doConnect('null')
 
 			}
 			

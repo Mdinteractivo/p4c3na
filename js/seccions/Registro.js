@@ -72,12 +72,12 @@
 		{
 			var data = new Object();
 			
-			if($obj_usuario == null)
+			if($obj_usuario == 'null')
 			{
-				data.access_token = 'sadasd432432412'
+				data.access_token = 'hardcodetokenaaaaa'
 				data.usuario_uid = 100005636947233;
-				data.usuario_nombre = 'Martin Luz';
-				data.usuario_email  = 'mluzdesign@gmail.com	' ;
+				data.usuario_nombre = 'Mdi';
+				data.usuario_email  = 'mdi@gmail.com	' ;
 				data.usuario_ciudad_origen = 'Montevideo';
 				data.usuario_ciudad_actual = 'Montevideo';
 				data.usuario_fecha_nacimento = '26/10/1987';
