@@ -7,7 +7,7 @@ function ManagePush(){
 
 
 
-	 this.registrar = function($callback){
+	 this.registrar = function(){
 
 		pushNotification = window.plugins.pushNotification;
 	
@@ -17,7 +17,7 @@ function ManagePush(){
 		        successHandler,
 		        errorHandler, {
 		            "senderID":"57995757235",
-		            "ecb":"app._ManagePush.onNotificationGCM"
+		            "ecb":"objApp._ManagePush.onNotificationGCM"
 		        });
 		    self.plataform = 'android'
 		 
@@ -30,7 +30,7 @@ function ManagePush(){
 		            "badge":"true",
 		            "sound":"true",
 		            "alert":"true",
-		            "ecb":"app._ManagePush.onNotificationAPN"
+		            "ecb":"objApp._ManagePush.onNotificationAPN"
 		        });
 		       self.plataform = 'ios'
 		}
@@ -63,7 +63,7 @@ function ManagePush(){
 		console.log(self.token)
 		alert(self.token);
 
-	/*	$.ajax({
+		/*	$.ajax({
 
 							type: "POST",
 							url: app.server + "void.set_push_token.php",
@@ -134,11 +134,11 @@ function ManagePush(){
 		    break;
 
 		    case 'error':
-		       app.alerta('ERROR -> MSG:' + e.msg);
+		       objApp.error('ERROR -> MSG:' + e.msg);
 		    break;
 
 		    default:
-		    	app.alerta('EVENT -> Unknown, an event was received and we do not know what it is');
+		    	objApp.error('EVENT -> Unknown, an event was received and we do not know what it is');
 		     
 		 	   break;
 		  }
