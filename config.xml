@@ -6,7 +6,7 @@
 	versionCode="10" 
 	version   = "1.0.0">
 
-	<preference name="phonegap-version" value="3.3.0" />
+	
 	<name>Paceña</name>
 	
 	<description>
@@ -27,8 +27,7 @@
 	<preference name="fullscreen" value="true" />
 	<preference name="android-installLocation" value="auto" /> 
 	<preference name="splashscreen" value="splash" />
-	
-	<preference name="splashscreen" value="splash" />
+
 	<!--preference name="SplashScreenDelay" value="5000" /-->
 	<!--ICONS-->		
 	<icon src="icon.png" />
@@ -80,7 +79,7 @@
 	
 	<gap:plugin name="com.phonegap.plugins.facebookconnect" version="0.4.0">
         <param name="APP_ID" value="242841712583589" />
-        <param name="APP_NAME" value="Vívelo y deja vivirlo" />
+        <param name="APP_NAME" value="viveloydejalovivirlo" />
     </gap:plugin>
 	
 	<gap:plugin name="com.phonegap.plugins.childbrowser" />
