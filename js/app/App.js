@@ -69,7 +69,7 @@ var objApp;
 			//var uuid = device.uuid;
 			//var platform = device.platform;
 			
-			uuid = 123456780;
+			uuid = 123456789;
 			
 			if(self.is_phonegap())
 			{
@@ -182,7 +182,12 @@ var objApp;
 		{
 			return seccionsSite;
 		}
-
+	
+		self.setIdUsuario = function(id)
+		{
+			self.idUsuario = id
+		}	
+		
 		self.Navigate = function(seccion, nodo)
 		{
 			historial.push(seccion);

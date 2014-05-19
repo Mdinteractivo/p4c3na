@@ -68,14 +68,14 @@
 			}, 1000);
 		}	
 		
-		self.doConnect = function($obj_usario, $access_token)
+		self.doConnect = function($obj_usuario, $access_token)
 		{
 			var data = new Object();
 			
-			if($obj_usario == null)
+			if($obj_usuario == null)
 			{
-				data.access_token = ''
-				data.uid = 100005636947233;
+				data.access_token = 'sadasd432432412'
+				data.usuario_uid = 100005636947233;
 				data.usuario_nombre = 'Martin Luz';
 				data.usuario_email  = 'mluzdesign@gmail.com	' ;
 				data.usuario_ciudad_origen = 'Montevideo';
@@ -84,18 +84,21 @@
 			}
 			else
 			{
-				data.access_token = $access_token;
-				data.uid = $obj_usario.id;
-				data.usuario_nombre = $obj_usario.name;
-				data.usuario_email  = $obj_usario.email;
+				data.usuario_uid = $obj_usuario.uid;
+				data.access_token = $access_token
+				data.usuario_nombre = $obj_usuario.first_name+' '+$obj_usuario.last_name;
+				data.usuario_email = $obj_usuario.email;
+				data.usuario_ciudad_origen = $obj_usuario.hometown.name;
+				data.usuario_ciudad_actual = $obj_usuario.location.name;
+				data.usuario_fecha_nacimento = $obj_usuario.birthday;
 
 				try{
-					data.usuario_ciudad_origen = $obj_usario.hometown.name;
-					data.usuario_ciudad_actual = $obj_usario.hometown.name;
+					data.usuario_ciudad_origen = $obj_usuario.hometown.name;
+					data.usuario_ciudad_actual = $obj_usuario.hometown.name;
 				}catch(e){}
 			
 				try{
-					data.usuario_fecha_nacimento = $obj_usario.birthday;
+					data.usuario_fecha_nacimento = $obj_usuario.birthday;
 				}catch(e){}				
 			}
 
@@ -128,7 +131,7 @@ function DatosFacebook(parent, data)
 	
 	var imgProfile = new Image();
 		imgProfile.width = 100;
-		imgProfile.src = 'http://graph.facebook.com/'+data.uid+'/picture?width=100&height=120';
+		imgProfile.src = 'http://graph.facebook.com/'+data.usuario_uid+'/picture?width=100&height=120';
 		$(rightHolder).append(imgProfile);		
 
 	var divButton = document.createElement('div');
@@ -222,16 +225,60 @@ function DatosApp(parent, data)
 	
 	function checkGuardar()
 	{
-		if()
+		if($(inputNombre).val().length == 0)
+		{
+			objApp.error('No puedes dejar el campo Nombre vacío');
+		}
+		else if($(inputTel).val().length == 0)
+		{
+			objApp.error('No puedes dejar el campo Teléfono vacío');
+		}
+		else
+		{
+			objApp.mostrarCargador();
+
+			 var params =
+			 {
+				  usuario_uid : data.usuario_uid,
+				  usuario_at : data.access_token,
+				  usuario_nombre : $(inputNombre).val(),
+				  usuario_email : data.usuario_email,
+				  usuario_ciudad_origen  :data.usuario_ciudad_origen,
+				  usuario_ciudad_actual : data.usuario_ciudad_actual,
+				  usuario_fecha_nacimiento : data.usuario_fecha_nacimento,
+				  usuario_numero_carnet:$(inputCarnet).val(),
+				  usuario_numero_tel:$(inputTel).val(),
+				  guardo_favoritos:0
+     		}
+			
+			$.ajax
+			({
+				url  : objApp.SERVER+'ws/ws-guardarUsuario.php',
+				type : 'POST',
+				data : params,
+				success : onCompleteXML
+			});	
+		}
+	}
+	
+	function onCompleteXML(xml)
+	{
+		objApp.ocultarCargador();
 		
-		$.ajax
-		({
-			url  : objApp.SERVER+'ws/ws-getPartidosApostados.php',
-			type : 'POST',
-			data : {'id' : objApp.idUsuario},
-			success : onCompleteXML,
-			error : onErrorXML
-		});	
+		if(parseInt($(xml).find('resultado').text()) == 1)
+		{
+			objApp.setIdUsuario($(xml).find('idUsuario').text());
+			
+			setTimeout(function()
+			{
+				objApp.Navigate('inicio', null);
+			
+			}, 500);
+		}
+		else
+		{
+			objApp.error('Ha ocurrido un error, intenta más tarde');
+		}
 	}
 	
 }
