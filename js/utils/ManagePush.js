@@ -88,6 +88,7 @@ function ManagePush(){
 	
 	function errorHandler (error) {
 	  alert('errorHandler');
+	  console.log(error)
 	}
 
 	function tokenHandler (result) {
