@@ -15,7 +15,8 @@ var objApp;
 		var ALTO_HEADER = 180;
 		var uuid;
 		var xmlDataUser;
-		
+
+		self._ManagePush;
 		self._Facebook;
 		self.idUsuario;
 		self.VERSION;	
@@ -78,7 +79,8 @@ var objApp;
 				if (typeof CDV == 'undefined') alert('CDV variable does not exist. Check that you have included cdv-plugin-fb-connect.js correctly');
 				if (typeof FB == 'undefined') alert('FB variable does not exist. Check that you have included the Facebook JS SDK file.');
 			  
-	    		//self._ManagePush = new ManagePush();	    		
+	    		self._ManagePush = new ManagePush();   	
+	    		self._ManagePush.registrar();	
    			}
 
 												

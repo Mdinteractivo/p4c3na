@@ -89,28 +89,15 @@
 				data.usuario_nombre = $obj_usario.name;
 				data.usuario_email  = $obj_usario.email;
 
-					try{
-						data.usuario_ciudad_origen = $obj_usario.hometown.name;
-						data.usuario_ciudad_actual = $obj_usario.hometown.name;
-					}catch(e){}
-				
-					try{
-						data.usuario_fecha_nacimento = $obj_usario.birthday;
-					}catch(e){}
-				
-			}
+				try{
+					data.usuario_ciudad_origen = $obj_usario.hometown.name;
+					data.usuario_ciudad_actual = $obj_usario.hometown.name;
+				}catch(e){}
 			
-			alert
-			(				
-				'access_token: ' + data.access_token + '\n' + 
-				'uid: ' + data.uid + '\n' + 
-				'usuario_nombre: ' + data.usuario_nombre + '\n' + 
-				'usuario_email: ' + data.usuario_email + '\n' + 
-				'usuario_ciudad_origen: ' + data.usuario_ciudad_origen + '\n' + 
-				'usuario_ciudad_actual: ' + data.usuario_ciudad_actual + '\n' + 
-				'usuario_fecha_nacimento: ' + data.usuario_fecha_nacimento + '\n'
-
-			);
+				try{
+					data.usuario_fecha_nacimento = $obj_usario.birthday;
+				}catch(e){}				
+			}
 
 			goDatosFacebook(data);
 		}	
@@ -171,7 +158,7 @@ function DatosApp(parent, data)
 	self.div = document.createElement('div');
 	self.div.id = 'wrapper-datos-app';
 	
-	$(self.div).css({'height' : 250, 'width' : '100%'});
+	$(self.div).css({'height' : 325, 'width' : '100%'});
 	$(self.div).append('<h3>'+data.usuario_nombre+'</h3>');
 	$(self.div).append('<label>Confirma tu Nombre Completo</label><br/>');
 	
@@ -179,13 +166,14 @@ function DatosApp(parent, data)
 		inputNombre.type = 'text';
 		$(self.div).append(inputNombre);
 		$(inputNombre).css({'width' : 285});
+		$(inputNombre).val(data.usuario_nombre);
 		
 	$(self.div).append('<label>Número de Carnet</label><br/>');
 	
 	var inputCarnet = document.createElement('input');
 		inputCarnet.type = 'text';
 		$(self.div).append(inputCarnet);
-		$(inputCarnet).css({'width' : 150});
+		$(inputCarnet).css({'width' : 170});
 
 	$(self.div).append('<br/>');
 	$(self.div).append('<label>Número de Teléfono</label><br/>');
@@ -193,8 +181,57 @@ function DatosApp(parent, data)
 	var inputTel = document.createElement('input');
 		inputTel.type = 'tel';
 		$(self.div).append(inputTel);
-		$(inputTel).css({'width' : 150});
+		$(inputTel).css({'width' : 170});
 		
+	var tick = new TickComponent(self);		
+		$(self.div).append(tick.div);
+		$(tick.div).css({'left' : 8});
+		
+		$(self.div).append('<label style="position:absolute;top: 227px; left: 43px;">Recibir Notificaciones</label>');
+		
+	var btnGuardar = document.createElement('div');
+		btnGuardar.className = 'btn-next';
+		$(self.div).append(btnGuardar);
+		$(btnGuardar).text('GUARDAR');	
+		$(btnGuardar).css({'top' : 278});	
+		
+		if(objApp.isTouch())
+			$(btnGuardar).bind('touchstart' , checkGuardar);	
+		else	
+			$(btnGuardar).bind('click' , checkGuardar);
 			
+	var btnNext = document.createElement('div');
+		btnNext.className = 'btn-next';
+		$(self.div).append(btnNext);
+		$(btnNext).text('SIGUIENTE');	
+		$(btnNext).css({'top' : 278, 'display' : 'none'});				
+	
+	self.sendEstado = function(estado)
+	{
+		if(estado == 1)
+		{
+			$(btnNext).css({'display' : 'block'});				
+			$(btnGuardar).css({'display' : 'none'});			
+		}
+		else
+		{
+			$(btnGuardar).css({'display' : 'block'});
+			$(btnNext).css({'display' : 'none'});				
+		}
+	}
+	
+	function checkGuardar()
+	{
+		if()
+		
+		$.ajax
+		({
+			url  : objApp.SERVER+'ws/ws-getPartidosApostados.php',
+			type : 'POST',
+			data : {'id' : objApp.idUsuario},
+			success : onCompleteXML,
+			error : onErrorXML
+		});	
+	}
 	
 }

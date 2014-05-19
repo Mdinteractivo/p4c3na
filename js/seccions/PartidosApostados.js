@@ -68,6 +68,8 @@ function PartidosApostados(nodo)
 		}
 		else
 		{
+			$(divScroll).empty();
+			
 			var cantidad = $(xml).find('partido').length;
 			
 			$(xml).find('partido').each(function(index, element) 
