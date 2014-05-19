@@ -8,7 +8,7 @@ function ManagePush(){
 
 
 	 this.registrar = function(){
-	 	alert('registrar');
+
 		pushNotification = window.plugins.pushNotification;
 	
     	if ( device.platform == 'android' || device.platform == 'Android' )
@@ -62,7 +62,7 @@ function ManagePush(){
 
 		console.log(self.plataform) 
 		console.log(self.token)
-		alert(self.token);
+
 
 		/*	$.ajax({
 
@@ -83,23 +83,22 @@ function ManagePush(){
 	}
 
 	function successHandler (result) {
-	  	alert('successHandler');
+	  
 	}
 	
 	function errorHandler (error) {
-	  alert('errorHandler');
 	  console.log(error)
 	}
 
 	function tokenHandler (result) {
-	    alert('tokenHandler');
+	    
  		self.token = result
 		sendToken()
 	}
 	
 	// iOS
 	this.onNotificationAPN = function (event) {
-	    alert('onNotificationAPN');
+	  
 	    if ( event.alert )
 	    {
 	        objeto_recibido(event)

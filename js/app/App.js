@@ -133,11 +133,10 @@ var objApp;
 			   seccionsSite.push($(this));
 			});	
 			
-			if(self.is_phonegap()){
+			if(self.is_phonegap())
+			{
 				self._Facebook = new Facebook();
 		   		 self._Facebook.init();
-
-
 			}
 			
 			//Chequeo si ya existe este dispositivo

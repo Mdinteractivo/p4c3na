@@ -84,7 +84,7 @@
 			}
 			else
 			{
-				data.usuario_uid = $obj_usuario.uid;
+				data.usuario_uid = $obj_usuario.id;
 				data.access_token = $access_token
 				data.usuario_nombre = $obj_usuario.first_name+' '+$obj_usuario.last_name;
 				data.usuario_email = $obj_usuario.email;
