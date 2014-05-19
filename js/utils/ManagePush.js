@@ -8,7 +8,7 @@ function ManagePush(){
 
 
 	 this.registrar = function(){
-
+	 	alert('registrar');
 		pushNotification = window.plugins.pushNotification;
 	
     	if ( device.platform == 'android' || device.platform == 'Android' )
@@ -38,7 +38,8 @@ function ManagePush(){
 	}
 
 	this.unregistrar = function (){
-		 try  {
+		 
+		try  {
 	        pushNotification.unregister(
 	        function(e) {
 	            //unRegister Success!!!
@@ -82,22 +83,22 @@ function ManagePush(){
 	}
 
 	function successHandler (result) {
-	  	
+	  	alert('successHandler');
 	}
 	
 	function errorHandler (error) {
-	  
+	  alert('errorHandler');
 	}
 
 	function tokenHandler (result) {
-	  
+	    alert('tokenHandler');
  		self.token = result
 		sendToken()
 	}
 	
 	// iOS
 	this.onNotificationAPN = function (event) {
-	   
+	    alert('onNotificationAPN');
 	    if ( event.alert )
 	    {
 	        objeto_recibido(event)
