@@ -13,7 +13,6 @@ var objApp;
 		var seccionsSite = [];
 		var historial = [];
 		var ALTO_HEADER = 180;
-		var uuid;
 		var xmlDataUser;
 
 		self._ManagePush;
@@ -24,6 +23,8 @@ var objApp;
 		self.DESCRIPTION;	
 		self.FB_APP_ID;
 		self.SERVER;
+		self.UUID;
+		self.PLATFORM
 						
 		var wholeWrapper = document.createElement('div');
 			wholeWrapper.id = 'app';
@@ -65,21 +66,21 @@ var objApp;
 
 		function onDeviceReady()
 		{		
-			//Obtengo datos del dispositivo
-			//var uuid = device.uuid;
-			//var platform = device.platform;
+			self.UUID = 123456780;
+			self.PLATFORM = 'Android';
 			
-			uuid = 123456789;
-			
+			self._ManagePush = new ManagePush(); 
 			if(self.is_phonegap())
 			{
-				uuid = device.uuid;
+				self.UUID = device.uuid;
+				self.PLATFORM = device.platform;
+				
 				
 				if ((typeof cordova == 'undefined') && (typeof Cordova == 'undefined')) alert('Cordova variable does not exist. Check that you have included cordova.js correctly');
 				if (typeof CDV == 'undefined') alert('CDV variable does not exist. Check that you have included cdv-plugin-fb-connect.js correctly');
 				if (typeof FB == 'undefined') alert('FB variable does not exist. Check that you have included the Facebook JS SDK file.');
 			  
-	    		self._ManagePush = new ManagePush();   	
+	    		
 	    		self._ManagePush.registrar();	
    			}
 
@@ -149,7 +150,7 @@ var objApp;
 			({
 				url  : objApp.SERVER+'ws/ws-checkDispositivo.php',
 				type : 'POST',
-				data : {'uuid' : uuid},
+				data : {'uuid' : self.UUID},
 				success : onCompleteCheckDispositivo
 			});				
 		}

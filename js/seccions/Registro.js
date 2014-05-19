@@ -248,7 +248,10 @@ function DatosApp(parent, data)
 				  usuario_fecha_nacimiento : data.usuario_fecha_nacimento,
 				  usuario_numero_carnet:$(inputCarnet).val(),
 				  usuario_numero_tel:$(inputTel).val(),
-				  guardo_favoritos:0
+				  guardo_favoritos:0,
+				  uuid :objApp.UUID ,
+				  pushToken : objApp._ManagePush.token,
+				  plataforma : objApp.PLATFORM
      		}
 			
 			$.ajax
