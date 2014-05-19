@@ -140,6 +140,7 @@
 		var holderParticipaciones = document.createElement('div');
 			holderParticipaciones.id = 'holder-participaciones-polla';
 			$(divScroll).append(holderParticipaciones);
+			$(holderParticipaciones).bind('click' , doClickParticipaciones);		
 			
 		var holderPanelParticipacionesTitulo = document.createElement('div');
 			holderPanelParticipacionesTitulo.className = 'wrapper-titulo-noticia';
@@ -179,7 +180,6 @@
 			$(titulo).text('Próximos partidos');
 			$(titulo).css({'color' : '#FFF', 'margin-left' : 30});
 			$(holderPanelProximosTitulo).append(titulo);
-			
 			$(holderProximos).bind('click' , doClickApuestas);		
 
 		var icono = new Image();
@@ -235,6 +235,11 @@
 		function doClickApuestas()
 		{
 			objApp.Navigate('proximos', nodo);
+		}
+		
+		function doClickParticipaciones()
+		{
+			objApp.Navigate('apostados', nodo);
 		}
 		
 		function onErrorXML()

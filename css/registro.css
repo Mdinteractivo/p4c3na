@@ -75,3 +75,27 @@
 	left:50%;
 	margin-left:-75px;
 }
+
+#wrapper-datos-app h3
+{
+	font-family: 'Oswald';
+	font-weight: bold;
+	font-size: 16px;
+	color:#000;
+}
+
+#wrapper-datos-app label
+{
+	font-family: 'Oswald';
+	font-weight: bold;
+	font-size: 13px;
+	color:#000;
+}
+#wrapper-datos-app input
+{
+	background:#ffc600;
+	border:none;
+	height:25px;
+	margin-top:5px;
+	margin-bottom:10px;
+}

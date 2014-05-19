@@ -21,7 +21,7 @@ var objApp;
 		self.VERSION;	
 		self.TITLE;	
 		self.DESCRIPTION;	
-		self.FB_APP_ID = '242841712583589'; 
+		self.FB_APP_ID;
 		self.SERVER;
 						
 		var wholeWrapper = document.createElement('div');
@@ -49,16 +49,19 @@ var objApp;
 		   document.addEventListener("online", onDeviceOnLine, false);
 		   document.addEventListener("backbutton", backKeyDown, false);
 		}		
-		self.is_phonegap =  function (){
-
-			try {
+		self.is_phonegap =  function ()
+		{
+			try 
+			{
 			    if(device.platform == ''){}
 			    return true;  
-			} catch (e) {  
+			} 
+			catch (e) 
+			{  
 			    return false;   
 			}
-
 		}
+
 		function onDeviceReady()
 		{		
 			//Obtengo datos del dispositivo
@@ -67,8 +70,8 @@ var objApp;
 			
 			uuid = 123456780;
 			
-			if(self.is_phonegap()){
-
+			if(self.is_phonegap())
+			{
 				uuid = device.uuid;
 				
 				if ((typeof cordova == 'undefined') && (typeof Cordova == 'undefined')) alert('Cordova variable does not exist. Check that you have included cordova.js correctly');
@@ -77,9 +80,7 @@ var objApp;
 			  
 	    		//self._ManagePush = new ManagePush();
 
-		    	self._Facebook = new Facebook();
-		    	self._Facebook.init();
-
+	    		
    			}
 
 			if(self.internet())
@@ -134,6 +135,9 @@ var objApp;
 			   seccionsSite.push($(this));
 			});	
 			
+			self._Facebook = new Facebook();
+		    self._Facebook.init();
+
 			//Chequeo si ya existe este dispositivo
 			checkExisteDispositivo();
 		}

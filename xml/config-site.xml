@@ -11,8 +11,8 @@
 	<version>1</version>	
 
 	<!--facebook app id-->
-	<fbappid>242841712583589</fbappid>
-	<fbatoken>674ab2399c380f9497e8d2615315a365</fbatoken>
+	<fbappid>496101553812055</fbappid>
+	<fbatoken>3a23a7b85d96e3da06d7b478760a1e27</fbatoken>
 	
 	<!--server-->
 	<server>http://192.168.235.153/pacena/public/</server>	

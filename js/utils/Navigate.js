@@ -53,7 +53,11 @@
 					
 					case 'proximos' : 
 						objContenido = new ProximosPartidos(nodo); 
-					break;																																		
+					break;	
+
+					case 'apostados' : 
+						objContenido = new PartidosApostados(nodo); 
+					break;																																							
 				}	
 				
 				$(div_holder).html(objContenido.div);		

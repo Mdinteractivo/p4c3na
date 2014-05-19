@@ -34,23 +34,30 @@
 			$(innerRegistroLoader).css({opacity : 0});
 			
 		goConnect();
-			
 		
+		objApp.ocultarCargador();
+
 		function goConnect()
 		{
 			var btnConnect = new BtnConnect(self);
 			innerNavigate(btnConnect);
 		}	
 		
-		function goDatosApp(data)
+		function goDatosFacebook(data)
+		{
+			var datosAppFace = new DatosFacebook(self, data);
+			innerNavigate(datosAppFace);
+		}
+		
+		self.goDatosApp = function (data)
 		{
 			var datosApp = new DatosApp(self, data);
 			innerNavigate(datosApp);
 		}
-			
+		
 		function innerNavigate(object)
 		{
-			$(innerRegistroLoader).transition({opacity : 0,  duration : 500}, 1000 , 'linear');
+			$(innerRegistroLoader).transition({opacity : 0,  duration : 800}, 1000 , 'linear');
 			$(innerRegistroLoader).empty();
 			
 			setTimeout(function()
@@ -77,7 +84,6 @@
 			}
 			else
 			{
-
 				data.access_token = $access_token;
 				data.uid = $obj_usario.id;
 				data.usuario_nombre = $obj_usario.name;
@@ -92,7 +98,6 @@
 						data.usuario_fecha_nacimento = $obj_usario.birthday;
 					}catch(e){}
 				
-				
 			}
 			
 			alert
@@ -105,9 +110,9 @@
 				'usuario_ciudad_actual: ' + data.usuario_ciudad_actual + '\n' + 
 				'usuario_fecha_nacimento: ' + data.usuario_fecha_nacimento + '\n'
 
-				);
+			);
 
-			goDatosApp(data);
+			goDatosFacebook(data);
 		}	
 	}
 	
@@ -115,7 +120,7 @@
 
 })(window);
 
-function DatosApp(parent, data)
+function DatosFacebook(parent, data)
 {
 	var self = this;
 	self.div = document.createElement('div');
@@ -148,4 +153,48 @@ function DatosApp(parent, data)
 		$(divButton).append(btnNext);
 		$(btnNext).text('SIGUIENTE');	
 		$(btnNext).css({'top' : 10});
+		
+		if(objApp.isTouch())
+			$(btnNext).bind('touchstart' , parentNavigate);	
+		else	
+			$(btnNext).bind('click' , parentNavigate);
+			
+	function parentNavigate()
+	{
+		parent.goDatosApp(data);
+	}	
+}
+
+function DatosApp(parent, data)
+{
+	var self = this;
+	self.div = document.createElement('div');
+	self.div.id = 'wrapper-datos-app';
+	
+	$(self.div).css({'height' : 250, 'width' : '100%'});
+	$(self.div).append('<h3>'+data.usuario_nombre+'</h3>');
+	$(self.div).append('<label>Confirma tu Nombre Completo</label><br/>');
+	
+	var inputNombre = document.createElement('input');
+		inputNombre.type = 'text';
+		$(self.div).append(inputNombre);
+		$(inputNombre).css({'width' : 285});
+		
+	$(self.div).append('<label>Número de Carnet</label><br/>');
+	
+	var inputCarnet = document.createElement('input');
+		inputCarnet.type = 'text';
+		$(self.div).append(inputCarnet);
+		$(inputCarnet).css({'width' : 150});
+
+	$(self.div).append('<br/>');
+	$(self.div).append('<label>Número de Teléfono</label><br/>');
+	
+	var inputTel = document.createElement('input');
+		inputTel.type = 'tel';
+		$(self.div).append(inputTel);
+		$(inputTel).css({'width' : 150});
+		
+			
+	
 }

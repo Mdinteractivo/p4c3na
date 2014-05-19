@@ -44,6 +44,14 @@ body
 	overflow-y:auto;
 	-webkit-overflow-scrolling: touch;
 }
+.holder-general-item
+{
+	width:320px;
+	height:330px;
+	position:absolute;
+	top:0;
+	display:none;
+}
 #holder-seccion-loader
 {
   /*background:rgba(255,255,255,0.6);*/

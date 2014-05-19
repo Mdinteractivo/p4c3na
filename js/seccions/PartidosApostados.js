@@ -12,7 +12,7 @@ function PartidosApostados(nodo)
 
 	$.ajax
 	({
-		url  : objApp.SERVER+'ws/ws-getProximosPartidos.php',
+		url  : objApp.SERVER+'ws/ws-getPartidosApostados.php',
 		type : 'POST',
 		data : {'id' : objApp.idUsuario},
 		success : onCompleteXML,
@@ -37,7 +37,7 @@ function PartidosApostados(nodo)
 		$(divVolver).css({'color':'#000'});
 
 	var titulo = document.createElement('h1');
-		$(titulo).text('PRÓXIMOS PARTIDOS');
+		$(titulo).text('PARTIDOS JUGADOS');
 		$(titulo).css({'color' : '#FFF', 'margin-left' : 75});
 		$(holderTituloLightBox).append(titulo);
 
@@ -64,7 +64,7 @@ function PartidosApostados(nodo)
 		
 		if($(xml).find('partido').length == 0)
 		{
-			objApp.error('Actualmente no hay próximos partidos.');
+			objApp.error('No haz participado de ninguna apuesta aún.');
 		}
 		else
 		{
@@ -72,9 +72,10 @@ function PartidosApostados(nodo)
 			
 			$(xml).find('partido').each(function(index, element) 
 			{						
-				var itemProximo = new ItemProximoPartido(this, true, self);
-				$(divScroll).append(itemProximo.div);
-				array_items.push(itemProximo);
+				var itemPartidoJugado = new ItemPartidoJugado(this, self);
+				$(divScroll).append(itemPartidoJugado.div);
+				
+				array_items.push(itemPartidoJugado);
 			});
 			
 			for(var i = 0; i < array_items.length; ++i)	
@@ -90,46 +91,5 @@ function PartidosApostados(nodo)
 	{
 		objApp.Navigate('polla', nodo);	
 	}	
-	
-	self.refrescarLista = function()
-	{
-		array_items = [];
-		$(divScroll).empty();
-		
-		$.ajax
-		({
-			url  : objApp.SERVER+'ws/ws-getProximosPartidos.php',
-			type : 'POST',
-			data : {'id' : objApp.idUsuario},
-			success : onCompleteXML,
-			error : onErrorXML
-		});			
-	}	
-		
-	self.showApuesta = function(nodo)
-	{
-		if(animando)
-			return;
-
-		animando = true;	
-		$(holderApuestaContenido).empty();
-		
-		var lightboxVs = new LightBoxVersus(nodo, self);		
-		$(holderApuestaContenido).append(lightboxVs.div);
-				
-		$(holderItems).transition({scale : 0.5, duration : 500}).transition({opacity : 0});
-		$(holderApuesta).stop().delay(500).fadeIn(500, function(){animando = false;});	
-	}
-	function doCloseApuesta()
-	{
-		if(animando)
-			return;
-
-		animando = true;	
-			
-		$(holderApuesta).stop().fadeOut(500);
-		$(holderItems).delay(500).transition({opacity : 1}).transition({scale : 1, duration : 500});
-		animando = false;	
-	}						
 	
 }

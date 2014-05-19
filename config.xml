@@ -48,7 +48,7 @@
 		<gap:splash src="img/splash/ios/Default_iphone5.png" gap:platform="ios" width="640" height="1136" />
 		<gap:splash src="img/splash/ios/Default-Portrait.png" gap:platform="ios" width="768" height="1004" />
 		<gap:splash src="img/splash/ios/Default-Portrait_at_2x.png" gap:platform="ios" width="1536" height="2008" />	
-		 
+		
 	 </platform>
 
 	 <platform name="android">
@@ -78,8 +78,8 @@
     <gap:plugin name="org.apache.cordova.splashscreen" />
 	
 	<gap:plugin name="com.phonegap.plugins.facebookconnect" version="0.4.0">
-        <param name="APP_ID" value="242841712583589" />
-        <param name="APP_NAME" value="viveloydejalovivirlo" />
+        <param name="APP_ID" value="496101553812055" />
+        <param name="APP_NAME" value="viveloydejavivirlo" />
     </gap:plugin>
 	
 	<gap:plugin name="com.phonegap.plugins.childbrowser" />

@@ -61,7 +61,7 @@ function ProximosPartidos(nodo)
 	/*--------------------------------------------------------*/
 	
 		var holderApuesta = document.createElement('div');
-			holderApuesta.className = 'holder-noticia-item';
+			holderApuesta.className = 'holder-general-item';
 			$(self.div).append(holderApuesta);
 		
 		var holderTituloApuesta = document.createElement('div');
