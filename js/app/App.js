@@ -21,7 +21,7 @@ var objApp;
 		self.VERSION;	
 		self.TITLE;	
 		self.DESCRIPTION;	
-		self.FB_APP_ID = '242841712583589';
+		self.FB_APP_ID = '242841712583589'; 
 		self.SERVER;
 						
 		var wholeWrapper = document.createElement('div');
