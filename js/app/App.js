@@ -78,22 +78,17 @@ var objApp;
 				if (typeof CDV == 'undefined') alert('CDV variable does not exist. Check that you have included cdv-plugin-fb-connect.js correctly');
 				if (typeof FB == 'undefined') alert('FB variable does not exist. Check that you have included the Facebook JS SDK file.');
 			  
-	    		//self._ManagePush = new ManagePush();
-
-	    		
+	    		//self._ManagePush = new ManagePush();	    		
    			}
 
-			if(self.internet())
-			{											
+												
 				$.ajax
 				({
 					url : 'xml/config-site.xml',
 					success : onCompleteXML,
 					error : onErrorXML
 				});
-			}
-			else
-				onDeviceOffLine();
+			
 		}	
 	
 		function onDeviceOffLine()
@@ -135,9 +130,13 @@ var objApp;
 			   seccionsSite.push($(this));
 			});	
 			
-			self._Facebook = new Facebook();
-		    self._Facebook.init();
+			if(self.is_phonegap()){
+				self._Facebook = new Facebook();
+		   		 self._Facebook.init();
 
+
+			}
+			
 			//Chequeo si ya existe este dispositivo
 			checkExisteDispositivo();
 		}
