@@ -2,6 +2,8 @@ function LightBoxVersus(nodo, parent)
 {
 	var self = this;
 		
+	console.log(nodo);	
+		
 	self.div = document.createElement('div');
 	$(self.div).css({'width' : 320, 'min-height' : 100});
 	
@@ -36,7 +38,7 @@ function LightBoxVersus(nodo, parent)
 
 	var imgLocal = new Image();
 		imgLocal.width = 71;
-		imgLocal.src = objApp.SERVER+'global/img/banderas/bandera'+$(nodo).find('idLocal').text()+'.png?ac=1';;
+		imgLocal.src = objApp.SERVER+'global/img/banderas/bandera'+$(nodo).find('idLocal').text()+'.png?ac=2';
 		$(holderLocal).append(imgLocal);
 		$(imgLocal).css({'margin-left' : 28, 'margin-top' : 5});
 
@@ -52,7 +54,7 @@ function LightBoxVersus(nodo, parent)
 
 	var imgVisita = new Image();
 		imgVisita.width = 71;
-		imgVisita.src = objApp.SERVER+'global/img/banderas/bandera'+$(nodo).find('idVisita').text()+'.png?ac=1';;
+		imgVisita.src = objApp.SERVER+'global/img/banderas/bandera'+$(nodo).find('idVisita').text()+'.png?ac=2';
 		$(holderVisitante).append(imgVisita);
 		$(imgVisita).css({'margin-left' : 19, 'margin-top' : 5});
 
@@ -234,5 +236,28 @@ function LightBoxVersus(nodo, parent)
 		
 		$(inputLocal).attr('disabled' ,'');
 		$(inputVisitante).attr('disabled' ,'');
-	}		
+	}	
+	
+	function compartir()
+	{
+		$.ajax
+		({
+			url  : objApp.SERVER+'global/process/create_post_image.php',
+			type : 'POST',
+			data : 
+			{
+				'idUsuario' : objApp.idUsuario, 
+				'idLocatario' : $(nodo).find('idLocal').text(), 
+				'idVisitante' : $(nodo).find('idVisita').text(),
+				'golesLoc' : $(inputLocal).val(),
+				'golesVis' : $(inputVisitante).val()
+			},
+			success : onCompleteCompartir
+		});
+	}
+	
+	function onCompleteCompartir()
+	{
+		objApp.error('Gracias por compartir tu pronóstico');	
+	}	
 }

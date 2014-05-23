@@ -17,8 +17,6 @@
 		var holderUserName = document.createElement('div');
 			holderUserName.id = 'holder-user-name';
 			$(self.div).append(holderUserName);
-			//$(holderUserName).append('<h3>BIENVENIDO</h3>');
-			//$(holderUserName).append('<p>Juan Carlos</p>');
 		
 		var logo = new Image();
 			logo.src = 'img/general/logo-pacena.png';
@@ -36,6 +34,12 @@
 				duration : 500, scale : 1, rotate : 0, opacity : 1
 			});
 		}	
+		
+		self.setUser = function(nombre)
+		{
+			$(holderUserName).append('<h3>BIENVENIDO</h3>');
+			$(holderUserName).append('<p>'+nombre+'</p>');
+		}
 		
 		self.animIn();
 	}

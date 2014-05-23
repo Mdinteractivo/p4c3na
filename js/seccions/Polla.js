@@ -203,7 +203,7 @@
 			$(correo).text($(xml).find('personales').find('email').text());
 			$(fecha).text($(xml).find('personales').find('fechaNacimiento').text());			
 			$(clasificacionGralTexto).append($(xml).find('personales').find('clasificacionGral').text());
-			$(clasificacionAmigosTexto).append('200');
+			$(clasificacionAmigosTexto).append($(xml).find('personales').find('clasificacionAmigos').text());
 			$(puntosTexto).append($(xml).find('personales').find('puntos').text());
 			$(pronosticosTexto).append($(xml).find('personales').find('pronosticos').text());
 			
@@ -220,7 +220,8 @@
 			
 			if($(xml).find('partidosJugados').find('partido').length == 0)
 			{
-				$(holderParticipacionesContenido).append('<p class="mensaje">Aún no has realizado apuestas.</p>');
+				$(holderParticipacionesContenido).append('<p class="mensaje">Aún no se han jugado los partidos <br/>dónde apostaste.</p>');
+				$(holderParticipaciones).unbind('click' , doClickParticipaciones);
 			}
 			else
 			{

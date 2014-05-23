@@ -66,7 +66,7 @@ var objApp;
 
 		function onDeviceReady()
 		{		
-			self.UUID = 123456780;
+			self.UUID = '9bfbb8f2c53b6074';
 			self.PLATFORM = 'Android';
 			
 			self._ManagePush = new ManagePush(); 
@@ -80,18 +80,15 @@ var objApp;
 				if (typeof CDV == 'undefined') alert('CDV variable does not exist. Check that you have included cdv-plugin-fb-connect.js correctly');
 				if (typeof FB == 'undefined') alert('FB variable does not exist. Check that you have included the Facebook JS SDK file.');
 			  
-	    		
 	    		self._ManagePush.registrar();	
    			}
 
-												
-				$.ajax
-				({
-					url : 'xml/config-site.xml',
-					success : onCompleteXML,
-					error : onErrorXML
-				});
-			
+			$.ajax
+			({
+				url : 'xml/config-site.xml',
+				success : onCompleteXML,
+				error : onErrorXML
+			});
 		}	
 	
 		function onDeviceOffLine()
@@ -160,7 +157,8 @@ var objApp;
 				xmlDataUser = xml;
 				self.idUsuario = $(xml).find('idUsuario').text();
 				
-				console.log('id de usuario: '+self.idUsuario+'-------------');
+				console.log('id de usuario: '+self.idUsuario);
+				objHeader.setUser($(xml).find('nombre').text());
 				objApp.Navigate('inicio', null);
 			}
 			else
@@ -183,9 +181,10 @@ var objApp;
 			return seccionsSite;
 		}
 	
-		self.setIdUsuario = function(id)
+		self.setIdUsuario = function(id, nombre)
 		{
-			self.idUsuario = id
+			self.idUsuario = id;
+			objHeader.setUser(nombre);
 		}	
 		
 		self.Navigate = function(seccion, nodo)

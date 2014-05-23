@@ -22,6 +22,18 @@ body
 	background:url(../img/general/background.jpg) no-repeat;
 	background-size:auto;
 }
+html,body 
+{ 
+    -webkit-touch-callout: none; 
+    -webkit-text-size-adjust: none;
+    -webkit-user-select: none;
+}
+
+input,textarea, select
+{
+	 -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
 #app
 {
 	width:100%;

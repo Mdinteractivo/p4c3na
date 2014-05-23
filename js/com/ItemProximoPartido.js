@@ -11,13 +11,13 @@
 			$(self.div).append(holderBanderas);
 			
 		var bandera1 = new Image();
-			bandera1.src = objApp.SERVER+'global/img/banderas/bandera'+$(nodo).find('idLocal').text()+'.png?ac=1';
+			bandera1.src = objApp.SERVER+'global/img/banderas/bandera'+$(nodo).find('idLocal').text()+'.png?ac=2';
 			bandera1.width = 71;
 			$(holderBanderas).append(bandera1);
 			$(bandera1).css({'position' : 'absolute', 'left' : 5 , 'top' : 5});
 			
 		var bandera2 = new Image();
-			bandera2.src = objApp.SERVER+'global/img/banderas/bandera'+$(nodo).find('idVisita').text()+'.png?ac=1';
+			bandera2.src = objApp.SERVER+'global/img/banderas/bandera'+$(nodo).find('idVisita').text()+'.png?ac=2';
 			bandera2.width = 71;
 			$(holderBanderas).append(bandera2);	
 			$(bandera2).css({'position' : 'absolute', 'left' : 57 , 'top' : 28});

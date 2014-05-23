@@ -55,15 +55,21 @@
 			innerNavigate(datosApp);
 		}
 		
+		self.goNotificaciones = function(object)
+		{
+			var datosNotificaciones = new DatosNotificaciones(self, object);
+			innerNavigate(datosNotificaciones);
+		}
+		
 		function innerNavigate(object)
 		{
-			$(innerRegistroLoader).transition({opacity : 0,  duration : 800}, 1000 , 'linear');
+			$(innerRegistroLoader).transition({opacity : 0,  duration : 800} , 'linear');
 			$(innerRegistroLoader).empty();
 			
 			setTimeout(function()
 			{
 				$(innerRegistroLoader).append(object.div);
-				$(innerRegistroLoader).transition({opacity : 1,  duration : 500}, 1000 , 'linear');
+				$(innerRegistroLoader).transition({opacity : 1,  duration : 800} , 'linear');
 			
 			}, 1000);
 		}	
@@ -76,8 +82,8 @@
 			{
 				data.access_token = 'hardcodetokenaaaaa'
 				data.usuario_uid = 100005636947233;
-				data.usuario_nombre = 'Mdi';
-				data.usuario_email  = 'mdi@gmail.com	' ;
+				data.usuario_nombre = 'Martin Luz';
+				data.usuario_email  = 'mluz@gmail.com' ;
 				data.usuario_ciudad_origen = 'Montevideo';
 				data.usuario_ciudad_actual = 'Montevideo';
 				data.usuario_fecha_nacimento = '26/10/1987';
@@ -86,11 +92,11 @@
 			{
 				data.usuario_uid = $obj_usuario.id;
 				data.access_token = $access_token
-				data.usuario_nombre = $obj_usuario.first_name+' '+$obj_usuario.last_name;
-				data.usuario_email = $obj_usuario.email;
-				data.usuario_ciudad_origen = $obj_usuario.hometown.name;
-				data.usuario_ciudad_actual = $obj_usuario.location.name;
-				data.usuario_fecha_nacimento = $obj_usuario.birthday;
+				data.usuario_nombre = $obj_usuario.name;
+				
+				try{
+					data.usuario_email = $obj_usuario.email;
+				}catch(e){}			
 
 				try{
 					data.usuario_ciudad_origen = $obj_usuario.hometown.name;
@@ -109,6 +115,8 @@
 	window.Registro = Registro;
 
 })(window);
+
+/*Inner class datos facebook*/
 
 function DatosFacebook(parent, data)
 {
@@ -151,9 +159,14 @@ function DatosFacebook(parent, data)
 			
 	function parentNavigate()
 	{
+		objApp.mostrarCargador();
 		parent.goDatosApp(data);
-	}	
+	}
+	
+	objApp.ocultarCargador();
 }
+
+/*Inner class datos app*/
 
 function DatosApp(parent, data)
 {
@@ -207,7 +220,12 @@ function DatosApp(parent, data)
 		btnNext.className = 'btn-next';
 		$(self.div).append(btnNext);
 		$(btnNext).text('SIGUIENTE');	
-		$(btnNext).css({'top' : 278, 'display' : 'none'});				
+		$(btnNext).css({'top' : 278, 'display' : 'none'});
+		
+		if(objApp.isTouch())
+			$(btnNext).bind('touchstart' , goNotificaciones);	
+		else	
+			$(btnNext).bind('click' , goNotificaciones);
 	
 	self.sendEstado = function(estado)
 	{
@@ -223,15 +241,51 @@ function DatosApp(parent, data)
 		}
 	}
 	
+	function goNotificaciones()
+	{
+		
+		if($(inputNombre).val().length == 0)
+		{
+			objApp.error('No puedes dejar el campo Nombre vacío');
+		}
+		else if($(inputCarnet).val().length == 0)
+		{
+			objApp.error('No puedes dejar el campo carnet vacío');
+		}
+		else
+		{
+			objApp.mostrarCargador();
+	
+			var object =
+			{
+				  usuario_uid : data.usuario_uid,
+				  usuario_at : data.access_token,
+				  usuario_nombre : $(inputNombre).val(),
+				  usuario_email : data.usuario_email,
+				  usuario_ciudad_origen  :data.usuario_ciudad_origen,
+				  usuario_ciudad_actual : data.usuario_ciudad_actual,
+				  usuario_fecha_nacimiento : data.usuario_fecha_nacimento,
+				  usuario_numero_carnet:$(inputCarnet).val(),
+				  usuario_numero_tel:$(inputTel).val(),
+				  guardo_favoritos:0,
+				  uuid :objApp.UUID ,
+				  pushToken : objApp._ManagePush.token,
+				  plataforma : objApp.PLATFORM
+			}
+			
+			parent.goNotificaciones(object);
+		}
+	}
+	
 	function checkGuardar()
 	{
 		if($(inputNombre).val().length == 0)
 		{
 			objApp.error('No puedes dejar el campo Nombre vacío');
 		}
-		else if($(inputTel).val().length == 0)
+		else if($(inputCarnet).val().length == 0)
 		{
-			objApp.error('No puedes dejar el campo Teléfono vacío');
+			objApp.error('No puedes dejar el campo carnet vacío');
 		}
 		else
 		{
@@ -270,7 +324,7 @@ function DatosApp(parent, data)
 		
 		if(parseInt($(xml).find('resultado').text()) == 1)
 		{
-			objApp.setIdUsuario($(xml).find('idUsuario').text());
+			objApp.setIdUsuario($(xml).find('idUsuario').text(), $(xml).find('nombre').text());
 			
 			setTimeout(function()
 			{
@@ -284,4 +338,168 @@ function DatosApp(parent, data)
 		}
 	}
 	
+	objApp.ocultarCargador();
+}
+
+/*Inner class datos Notificaciones*/
+
+function DatosNotificaciones(parent, data)
+{
+	var self = this;
+	var array_checks = [];
+	var mostrandoEquipos = false;
+	var ALTO_HEADER = 180;
+	var altoItems = 65;
+	
+	var altoPantalla = (window.innerHeight - ALTO_HEADER) -5;
+	
+	self.div = document.createElement('div');
+	self.div.id = 'wrapper-datos-notificaciones';
+	$(self.div).css({'height' : altoPantalla});
+	$(self.div).append('<h3>Deseo recibir notificaciones de:<h3>');
+
+	var holderNotificacionesGenerales = document.createElement('div');
+		$(holderNotificacionesGenerales).css({'width' : '100%','float' : 'left', 'position' : 'relative', 'height' : '50px'});
+		$(self.div).append(holderNotificacionesGenerales);	
+				
+	var tickInicioPartido = new TickComponent(self);
+		$(holderNotificacionesGenerales).append(tickInicioPartido.div);
+
+	var textInicioPartido = document.createElement('p');
+		$(textInicioPartido).text('Inicio de partido');
+		$(holderNotificacionesGenerales).append(textInicioPartido);
+		$(textInicioPartido).css({'position' : 'absolute', 'left' : 32, 'top' : 8});
+
+	var tickFinalPartido = new TickComponent(self);
+		$(holderNotificacionesGenerales).append(tickFinalPartido.div);
+		$(tickFinalPartido.div).css({'left' : 163});
+
+	var textFinalPartido = document.createElement('p');
+		$(textFinalPartido).text('Final de partido');
+		$(holderNotificacionesGenerales).append(textFinalPartido);
+		$(textFinalPartido).css({'position' : 'absolute', 'left' : 195, 'top' : 8});
+
+	/**/
+	var holderNotificacionesFavNoticias = document.createElement('div');
+		$(holderNotificacionesFavNoticias).css({'width' : '100%', 'height' : 45, 'float' : 'left', 'position' : 'relative'});
+		$(self.div).append(holderNotificacionesFavNoticias);	
+	
+	//Goles	
+	var tickGoles = new TickComponent(self);
+		$(holderNotificacionesFavNoticias).append(tickGoles.div);
+
+	var textGoles = document.createElement('p');
+		$(textGoles).text('Goles');
+		$(holderNotificacionesFavNoticias).append(textGoles);
+		$(textGoles).css({'position' : 'absolute', 'left' : 32, 'top' : 8});
+
+	//Noticias
+	var tickNoticias = new TickComponent(self);
+		$(holderNotificacionesFavNoticias).append(tickNoticias.div);
+		$(tickNoticias.div).css({'left' : 163});
+
+	var textNoticias = document.createElement('p');
+		$(textNoticias).text('Noticias');
+		$(holderNotificacionesFavNoticias).append(textNoticias);
+		$(textNoticias).css({'position' : 'absolute', 'left' : 195, 'top' : 8});
+		
+	/**/
+	var holderEquipos = document.createElement('div');
+		$(holderEquipos).css({'width' : '100%', 'height' : 27, 'float' : 'left', 'position' : 'relative'});
+		$(self.div).append(holderEquipos);	
+
+	var textEquipos = document.createElement('p');
+		$(textEquipos).text('Equipos Favoritos');
+		$(holderEquipos).append(textEquipos);
+		$(textEquipos).css({'float' : 'left', 'margin-top' : 2});
+		
+	var flechaDown = new Image();
+		flechaDown.src = 'img/secciones/registro/flecha-down.png';	
+		flechaDown.width = 22;
+		$(holderEquipos).append(flechaDown);
+		$(flechaDown).css({'float' : 'left', 'margin-left' : 5, 'margin-top' : 5});
+		$(holderEquipos).append('<div class="clear"></div>');
+		
+		$(flechaDown).bind('click' , slideDownEquipos);
+		$(textEquipos).bind('click' , slideDownEquipos);
+
+	/**/	
+	var holderEquiposResize = document.createElement('div');
+		$(self.div).append(holderEquiposResize);
+		$(holderEquiposResize).css
+		({
+			'width' : '98%', 'height': 'auto', 'float' : 'left', 
+			'position' : 'relative', 'background' : 'rgba(180, 178, 178, 0.6)', 
+			'overflow' : 'hidden', 'display' : 'none', 'border-top' : '#000 solid 1px',
+			'border-bottom' : '#000 solid 1px'
+		});
+		
+	$(self.div).append('<h3>Notificaciones juegos de pronósticos:<h3>');
+
+	var holderAcertastes = document.createElement('div');
+		$(holderAcertastes).css({'width' : '100%', 'height' : 45, 'float' : 'left', 'position' : 'relative'});
+		$(self.div).append(holderAcertastes);	
+				
+	var tickAcertasteResultado = new TickComponent(self);
+		$(holderAcertastes).append(tickAcertasteResultado.div);
+
+	var textAcertasteResultado = document.createElement('p');
+		$(textAcertasteResultado).text('Acertaste pronóstico');
+		$(holderAcertastes).append(textAcertasteResultado);
+		$(textAcertasteResultado).css({'position' : 'absolute', 'left' : 32, 'top' : 8});
+
+	var ticPartidoCerrarse = new TickComponent(self);
+		$(holderAcertastes).append(ticPartidoCerrarse.div);
+		$(ticPartidoCerrarse.div).css({'left' : 163});
+
+	var textPartidoCerrarse = document.createElement('p');
+		$(textPartidoCerrarse).text('Partido por cerrarse');
+		$(holderAcertastes).append(textPartidoCerrarse);
+		$(textPartidoCerrarse).css({'position' : 'absolute', 'left' : 195, 'top' : 8});
+
+	/**/
+	var holderPartidosPuntos = document.createElement('div');
+		$(holderPartidosPuntos).css({'width' : '100%', 'height' : 45, 'float' : 'left', 'position' : 'relative'});
+		$(self.div).append(holderPartidosPuntos);	
+
+	var tickTotalPuntos = new TickComponent(self);
+		$(holderPartidosPuntos).append(tickTotalPuntos.div);
+
+	var textTotalPuntos = document.createElement('p');
+		$(textTotalPuntos).text('Total puntos');
+		$(holderPartidosPuntos).append(textTotalPuntos);
+		$(textTotalPuntos).css({'position' : 'absolute', 'left' : 32, 'top' : 8});										
+	
+	$.ajax
+	({
+		url  : objApp.SERVER+'ws/ws-obtenerSelecciones.php',
+		success : onCompleteGetSelecciones
+	});				
+	
+	function slideDownEquipos()
+	{
+		if(!mostrandoEquipos)
+		{
+			$(flechaDown).attr('src' , 'img/secciones/registro/flecha-up.png');	
+			$(holderEquiposResize).slideDown("slow");
+			mostrandoEquipos = true;
+		}
+		else
+		{
+			$(flechaDown).attr('src' , 'img/secciones/registro/flecha-down.png');	
+			$(holderEquiposResize).slideUp("slow");
+			mostrandoEquipos = false;
+		}
+	}
+	
+	function onCompleteGetSelecciones(xml)
+	{
+		objApp.ocultarCargador();
+
+		$(xml).find('seleccion').each(function(index, element) 
+		{
+			var itemNotificacion = new ItemNotificacion(this);
+           $(holderEquiposResize).append(itemNotificacion.div);
+        });
+	}
 }

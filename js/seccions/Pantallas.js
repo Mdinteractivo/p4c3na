@@ -1,7 +1,7 @@
 (function(window)
 {
 	function Pantallas(nodo)
-	{
+	{		
 		var self = this;
 		var animando = false;
 		var array_items = [];
