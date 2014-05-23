@@ -77,7 +77,10 @@
 		self.doConnect = function($obj_usuario, $access_token)
 		{
 			var data = new Object();
-			
+			var cuidadOrigen;
+			var cuidadActual;
+			var fechaNac;
+
 			if($obj_usuario == 'null')
 			{
 				data.access_token = 'hardcodetokenaaaaa'
@@ -96,16 +99,21 @@
 				
 				try{
 					data.usuario_email = $obj_usuario.email;
-				}catch(e){}			
+				}
+				catch(e){}			
 
-				try{
-					data.usuario_ciudad_origen = $obj_usuario.hometown.name;
-					data.usuario_ciudad_actual = $obj_usuario.hometown.name;
-				}catch(e){}
+				try
+				{
+					data.usuario_ciudad_origen = ($obj_usuario.hometown.name === 'undefined') ? '' : $obj_usuario.hometown.name;
+					data.usuario_ciudad_actual = ($obj_usuario.hometown.name === 'undefined') ? '' : $obj_usuario.hometown.name;
+				}
+				catch(e){}
 			
-				try{
-					data.usuario_fecha_nacimento = $obj_usuario.birthday;
-				}catch(e){}				
+				try
+				{
+				    data.usuario_fecha_nacimento = ($obj_usuario.birthday === 'undefined') ? '' : $obj_usuario.birthday;
+				}
+				catch(e){}				
 			}
 
 			goDatosFacebook(data);
@@ -298,7 +306,7 @@ function DatosApp(parent, data)
 				  usuario_at : data.access_token,
 				  usuario_nombre : $(inputNombre).val(),
 				  usuario_email : data.usuario_email,
-				  usuario_ciudad_origen  :data.usuario_ciudad_origen,
+				  usuario_ciudad_origen  : data.usuario_ciudad_origen,
 				  usuario_ciudad_actual : data.usuario_ciudad_actual,
 				  usuario_fecha_nacimiento : data.usuario_fecha_nacimento,
 				  usuario_numero_carnet:$(inputCarnet).val(),
