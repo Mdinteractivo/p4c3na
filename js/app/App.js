@@ -8,6 +8,7 @@ var objApp;
 	
 	function App()
 	{
+		console.log('Se instancio correctamente la app');
 		var self = this;
 		var xmlSite;
 		var seccionsSite = [];
@@ -45,6 +46,7 @@ var objApp;
 
 		self.initialize = function() 
 		{
+			console.log('LLego al inicialize');
 		   //Inicializo eventos
 		   document.addEventListener('deviceready', onDeviceReady, false);
 		   document.addEventListener("offline", onDeviceOffLine, false);
@@ -66,7 +68,9 @@ var objApp;
 
 		function onDeviceReady()
 		{		
-			self.UUID = '9bfbb8f2c53b6075';
+			console.log('LLego al device ready');
+
+			self.UUID = '9bfbb8f2c53b6074';
 			self.PLATFORM = 'Android';
 			
 			self._ManagePush = new ManagePush(); 
@@ -111,6 +115,8 @@ var objApp;
 		}				
 		function onCompleteXML(xmlSite)
 		{
+			console.log('LLego al complete xml');
+
 			//Me traigo toda la informacion de la aplicacion
 			document.title   = $(xmlSite).find('site').find('title').text();
 			
