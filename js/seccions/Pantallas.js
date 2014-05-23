@@ -8,14 +8,16 @@
 		var delay = 200;
 		var ALTO_HEADER = 180;
 		var altoItems = 65;
-		
 		var altoPantalla = (window.innerHeight - ALTO_HEADER) - 5;
-		/*var multiplo = Math.ceil((altoPantalla / altoItems));	
-		var alturaFinal = (altoItems * multiplo)  - 20;*/
-				
+		
 		self.div = document.createElement('div');
 		self.div.className = 'class-cero';	
-					
+
+		 if(!objApp.loadGoogleMap)
+		 {
+			console.log('Inicializo google maps');
+		 	$.getScript('http://maps.google.com/maps/api/js?sensor=false&callback=gMapsCallback');
+		 }
 		var holderItems = document.createElement('div');
 			$(self.div).append(holderItems);
 			$(holderItems).css({'width' : 320, 'float' : 'left'});
@@ -64,7 +66,6 @@
 			$(titulo).bind('click' , doCloseMap);
 		}
 
-		
 		var icono = new Image();
 			icono.width = 64;
 			icono.src = 'img/general/menu/pantallas.png?ac=1';

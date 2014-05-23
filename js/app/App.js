@@ -8,13 +8,14 @@ var objApp;
 	
 	function App()
 	{
-		console.log('Se instancio correctamente la app');
 		var self = this;
 		var xmlSite;
 		var seccionsSite = [];
 		var historial = [];
 		var ALTO_HEADER = 180;
 		var xmlDataUser;
+		var ANCHO_PANTALLA = window.innerWidth;
+		var ALTO_PANTALLA = window.innerHeight;	
 
 		self._ManagePush;
 		self._Facebook;
@@ -25,11 +26,14 @@ var objApp;
 		self.FB_APP_ID;
 		self.SERVER;
 		self.UUID;
-		self.PLATFORM
+		self.PLATFORM;
+		self.loadGoogleMap = false;
 						
 		var wholeWrapper = document.createElement('div');
 			wholeWrapper.id = 'app';
 			$(wholeWrapper).appendTo('body');	
+			$('body').css({'background' : 'url(img/general/background.jpg) no-repeat'});
+			$('body').css({'background-size' : ANCHO_PANTALLA+'px '+ALTO_PANTALLA+'px'});			
 					
 		var objHeader = new Header(true);
 			$(wholeWrapper).append(objHeader.div);
@@ -68,8 +72,6 @@ var objApp;
 
 		function onDeviceReady()
 		{		
-			console.log('LLego al device ready');
-
 			self.UUID = '9bfbb8f2c53b6074';
 			self.PLATFORM = 'Android';
 			
@@ -78,10 +80,11 @@ var objApp;
 			{
 				self.UUID = device.uuid;
 				self.PLATFORM = device.platform;
-				
-				
-				if ((typeof cordova == 'undefined') && (typeof Cordova == 'undefined')) alert('Cordova variable does not exist. Check that you have included cordova.js correctly');
-				if (typeof CDV == 'undefined') alert('CDV variable does not exist. Check that you have included cdv-plugin-fb-connect.js correctly');
+								
+				if ((typeof cordova == 'undefined') && (typeof Cordova == 'undefined')) 
+				alert('Cordova variable does not exist. Check that you have included cordova.js correctly');
+				if (typeof CDV == 'undefined') 
+				alert('CDV variable does not exist. Check that you have included cdv-plugin-fb-connect.js correctly');
 				if (typeof FB == 'undefined') alert('FB variable does not exist. Check that you have included the Facebook JS SDK file.');
 			  
 	    		self._ManagePush.registrar();	
@@ -94,7 +97,7 @@ var objApp;
 				error : onErrorXML
 			});
 		}	
-	
+		
 		function onDeviceOffLine()
 		{
 			App.CheckConnection.mostrar();						
@@ -104,7 +107,7 @@ var objApp;
 		{
 			App.CheckConnection.ocultar();
 		}
-		
+	
 		function backKeyDown()
 		{
 			if(historial[historial.length-1] == 'inicio')
@@ -186,13 +189,15 @@ var objApp;
 		{
 			return seccionsSite;
 		}
-	
 		self.setIdUsuario = function(id, nombre)
 		{
 			self.idUsuario = id;
 			objHeader.setUser(nombre);
-		}	
-		
+		}			
+		self.setGoogleLoad = function()
+		{
+			self.loadGoogleMap = true;
+		}
 		self.Navigate = function(seccion, nodo)
 		{
 			historial.push(seccion);
@@ -200,14 +205,9 @@ var objApp;
 		}
 		self.internet = function() 
 		{
-			try
-			{
-				var networkState = navigator.connection.type;
-			}
-			catch(e)
-			{
-				return true
-			}
+			try {var networkState = navigator.connection.type;}
+			catch(e){return true}
+			
 			var states = {};
 			states[Connection.UNKNOWN]  = 'Unknown connection';
 			states[Connection.ETHERNET] = 'Ethernet connection';

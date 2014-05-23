@@ -146,6 +146,7 @@ function FasesDeGrupo(xml, parent)
 	var placeHolderGrupo;
 	var grupoActual = 'R';
 	var delay = 200;
+	var array_items = [];
 	
 	self.div = document.createElement('div');
 	
@@ -155,19 +156,19 @@ function FasesDeGrupo(xml, parent)
 		{
 			if($(this).find('grupo').text() != grupoActual)
 			{
-				grupoActual = $(this).find('grupo').text();
-				
-				placeHolderGrupo = new PlaceHolderGrupo($(this).find('grupo').text(), self, delay);
+				grupoActual = $(this).find('grupo').text();				
+				placeHolderGrupo = new PlaceHolderGrupo($(this).find('grupo').text(), self);
 				$(self.div).append(placeHolderGrupo.div);
-			}
-			
-			delay +=200;
-			
+				array_items.push(placeHolderGrupo);
+			}			
 			placeHolderGrupo.add($(this));	
-			/*objItemNovedad = new ItemNovedad($(this), self, index);
-			$(divScroll).append(objItemNovedad.div);
-			array_items.push(objItemNovedad);*/
 		});
+		
+		for(var i = 0; i < array_items.length; ++i)	
+		{
+			array_items[i].inicializar(delay);
+			delay +=200;
+		}		
 	}
 	else
 		objApp.error('No hay grupos definidos');
@@ -178,13 +179,13 @@ function FasesDeGrupo(xml, parent)
 	}		
 }
 
-function PlaceHolderGrupo(grupo, parent, DELAY)
+function PlaceHolderGrupo(grupo, parent)
 {
 	var self = this;
 	self.div = document.createElement('div');
 	self.div.className = 'place-holder-grupo';
 	$(self.div).bind('click' , doClick);
-	$(self.div).css({scale : 0.5}).delay(DELAY).transition({opacity : 1, scale : 1, duration : 500});
+	$(self.div).css({opacity : 0});
 	
 	var vertical = document.createElement('div');
 		vertical.className = 'vertical-fixture';
@@ -224,6 +225,11 @@ function PlaceHolderGrupo(grupo, parent, DELAY)
 			$(divNombre).css({'width' : '100%', 'overflow' : 'hidden', 'float' : 'left'});
 			$(divNombre).append('<p>'+$(equipo).find('nombre').text()+'</p>');
 	}	
+	
+	self.inicializar = function(DELAY)
+	{
+		$(self.div).css({scale : 0.5}).delay(DELAY).transition({opacity : 1, scale : 1, duration : 500});
+	}		
 	
 	function doClick()
 	{
