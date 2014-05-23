@@ -190,6 +190,7 @@ function DatosApp(parent, data)
 		inputCarnet.type = 'text';
 		$(self.div).append(inputCarnet);
 		$(inputCarnet).css({'width' : 170});
+		$(inputCarnet).numeric({allow : '.-'});
 
 	$(self.div).append('<br/>');
 	$(self.div).append('<label>Número de Teléfono</label><br/>');
@@ -350,6 +351,7 @@ function DatosNotificaciones(parent, data)
 	var mostrandoEquipos = false;
 	var ALTO_HEADER = 180;
 	var altoItems = 65;
+	var array_favoritos = [];
 	
 	var altoPantalla = (window.innerHeight - ALTO_HEADER) -5;
 	

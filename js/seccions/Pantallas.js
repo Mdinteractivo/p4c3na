@@ -47,16 +47,23 @@
 			$(divVolver).css({'background' : 'url(img/general/volver_black.png) no-repeat'});
 			$(divVolver).css({'background-size' : '16px', 'background-position' : 'left'});			
 			$(divVolver).css({'color':'#000'});
-
-		if(objApp.isTouch())
-			$(divVolver).bind('touchend' , doCloseMap);
-		else
-			$(divVolver).bind('click' , doCloseMap);
 			
 		var titulo = document.createElement('h1');
 			$(titulo).text('DÓNDE VER EL MUNDIAL');
 			$(titulo).css({'color' : '#000'});
 			$(holderTituloMapa).append(titulo);
+
+		if(objApp.isTouch())
+		{
+			$(divVolver).bind('touchend' , doCloseMap);
+			$(titulo).bind('touchend' , doCloseMap);		
+		}
+		else
+		{
+			$(divVolver).bind('click' , doCloseMap);
+			$(titulo).bind('click' , doCloseMap);
+		}
+
 		
 		var icono = new Image();
 			icono.width = 64;

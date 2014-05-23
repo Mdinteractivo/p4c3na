@@ -55,7 +55,7 @@ function ProximosPartidos(nodo)
 	var divScroll = document.createElement('div');
 		divScroll.className = 'divScroll';
 		$(holderItems).append(divScroll);
-		$(divScroll).css({'height' : altoPantalla, 'margin-top' : 0});
+		$(divScroll).css({'height' : altoPantalla, 'margin-top' : '-18px'});
 		$(divScroll).css({'background':'rgba(255,255,255,0.6)'});
 
 	/*--------------------------------------------------------*/
@@ -104,7 +104,8 @@ function ProximosPartidos(nodo)
 		
 		if($(xml).find('partido').length == 0)
 		{
-			objApp.error('Actualmente no hay próximos partidos.');
+			//objApp.error('Actualmente no hay próximos partidos.');
+			$(divScroll).append('<p class="mensaje">Actualmente no hay próximos partidos.</p>');
 		}
 		else
 		{

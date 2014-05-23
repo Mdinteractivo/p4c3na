@@ -116,7 +116,11 @@ function LightBoxVersus(nodo, parent)
 	var btnCompartir = document.createElement('div'); 
 		btnCompartir.id = 'btn-compartir';
 		$(holderBotones).append(btnCompartir);
-			
+
+		if(objApp.isTouch())
+			$(btnCompartir).bind('touchstart' , compartir);
+		else
+			$(btnCompartir).bind('click' , compartir);	
 			
 	if(parseInt($(nodo).find('apuesta').find('aposto').text()) == 1)
 	{
@@ -240,6 +244,8 @@ function LightBoxVersus(nodo, parent)
 	
 	function compartir()
 	{
+		objApp.mostrarCargador();
+
 		$.ajax
 		({
 			url  : objApp.SERVER+'global/process/create_post_image.php',
@@ -258,6 +264,7 @@ function LightBoxVersus(nodo, parent)
 	
 	function onCompleteCompartir()
 	{
+		objApp.ocultarCargador();
 		objApp.error('Gracias por compartir tu pronóstico');	
 	}	
 }

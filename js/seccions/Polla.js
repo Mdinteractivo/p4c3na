@@ -212,11 +212,19 @@
                 $(ulEquipos).append('<li>'+$(this).find('seleccionNombre').text()+'</li>');
             });
 			
-			$(xml).find('proximosPartidos').find('partido').each(function(index, element) 
-			{						
-				var itemProximo = new ItemProximoPartido(this, false, null);
-				$(holderProximosContenido).append(itemProximo.div); 
-			});	
+			if($(xml).find('proximosPartidos').find('partido').length == 0)
+			{
+				$(holderProximosContenido).append('<p class="mensaje">Actualmente no hay próximos partidos.</p>');
+				$(holderProximos).unbind('click' , doClickApuestas);		
+			}
+			else
+			{
+				$(xml).find('proximosPartidos').find('partido').each(function(index, element) 
+				{						
+					var itemProximo = new ItemProximoPartido(this, false, null);
+					$(holderProximosContenido).append(itemProximo.div); 
+				});	
+			}
 			
 			if($(xml).find('partidosJugados').find('partido').length == 0)
 			{
