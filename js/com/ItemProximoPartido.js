@@ -11,13 +11,13 @@
 			$(self.div).append(holderBanderas);
 			
 		var bandera1 = new Image();
-			bandera1.src = objApp.SERVER+'global/img/banderas/bandera'+$(nodo).find('idLocal').text()+'.png?ac=2';
+			bandera1.src = objApp.SERVER+'global/img/banderas/bandera'+$(nodo).find('idLocal').text()+'.png?ac='+objApp.VERSION;
 			bandera1.width = 71;
 			$(holderBanderas).append(bandera1);
 			$(bandera1).css({'position' : 'absolute', 'left' : 5 , 'top' : 5});
 			
 		var bandera2 = new Image();
-			bandera2.src = objApp.SERVER+'global/img/banderas/bandera'+$(nodo).find('idVisita').text()+'.png?ac=2';
+			bandera2.src = objApp.SERVER+'global/img/banderas/bandera'+$(nodo).find('idVisita').text()+'.png?ac='+objApp.VERSION;
 			bandera2.width = 71;
 			$(holderBanderas).append(bandera2);	
 			$(bandera2).css({'position' : 'absolute', 'left' : 57 , 'top' : 28});
@@ -57,7 +57,7 @@
 		
 		if(bool)
 		{
-			$(holderTextos).css({'width' : 145, 'font-size' : 12, 'padding-top' : 10});
+			$(holderTextos).css({'width' : 145, 'font-size' : 14, 'padding-top' : 10});
 			
 			if(parseInt($(nodo).find('apuesta').find('aposto').text()) != 0)
 			{

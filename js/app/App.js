@@ -16,6 +16,7 @@ var objApp;
 		var xmlDataUser;
 		var ANCHO_PANTALLA = window.innerWidth;
 		var ALTO_PANTALLA = window.innerHeight;	
+		
 
 		self._ManagePush;
 		self._Facebook;
@@ -72,7 +73,7 @@ var objApp;
 
 		function onDeviceReady()
 		{		
-			self.UUID = '9bfbb8f2c53b6075';
+			self.UUID = '9bfbb8f2c53b6076';
 			self.PLATFORM = 'Android';
 			
 			self._ManagePush = new ManagePush(); 
@@ -118,8 +119,6 @@ var objApp;
 		}				
 		function onCompleteXML(xmlSite)
 		{
-			console.log('LLego al complete xml');
-
 			//Me traigo toda la informacion de la aplicacion
 			document.title   = $(xmlSite).find('site').find('title').text();
 			

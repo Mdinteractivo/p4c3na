@@ -252,7 +252,6 @@ function DatosApp(parent, data)
 	
 	function goNotificaciones()
 	{
-		
 		if($(inputNombre).val().length == 0)
 		{
 			objApp.error('No puedes dejar el campo Nombre vacío');
@@ -276,7 +275,7 @@ function DatosApp(parent, data)
 				  usuario_fecha_nacimiento : data.usuario_fecha_nacimento,
 				  usuario_numero_carnet:$(inputCarnet).val(),
 				  usuario_numero_tel:$(inputTel).val(),
-				  guardo_favoritos:0,
+				  guardo_favoritas:0,
 				  uuid :objApp.UUID ,
 				  pushToken : objApp._ManagePush.token,
 				  plataforma : objApp.PLATFORM
@@ -372,7 +371,7 @@ function DatosNotificaciones(parent, data)
 		$(holderNotificacionesGenerales).css({'width' : '100%','float' : 'left', 'position' : 'relative', 'height' : '50px'});
 		$(self.div).append(holderNotificacionesGenerales);	
 				
-	var tickInicioPartido = new TickComponent(self);
+	var tickInicioPartido = new TickComponentNotifiacion(self);
 		$(holderNotificacionesGenerales).append(tickInicioPartido.div);
 
 	var textInicioPartido = document.createElement('p');
@@ -380,7 +379,7 @@ function DatosNotificaciones(parent, data)
 		$(holderNotificacionesGenerales).append(textInicioPartido);
 		$(textInicioPartido).css({'position' : 'absolute', 'left' : 32, 'top' : 8});
 
-	var tickFinalPartido = new TickComponent(self);
+	var tickFinalPartido = new TickComponentNotifiacion(self);
 		$(holderNotificacionesGenerales).append(tickFinalPartido.div);
 		$(tickFinalPartido.div).css({'left' : 163});
 
@@ -395,7 +394,7 @@ function DatosNotificaciones(parent, data)
 		$(self.div).append(holderNotificacionesFavNoticias);	
 	
 	//Goles	
-	var tickGoles = new TickComponent(self);
+	var tickGoles = new TickComponentNotifiacion(self);
 		$(holderNotificacionesFavNoticias).append(tickGoles.div);
 
 	var textGoles = document.createElement('p');
@@ -404,7 +403,7 @@ function DatosNotificaciones(parent, data)
 		$(textGoles).css({'position' : 'absolute', 'left' : 32, 'top' : 8});
 
 	//Noticias
-	var tickNoticias = new TickComponent(self);
+	var tickNoticias = new TickComponentNotifiacion(self);
 		$(holderNotificacionesFavNoticias).append(tickNoticias.div);
 		$(tickNoticias.div).css({'left' : 163});
 
@@ -450,7 +449,7 @@ function DatosNotificaciones(parent, data)
 		$(holderAcertastes).css({'width' : '100%', 'height' : 45, 'float' : 'left', 'position' : 'relative'});
 		$(self.div).append(holderAcertastes);	
 				
-	var tickAcertasteResultado = new TickComponent(self);
+	var tickAcertasteResultado = new TickComponentNotifiacion(self);
 		$(holderAcertastes).append(tickAcertasteResultado.div);
 
 	var textAcertasteResultado = document.createElement('p');
@@ -458,7 +457,7 @@ function DatosNotificaciones(parent, data)
 		$(holderAcertastes).append(textAcertasteResultado);
 		$(textAcertasteResultado).css({'position' : 'absolute', 'left' : 32, 'top' : 8});
 
-	var ticPartidoCerrarse = new TickComponent(self);
+	var ticPartidoCerrarse = new TickComponentNotifiacion(self);
 		$(holderAcertastes).append(ticPartidoCerrarse.div);
 		$(ticPartidoCerrarse.div).css({'left' : 163});
 
@@ -472,13 +471,28 @@ function DatosNotificaciones(parent, data)
 		$(holderPartidosPuntos).css({'width' : '100%', 'height' : 45, 'float' : 'left', 'position' : 'relative'});
 		$(self.div).append(holderPartidosPuntos);	
 
-	var tickTotalPuntos = new TickComponent(self);
+	var tickTotalPuntos = new TickComponentNotifiacion(self);
 		$(holderPartidosPuntos).append(tickTotalPuntos.div);
 
 	var textTotalPuntos = document.createElement('p');
 		$(textTotalPuntos).text('Total puntos');
 		$(holderPartidosPuntos).append(textTotalPuntos);
 		$(textTotalPuntos).css({'position' : 'absolute', 'left' : 32, 'top' : 8});										
+
+	var divButton = document.createElement('div');
+		$(self.div).append(divButton);
+		$(divButton).css({'width' : '100%', 'height' : 60, 'float' : 'left', 'position' : 'relative'});
+
+	var btnNext = document.createElement('div');
+		btnNext.className = 'btn-next';
+		$(divButton).append(btnNext);
+		$(btnNext).text('GUARDAR');	
+		$(btnNext).css({'top' : 10});
+
+		if(objApp.isTouch())
+			$(btnNext).bind('touchstart' , doGuardar);	
+		else	
+			$(btnNext).bind('click' , doGuardar);
 	
 	$.ajax
 	({
@@ -508,8 +522,78 @@ function DatosNotificaciones(parent, data)
 
 		$(xml).find('seleccion').each(function(index, element) 
 		{
-			var itemNotificacion = new ItemNotificacion(this);
+			var itemNotificacion = new ItemNotificacion(this, index);
            $(holderEquiposResize).append(itemNotificacion.div);
+		   array_favoritos.push(itemNotificacion);
         });
+	}
+	
+	function doGuardar()
+	{
+		objApp.mostrarCargador();
+
+		var stringFavoritos = '';
+		
+		for(var i = 0; i < array_favoritos.length; ++i)
+		{
+			if(array_favoritos[i].getEstado() == 1)
+			{
+				if(i == (array_favoritos.length -1))
+					stringFavoritos += array_favoritos[i].idPais();
+				else
+					stringFavoritos += array_favoritos[i].idPais()+',';
+			}
+		}
+		
+		var params =
+		{
+			usuario_uid : data.usuario_uid,
+			usuario_at : data.usuario_at,
+			usuario_nombre : data.usuario_nombre,
+			usuario_email : data.usuario_email,
+			usuario_ciudad_origen  : data.usuario_ciudad_origen,
+			usuario_ciudad_actual : data.usuario_ciudad_actual,
+			usuario_fecha_nacimiento : data.usuario_fecha_nacimiento,
+			usuario_numero_carnet: data.usuario_numero_carnet,
+			usuario_numero_tel: data.usuario_numero_tel,
+			guardo_favoritas: 1,
+			uuid : data.uuid,
+			pushToken : data.pushToken,
+			plataforma : data.plataforma,
+			'notificaciones_inicio_partido' : tickInicioPartido.getEstado(),
+			'notificaciones_fin_partido' : tickFinalPartido.getEstado(),
+			'notificaciones_goles' : tickGoles.getEstado(),
+			'notificaciones_noticias' : tickNoticias.getEstado(),
+			'notificaciones_acertaste_pronostico' : tickAcertasteResultado.getEstado(),
+			'notificaciones_partido_por_cerrarse' : ticPartidoCerrarse.getEstado(),
+			'notificaciones_total_puntos' : tickTotalPuntos.getEstado(),
+			'selecciones_favoritas' : stringFavoritos
+		}
+		
+		$.ajax
+		({
+			url  : objApp.SERVER+'ws/ws-guardarUsuario.php',
+			type : 'POST',
+			data : params,
+			success : onCompleteXML
+		});	
+	}
+	
+	function onCompleteXML(xml)
+	{
+		if(parseInt($(xml).find('resultado').text()) == 1)
+		{
+			objApp.setIdUsuario($(xml).find('idUsuario').text(), $(xml).find('nombre').text());
+			
+			setTimeout(function()
+			{
+				objApp.Navigate('inicio', null);
+			
+			}, 500);
+		}
+		else
+		{
+			objApp.error('Ha ocurrido un error, intenta más tarde');
+		}
 	}
 }

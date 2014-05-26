@@ -216,7 +216,7 @@ function PlaceHolderGrupo(grupo, parent)
 			$(divBandera).css({'width' : '100%', 'height' : 45, 'overflow' : 'hidden', 'float' : 'left'});
 			
 		var bandera = new Image();
-			bandera.src = objApp.SERVER+'global/img/banderas/bandera'+$(equipo).find('id').text()+'.png?ac=2';
+			bandera.src = objApp.SERVER+'global/img/banderas/bandera'+$(equipo).find('id').text()+'.png?ac='+objApp.VERSION;
 			bandera.width = 71;
 			$(divBandera).append(bandera);
 
@@ -261,13 +261,13 @@ function Versus(xml)
         		$(itemVersus).append(holderBanderas);
 				
 			var bandera1 = new Image();
-				bandera1.src = objApp.SERVER+'global/img/banderas/bandera'+$(this).find('idLocal').text()+'.png?ac=2';
+				bandera1.src = objApp.SERVER+'global/img/banderas/bandera'+$(this).find('idLocal').text()+'.png?ac='+objApp.VERSION;
 				bandera1.width = 71;
 				$(holderBanderas).append(bandera1);
 				$(bandera1).css({'position' : 'absolute', 'left' : 5 , 'top' : 5});
 				
 			var bandera2 = new Image();
-				bandera2.src = objApp.SERVER+'global/img/banderas/bandera'+$(this).find('idVisita').text()+'.png?ac=2';
+				bandera2.src = objApp.SERVER+'global/img/banderas/bandera'+$(this).find('idVisita').text()+'.png?ac='+objApp.VERSION;
 				bandera2.width = 71;
 				$(holderBanderas).append(bandera2);	
 				$(bandera2).css({'position' : 'absolute', 'left' : 57 , 'top' : 28});

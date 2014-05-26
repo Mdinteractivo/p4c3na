@@ -1,9 +1,7 @@
 function LightBoxVersus(nodo, parent)
 {
 	var self = this;
-		
-	console.log(nodo);	
-		
+				
 	self.div = document.createElement('div');
 	$(self.div).css({'width' : 320, 'min-height' : 100});
 	
@@ -84,8 +82,8 @@ function LightBoxVersus(nodo, parent)
 		$(holderDetails).css({'width' : '100%', 'height' : 'auto', 'float' : 'left', 'position' : 'relative', 'text-align' : 'center', 'padding-bottom' : 10, 'font-weight' : 'bold'});
 		
 	$(holderDetails).append('<p>'+$(nodo).find('local').text()+' VS '+$(nodo).find('visitante').text()+'</p>');
-	$(holderDetails).append('<p>'+getStringFecha($(nodo).find('fecha').text())+'</p>');
-	$(holderDetails).append('<p>'+$(nodo).find('estadio').text()+'</p>');
+	$(holderDetails).append('<p class="grey">'+getStringFecha($(nodo).find('fecha').text())+'</p>');
+	$(holderDetails).append('<p class="grey">'+$(nodo).find('estadio').text()+'</p>');
 
 	var holderBotones = document.createElement('div');
 		holderBotones.className = 'holder-detalles-partido';

@@ -17,42 +17,42 @@ function getStringFecha(fecha)
 	switch(mesNumber)
 	{
 		case '01':
-			mesString = 'Ene.';
+			mesString = 'Enero';
 		break;
 		case '02':
-			mesString = 'Feb.';
+			mesString = 'Febrero';
 		break;
 		case '03':
-			mesString = 'Mar.';
+			mesString = 'Marzo';
 		break;
 		case '04':
-			mesString = 'Abr.';
+			mesString = 'Abril';
 		break;
 		case '05':
-			mesString = 'May.';
+			mesString = 'Mayo';
 		break;
 		case '06':
-			mesString = 'Jun.';
+			mesString = 'Junio';
 		break;	
 		case '07':
-			mesString = 'Jul.';
+			mesString = 'Julio';
 		break;
 		case '08':
-			mesString = 'Ago.';
+			mesString = 'Agosto';
 		break;
 		case '09':
-			mesString = 'Set.';
+			mesString = 'Setiembre';
 		break;
 		case '10':
-			mesString = 'Oct.';
+			mesString = 'Octubre';
 		break;
 		case '11':
-			mesString = 'Nov.';
+			mesString = 'Noviembre';
 		break;
 		case '12':
-			mesString = 'Dic.';
+			mesString = 'Diciembre';
 		break;																			
 	}	
 	
-	return (day +' '+mesString+' '+anio+' - '+hourOutSeconds+' Hora Local');
+	return (day +' '+mesString+' '+hourOutSeconds+' Hrs.');
 }

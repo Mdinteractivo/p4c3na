@@ -34,11 +34,12 @@ function ProximosPartidos(nodo)
 		$(holderTituloLightBox).append(divVolver);
 		$(divVolver).css({'background' : 'url(img/general/volver_white.png) no-repeat'});
 		$(divVolver).css({'background-size' : '16px', 'background-position' : 'left'});			
-		$(divVolver).css({'color':'#000'});
+		$(divVolver).css({'color':'#FFF', 'padding-left' : '19px'});
+		$(divVolver).text('VOLVER');
 
 	var titulo = document.createElement('h1');
 		$(titulo).text('PRÓXIMOS PARTIDOS');
-		$(titulo).css({'color' : '#FFF', 'margin-left' : 75});
+		$(titulo).css({'color' : '#FFF', 'margin-left' : 87});
 		$(holderTituloLightBox).append(titulo);
 
 	if(objApp.isTouch())
@@ -76,17 +77,29 @@ function ProximosPartidos(nodo)
 			$(divVolverApuesta).css({'background' : 'url(img/general/volver_white.png) no-repeat'});
 			$(divVolverApuesta).css({'background-size' : '16px', 'background-position' : 'left'});			
 			$(divVolverApuesta).css({'color':'#000'});
+
+		var divVolverProximos = document.createElement('div');
+			divVolverProximos.className = 'btn-volver-inicio';
+			$(holderTituloApuesta).append(divVolverProximos);
+			$(divVolverProximos).text('PRÓXIMOS PARTIDOS');
+			$(divVolverProximos).css({'color':'#FFF', 'width' : 90, 'font-size' : 10});
 	
 		var titulo = document.createElement('h1');
 			$(titulo).text('PRONÓSTICO');
-			$(titulo).css({'color' : '#FFF', 'margin-left' : 95});
+			$(titulo).css({'color' : '#FFF', 'margin-left' : 130});
 			$(holderTituloApuesta).append(titulo);
 
 		if(objApp.isTouch())
+		{
 			$(divVolverApuesta).bind('touchstart' , doCloseApuesta);
+			$(divVolverProximos).bind('touchstart' , doCloseApuesta);
+		}
 		else
+		{
 			$(divVolverApuesta).bind('click' , doCloseApuesta);
-
+			$(divVolverProximos).bind('click' , doCloseApuesta);
+		}
+		
 		var icono = new Image();
 			icono.width = 64;
 			icono.src = 'img/general/menu/noticias.png?ac=1';

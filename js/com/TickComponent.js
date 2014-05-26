@@ -25,7 +25,12 @@
 			}
 			
 			parent.sendEstado(selected);
-		}		
+		}	
+		
+		self.getEstado = function()
+		{
+			return selected;
+		}	
 	}
 
 	window.TickComponent = TickComponent;
