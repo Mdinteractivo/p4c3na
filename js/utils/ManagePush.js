@@ -58,28 +58,10 @@ function ManagePush(){
 	}
 
 
-	function sendToken(){
-
+	function sendToken()
+	{
 		console.log(self.plataform) 
 		console.log(self.token)
-
-
-		/*	$.ajax({
-
-							type: "POST",
-							url: app.server + "void.set_push_token.php",
-							dataType: 'text',
-							cache: false, 
-							data:{plataform: self.plataform, token:self.token},
-							success:function(){
-
-								 app.db.transaction(function (tx) {
-									 tx.executeSql('UPDATE app SET push=?', [1]);
-								 });
-
-							}
-						});	*/
-
 	}
 
 	function successHandler (result) {

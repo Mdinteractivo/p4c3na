@@ -67,7 +67,7 @@ var objApp;
 		{		
 	   		console.log('onDeviceReady');
 			
-			self.UUID = '9bfbb8f2c53b6077';
+			/*self.UUID = '9bfbb8f2c53b6077';
 			self.PLATFORM = 'Android';
 			
 			self._ManagePush = new ManagePush(); 
@@ -87,10 +87,10 @@ var objApp;
 
 			$.ajax
 			({
-				url : 'xml/config-site.xml?ac=1',
+				url : 'xml/config-site.xml?ac=2',
 				success : onCompleteXML,
 				error : onErrorXML
-			});
+			});*/
 		}	
 		
 		function onDeviceOffLine()
