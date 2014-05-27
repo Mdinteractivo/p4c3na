@@ -145,7 +145,8 @@ var objApp;
 				url  : self.SERVER+'ws/ws-checkDispositivo.php',
 				type : 'POST',
 				data : {'uuid' : self.UUID},
-				success : onCompleteCheckDispositivo
+				success : onCompleteCheckDispositivo,
+				error : onErrorCheckDispositivo
 			});				
 		}
 		
@@ -181,9 +182,13 @@ var objApp;
 			
 			}, 3000);
 		}
+		
+		function onErrorCheckDispositivo()
+		{
+			alert('FALLO CHECK DISPOSITIVO');
+		}
 			
 		/*Public methods*/	
-		
 		self.is_phonegap =  function ()
 		{
 			try 
