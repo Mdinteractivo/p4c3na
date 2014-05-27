@@ -138,7 +138,7 @@ var objApp;
 		
 		function checkExisteDispositivo()
 		{
-	   		alert(self.SERVER);
+	   		alert('SERVER: '+self.SERVER);
 			
 			$.ajax
 			({
