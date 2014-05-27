@@ -45,7 +45,8 @@ var objApp;
 			holderSeccion.id = 'holder-seccion-loader';	
 			$(wholeWrapper).append(holderSeccion);
 	
-		$(holderSeccion).css({scale : 0.5, duration : 500}).css({x : -1000, duration : 500})
+		$(holderSeccion).css({scale : 0.5, duration : 500}).css({x : -1000, duration : 500});
+		
 		
 		/*Objects*/
 		App.Navigate = new Navigate();
@@ -67,7 +68,7 @@ var objApp;
 		{		
 	   		console.log('onDeviceReady');
 			
-			/*self.UUID = '9bfbb8f2c53b6077';
+			self.UUID = '9bfbb8f2c53b6077';
 			self.PLATFORM = 'Android';
 			
 			self._ManagePush = new ManagePush(); 
@@ -90,7 +91,7 @@ var objApp;
 				url : 'xml/config-site.xml?ac=2',
 				success : onCompleteXML,
 				error : onErrorXML
-			});*/
+			});
 		}	
 		
 		function onDeviceOffLine()

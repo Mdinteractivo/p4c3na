@@ -42,6 +42,8 @@
 		}
 		
 		self.animIn();
+		
+		alert('HEADER');
 	}
 	
 	window.Header = Header;
