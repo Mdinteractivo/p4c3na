@@ -8,7 +8,7 @@ var objApp;
 	
 	function App()
 	{
-		console.log('App instansiada correctamente');
+		alert('App instansiada correctamente');
 
 		var self = this;
 		var xmlSite;
@@ -46,8 +46,7 @@ var objApp;
 			$(wholeWrapper).append(holderSeccion);
 	
 		$(holderSeccion).css({scale : 0.5, duration : 500}).css({x : -1000, duration : 500});
-		
-		
+				
 		/*Objects*/
 		App.Navigate = new Navigate();
 		App.Cargador = new Cargador();
@@ -55,8 +54,7 @@ var objApp;
 
 		self.initialize = function() 
 		{
-	   		console.log('Inicializo la app');
-
+			alert('Inicializo la app');
 		   //Inicializo eventos
 		   document.addEventListener('deviceready', onDeviceReady, false);
 		   document.addEventListener("offline", onDeviceOffLine, false);
@@ -66,7 +64,7 @@ var objApp;
 
 		function onDeviceReady()
 		{		
-	   		console.log('onDeviceReady');
+			alert('onDeviceReady');
 			
 			self.UUID = '9bfbb8f2c53b6077';
 			self.PLATFORM = 'Android';
@@ -114,7 +112,7 @@ var objApp;
 		}				
 		function onCompleteXML(xmlSite)
 		{
-	   		console.log('onCompleteXML');
+	   		alert('onCompleteXML');
 			//Me traigo toda la informacion de la aplicacion
 			document.title   = $(xmlSite).find('site').find('title').text();
 			
@@ -178,6 +176,8 @@ var objApp;
 		
 		function onErrorXML()
 		{
+	   		alert('onErrorXML');
+
 			self.error('Error al inicializar la aplicación. La aplicación se cerrará');
 			
 			setTimeout(function()

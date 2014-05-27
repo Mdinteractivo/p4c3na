@@ -41,9 +41,7 @@
 			$(holderUserName).append('<p>'+nombre+'</p>');
 		}
 		
-		self.animIn();
-		
-		alert('HEADER');
+		self.animIn();		
 	}
 	
 	window.Header = Header;
