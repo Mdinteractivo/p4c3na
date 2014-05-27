@@ -8,6 +8,8 @@ var objApp;
 	
 	function App()
 	{
+		console.log('App instansiada correctamente');
+
 		var self = this;
 		var xmlSite;
 		var seccionsSite = [];
@@ -52,6 +54,8 @@ var objApp;
 
 		self.initialize = function() 
 		{
+	   		console.log('Inicializo la app');
+
 		   //Inicializo eventos
 		   document.addEventListener('deviceready', onDeviceReady, false);
 		   document.addEventListener("offline", onDeviceOffLine, false);
@@ -61,6 +65,8 @@ var objApp;
 
 		function onDeviceReady()
 		{		
+	   		console.log('onDeviceReady');
+			
 			self.UUID = '9bfbb8f2c53b6077';
 			self.PLATFORM = 'Android';
 			
@@ -107,6 +113,7 @@ var objApp;
 		}				
 		function onCompleteXML(xmlSite)
 		{
+	   		console.log('onCompleteXML');
 			//Me traigo toda la informacion de la aplicacion
 			document.title   = $(xmlSite).find('site').find('title').text();
 			
@@ -129,7 +136,7 @@ var objApp;
 			if(self.is_phonegap())
 			{
 				self._Facebook = new Facebook();
-		   		 self._Facebook.init();
+		   		self._Facebook.init();
 			}
 			
 			//Chequeo si ya existe este dispositivo
@@ -138,6 +145,8 @@ var objApp;
 		
 		function checkExisteDispositivo()
 		{
+	   		console.log('checkExisteDispositivo');
+			
 			$.ajax
 			({
 				url  : objApp.SERVER+'ws/ws-checkDispositivo.php',
@@ -149,8 +158,10 @@ var objApp;
 		
 		function onCompleteCheckDispositivo(xml)
 		{
+	   		console.log('onCompleteCheckDispositivo');
+
 			if(parseInt($(xml).find('existe').text()) == 1)
-			{
+			{				
 				xmlDataUser = xml;
 				self.idUsuario = $(xml).find('idUsuario').text();
 				
@@ -159,7 +170,9 @@ var objApp;
 				objApp.Navigate('inicio', null);
 			}
 			else
+			{
 				objApp.Navigate('registro', null);
+			}
 		}
 		
 		function onErrorXML()
