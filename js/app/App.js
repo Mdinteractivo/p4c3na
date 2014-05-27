@@ -142,7 +142,7 @@ var objApp;
 			
 			$.ajax
 			({
-				url  : self.SERVER+'ws/ws-checkDispositivo.php',
+				url  : self.SERVER+'ws/ws-checkDispositivo.php?ac=3',
 				type : 'POST',
 				data : {'uuid' : self.UUID},
 				success : onCompleteCheckDispositivo,
@@ -152,20 +152,16 @@ var objApp;
 		
 		function onCompleteCheckDispositivo(xml)
 		{
-	   		alert('onCompleteCheckDispositivo');
-
 			if(parseInt($(xml).find('existe').text()) == 1)
 			{				
 				xmlDataUser = xml;
 				self.idUsuario = $(xml).find('idUsuario').text();
 				
-				alert('Existe usuario id: '+self.idUsuario);
 				objHeader.setUser($(xml).find('nombre').text());
 				objApp.Navigate('inicio', null);
 			}
 			else
 			{
-				alert('No existe usuario ir al registro');
 				objApp.Navigate('registro', null);
 			}
 		}
