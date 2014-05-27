@@ -2,6 +2,7 @@
 {
 	function Registro()
 	{
+		alert('Registro');
 		var self = this;
 
 		self.div = document.createElement('div');
@@ -39,6 +40,7 @@
 
 		function goConnect()
 		{
+			alert('Btn Connect');
 			var btnConnect = new BtnConnect(self);
 			innerNavigate(btnConnect);
 		}	

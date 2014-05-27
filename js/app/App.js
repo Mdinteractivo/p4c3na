@@ -144,7 +144,7 @@ var objApp;
 		
 		function checkExisteDispositivo()
 		{
-	   		console.log('checkExisteDispositivo');
+	   		alert('checkExisteDispositivo');
 			
 			$.ajax
 			({
@@ -157,19 +157,20 @@ var objApp;
 		
 		function onCompleteCheckDispositivo(xml)
 		{
-	   		console.log('onCompleteCheckDispositivo');
+	   		alert('onCompleteCheckDispositivo');
 
 			if(parseInt($(xml).find('existe').text()) == 1)
 			{				
 				xmlDataUser = xml;
 				self.idUsuario = $(xml).find('idUsuario').text();
 				
-				console.log('id de usuario: '+self.idUsuario);
+				alert('Existe usuario id: '+self.idUsuario);
 				objHeader.setUser($(xml).find('nombre').text());
 				objApp.Navigate('inicio', null);
 			}
 			else
 			{
+				alert('No existe usuario ir al registro');
 				objApp.Navigate('registro', null);
 			}
 		}
