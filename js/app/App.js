@@ -17,7 +17,7 @@ var objApp;
 		var ANCHO_PANTALLA = window.innerWidth;
 		var ALTO_PANTALLA = window.innerHeight;	
 		
-
+		/*Publics vars*/
 		self._ManagePush;
 		self._Facebook;
 		self.idUsuario;
@@ -45,31 +45,19 @@ var objApp;
 	
 		$(holderSeccion).css({scale : 0.5, duration : 500}).css({x : -1000, duration : 500})
 		
+		/*Objects*/
 		App.Navigate = new Navigate();
 		App.Cargador = new Cargador();
 		App.CheckConnection = new CheckConection();
 
 		self.initialize = function() 
 		{
-			console.log('LLego al inicialize');
 		   //Inicializo eventos
 		   document.addEventListener('deviceready', onDeviceReady, false);
 		   document.addEventListener("offline", onDeviceOffLine, false);
 		   document.addEventListener("online", onDeviceOnLine, false);
 		   document.addEventListener("backbutton", backKeyDown, false);
 		}		
-		self.is_phonegap =  function ()
-		{
-			try 
-			{
-			    if(device.platform == ''){}
-			    return true;  
-			} 
-			catch (e) 
-			{  
-			    return false;   
-			}
-		}
 
 		function onDeviceReady()
 		{		
@@ -93,7 +81,7 @@ var objApp;
 
 			$.ajax
 			({
-				url : 'xml/config-site.xml',
+				url : 'xml/config-site.xml?ac=1',
 				success : onCompleteXML,
 				error : onErrorXML
 			});
@@ -158,6 +146,7 @@ var objApp;
 				success : onCompleteCheckDispositivo
 			});				
 		}
+		
 		function onCompleteCheckDispositivo(xml)
 		{
 			if(parseInt($(xml).find('existe').text()) == 1)
@@ -183,7 +172,21 @@ var objApp;
 			
 			}, 3000);
 		}
+			
+		/*Public methods*/	
 		
+		self.is_phonegap =  function ()
+		{
+			try 
+			{
+			    if(device.platform == ''){}
+			    return true;  
+			} 
+			catch (e) 
+			{  
+			    return false;   
+			}
+		}
 		self.getMenu = function()
 		{
 			return seccionsSite;
@@ -236,7 +239,6 @@ var objApp;
 				alert(error);
 			}
 		}	
-    
 		self.isTouch = function () 
 		{  
 		  try 

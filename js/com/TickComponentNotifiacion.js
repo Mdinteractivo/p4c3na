@@ -28,6 +28,11 @@
 		self.getEstado = function()
 		{
 			return selected;
+		}
+		
+		self.setEstadoActivo = function()
+		{
+			doClick();
 		}	
 	}
 

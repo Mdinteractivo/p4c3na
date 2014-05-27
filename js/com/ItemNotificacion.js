@@ -27,7 +27,12 @@
 		self.idPais = function()
 		{
 			return idPais;
-		}				
+		}
+		
+		self.setChecked = function()
+		{
+			check.setEstadoActivo();
+		}
 	}
 	
 	window.ItemNotificacion = ItemNotificacion;

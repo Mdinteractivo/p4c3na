@@ -135,7 +135,8 @@
 			btnEditar.id = 'btn-editar';
 			$(divHolderEditar).append(btnEditar);
 			$(btnEditar).text('EDITAR PERFIL');
-		
+			$(btnEditar).bind('click' , doClickPerfil);		
+
 		/*PANEL PARTICIPACIONES*/
 		var holderParticipaciones = document.createElement('div');
 			holderParticipaciones.id = 'holder-participaciones-polla';
@@ -163,7 +164,6 @@
 			holderParticipacionesContenido.id = 'holder-partidos-jugados-contenido';
 			$(holderParticipaciones).append(holderParticipacionesContenido);
 			$(holderParticipacionesContenido).css({'min-height' : 100});
-
 
 		/*PANEL PROXIMOS*/
 		var holderProximos = document.createElement('div');
@@ -255,7 +255,12 @@
 		{
 			objApp.error('Ha ocurrido un error con la conexión');	
 		}
-				
+		
+		function doClickPerfil()
+		{
+			objApp.Navigate('perfil', nodo);
+		}	
+			
 		self.showLightbox = function(obj)
 		{
 			if(animando)
@@ -286,11 +291,3 @@
 	window.Polla = Polla;
 
 })(window);
-
-/*function LightBoxApuesta(xml)
-{
-	var self = this;
-		
-	self.div = document.createElement('div');
-	$(self.div).css({'width' : 320, 'height' : 200});
-}*/

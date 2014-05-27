@@ -57,7 +57,11 @@
 
 					case 'apostados' : 
 						objContenido = new PartidosApostados(nodo); 
-					break;																																							
+					break;	
+					
+					case 'perfil' : 
+						objContenido = new Perfil(nodo); 
+					break;																																												
 				}	
 				
 				$(div_holder).html(objContenido.div);		
