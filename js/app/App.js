@@ -61,7 +61,7 @@ var objApp;
 
 		function onDeviceReady()
 		{		
-			self.UUID = '9bfbb8f2c53b6076';
+			self.UUID = '9bfbb8f2c53b6077';
 			self.PLATFORM = 'Android';
 			
 			self._ManagePush = new ManagePush(); 

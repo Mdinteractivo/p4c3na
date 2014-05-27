@@ -83,7 +83,7 @@
 
 			if($obj_usuario == 'null')
 			{
-				data.access_token = 'hardcodetokenaaaaa'
+				data.access_token = 'hardcodetokenaaaaa';
 				data.usuario_uid = 100005636947233;
 				data.usuario_nombre = 'Martin Luz';
 				data.usuario_email  = 'mluz@gmail.com' ;
@@ -97,26 +97,58 @@
 				data.access_token = $access_token
 				data.usuario_nombre = $obj_usuario.name;
 				
-				try{
+				try
+				{
 					data.usuario_email = $obj_usuario.email;
 				}
 				catch(e){}			
 
 				try
 				{
-					data.usuario_ciudad_origen = ($obj_usuario.hometown.name === 'undefined') ? '' : $obj_usuario.hometown.name;
-					data.usuario_ciudad_actual = ($obj_usuario.hometown.name === 'undefined') ? '' : $obj_usuario.hometown.name;
+					data.usuario_ciudad_origen = ($obj_usuario.hometown.name ==='undefined') ? '':$obj_usuario.hometown.name;
+					data.usuario_ciudad_actual = ($obj_usuario.hometown.name ==='undefined') ? '':$obj_usuario.location.name;
 				}
 				catch(e){}
 			
 				try
 				{
-				    data.usuario_fecha_nacimento = ($obj_usuario.birthday === 'undefined') ? '' : $obj_usuario.birthday;
+					data.usuario_fecha_nacimento = ($obj_usuario.birthday === 'undefined') ? '' : $obj_usuario.birthday;
 				}
 				catch(e){}				
 			}
-
-			goDatosFacebook(data);
+			
+			var params = 
+			{
+				'uid' : data.usuario_uid, 
+				'uuid' : objApp.UUID, 
+				'pushToken' : objApp._ManagePush.token, 
+				'plataforma' : objApp.PLATFORM
+			}
+			
+			$.ajax
+			({
+				url : objApp.SERVER+'ws/ws-checkUserUid.php',
+				type : 'POST',
+				data : params,
+				success : function(xml)
+				{
+					if(parseInt($(xml).find('existe').text()) == 0)
+					{						
+						goDatosFacebook(data);
+					}
+					else
+					{
+						objApp.setIdUsuario($(xml).find('idUsuario').text(), $(xml).find('nombre').text());
+		
+						setTimeout(function()
+						{
+							objApp.Navigate('inicio', null);
+						
+						}, 200);
+					}
+				},
+				error : function(){ objApp.error('Ha ocurrido un error, por favor intenta más tarde.'); }
+			});								
 		}	
 	}
 	
