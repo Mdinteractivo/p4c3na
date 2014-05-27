@@ -81,7 +81,7 @@ var objApp;
 
 			$.ajax
 			({
-				url : 'xml/config-site.xml?ac=2',
+				url : 'xml/config-site.xml?ac=3',
 				success : onCompleteXML,
 				error : onErrorXML
 			});
@@ -114,6 +114,9 @@ var objApp;
 			self.VERSION     = $(xmlSite).find('site').find('version').text();
 			self.FB_APP_ID   = $(xmlSite).find('site').find('fbappid').text();
 			self.DESCRIPTION = $(xmlSite).find('site').find('description').text();
+			
+			alert('SERVER DEDUB 1: '+objApp.SERVER);
+			alert('SERVER DEDUB 2: '+$(xmlSite).find('site').find('server').text());
 
 		    try 
 			{
@@ -138,11 +141,11 @@ var objApp;
 		
 		function checkExisteDispositivo()
 		{
-	   		alert('SERVER: '+self.SERVER);
+	   		alert('SERVER DEBUG 3: '+objApp.SERVER);
 			
 			$.ajax
 			({
-				url  : self.SERVER+'ws/ws-checkDispositivo.php?ac=3',
+				url  : objApp.SERVER+'ws/ws-checkDispositivo.php?ac=3',
 				type : 'POST',
 				data : {'uuid' : self.UUID},
 				success : onCompleteCheckDispositivo,
