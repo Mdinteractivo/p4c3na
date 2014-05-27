@@ -8,8 +8,6 @@ var objApp;
 	
 	function App()
 	{
-		alert('App instansiada correctamente');
-
 		var self = this;
 		var xmlSite;
 		var seccionsSite = [];
@@ -54,7 +52,6 @@ var objApp;
 
 		self.initialize = function() 
 		{
-			alert('Inicializo la app');
 		   //Inicializo eventos
 		   document.addEventListener('deviceready', onDeviceReady, false);
 		   document.addEventListener("offline", onDeviceOffLine, false);
@@ -64,9 +61,7 @@ var objApp;
 
 		function onDeviceReady()
 		{		
-			alert('onDeviceReady');
-			
-			self.UUID = '9bfbb8f2c53b6077';
+			self.UUID = '9bfbb8f2c53b6074';
 			self.PLATFORM = 'Android';
 			
 			self._ManagePush = new ManagePush(); 
@@ -112,7 +107,6 @@ var objApp;
 		}				
 		function onCompleteXML(xmlSite)
 		{
-	   		alert('onCompleteXML');
 			//Me traigo toda la informacion de la aplicacion
 			document.title   = $(xmlSite).find('site').find('title').text();
 			
@@ -144,11 +138,11 @@ var objApp;
 		
 		function checkExisteDispositivo()
 		{
-	   		alert('checkExisteDispositivo');
+	   		alert(self.SERVER);
 			
 			$.ajax
 			({
-				url  : objApp.SERVER+'ws/ws-checkDispositivo.php',
+				url  : self.SERVER+'ws/ws-checkDispositivo.php',
 				type : 'POST',
 				data : {'uuid' : self.UUID},
 				success : onCompleteCheckDispositivo
