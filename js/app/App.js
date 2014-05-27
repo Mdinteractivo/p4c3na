@@ -81,7 +81,7 @@ var objApp;
 
 			$.ajax
 			({
-				url : 'xml/config-site.xml?ac=3',
+				url : 'xml/config-site.xml',
 				success : onCompleteXML,
 				error : onErrorXML
 			});
@@ -115,7 +115,7 @@ var objApp;
 			self.FB_APP_ID   = $(xmlSite).find('site').find('fbappid').text();
 			self.DESCRIPTION = $(xmlSite).find('site').find('description').text();
 			
-			alert('SERVER DEDUB 1: '+objApp.SERVER);
+			alert('VERSION: '+objApp.VERSION);
 			alert('SERVER DEDUB 2: '+$(xmlSite).find('site').find('server').text());
 
 		    try 
