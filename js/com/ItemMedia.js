@@ -38,7 +38,9 @@
 		var tituloPantalla = document.createElement('div');
 			$(tituloPantalla).css({'width' : 218, 'float' : 'left', 'height' : 55});
 			$(self.div).append(tituloPantalla);
-			$(tituloPantalla).append('<h4>'+$(nodo).find('titulo').text()+'</h4>');
+			
+			var textoH4 = $(nodo).find('titulo').text().replace(/\\/g, '');
+			$(tituloPantalla).append('<h4>'+textoH4+'</h4>');
 		
 		function doClick()
 		{

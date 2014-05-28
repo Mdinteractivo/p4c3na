@@ -12,10 +12,7 @@
 			$(self.div).bind('click' , doClick);
 		else
 			$(self.div).bind('click' , doClick);
-					
-		/*if(indice == 0)
-			$(self.div).css({'margin-top' : -8});*/
-		
+							
 		var imagenWrapper = document.createElement('div');
 			imagenWrapper.className = 'imagen-item-novedad';
 			$(self.div).append(imagenWrapper);
@@ -28,7 +25,9 @@
 		var tituloPantalla = document.createElement('div');
 			$(tituloPantalla).css({'width' : 200, 'float' : 'left', 'height' : 25, 'overflow' : 'hidden', 'margin-top' : 18});
 			$(self.div).append(tituloPantalla);
-			$(tituloPantalla).append('<h4>'+$(nodo).find('titulo').text()+'</h4>');
+			
+			var textoH4 = $(nodo).find('titulo').text().replace(/\\/g, '');
+			$(tituloPantalla).append('<h4>'+textoH4+'</h4>');
 
 		function doClick()
 		{
