@@ -135,9 +135,11 @@
 			
 			$(holderMediaContenido).append('<h3>'+$(nodo).find('titulo').text()+'</h3>');
 			
+			var textoP = $(nodo).find('texto').text().replace(/\\/g, '');
+			
 			var p = document.createElement('p');
 				$(holderMediaContenido).append(p);
-				$(p).html($(nodo).find('texto').text());		
+				$(p).html(textoP);		
 			
 			$(holderItems).transition({scale : 0.5, duration : 500}).transition({opacity : 0});
 			$(holderMedia).stop().delay(500).fadeIn(500, function(){animando = false;});

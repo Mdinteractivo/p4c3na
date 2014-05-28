@@ -125,9 +125,11 @@
 					$(this).fadeIn();
 				});
 			
+			var textoP = $(nodo).find('descripcion').text().replace(/\\/g, '');
+			
 			var p = document.createElement('p');
 				$(holderNoticiaContenido).append(p);
-				$(p).html($(nodo).find('descripcion').text());		
+				$(p).html(textoP);		
 			
 			$(holderItems).transition({scale : 0.5, duration : 500}).transition({opacity : 0});
 			$(holderNoticia).stop().delay(500).fadeIn(500, function(){animando = false;});	
