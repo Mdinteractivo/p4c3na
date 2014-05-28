@@ -25,6 +25,7 @@
 	background:url(../img/general/ver-mapa.png) no-repeat;
 	background-position:right center;
 	background-size:20px;
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);		
 }
 .holder-mapa-pantalla
 {

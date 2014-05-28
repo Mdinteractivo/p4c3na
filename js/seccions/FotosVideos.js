@@ -133,10 +133,10 @@
 					('<iframe width="320" height="180" src="http://www.youtube.com/embed/'+$(nodo).find('archivo').text()+'?rel=0" frameborder="0" allowfullscreen></iframe>');
 			}
 			
-			$(holderMediaContenido).append('<h3>'+$(nodo).find('titulo').text()+'</h3>');
-			
+			var textoTitulo = $(nodo).find('titulo').text().replace(/\\/g, '');
+			$(holderMediaContenido).append('<h3>'+textoTitulo+'</h3>');
+
 			var textoP = $(nodo).find('texto').text().replace(/\\/g, '');
-			
 			var p = document.createElement('p');
 				$(holderMediaContenido).append(p);
 				$(p).html(textoP);		

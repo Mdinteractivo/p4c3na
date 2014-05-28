@@ -92,7 +92,7 @@ input,textarea, select
 	margin-top:2px;
 	position:relative;
 	opacity:0;
--webkit-tap-highlight-color: rgba(0, 0, 0, 0);	
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);	
 }
 .btn-menu:hover
 {
