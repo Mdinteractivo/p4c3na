@@ -81,7 +81,7 @@ var objApp;
 
 			$.ajax
 			({
-				url : 'xml/config-site.xml',
+				url : 'xml/config-site.xml?ac=1',
 				success : onCompleteXML,
 				error : onErrorXML
 			});
@@ -143,10 +143,11 @@ var objApp;
 		{			
 			$.ajax
 			({
-				url  : objApp.SERVER+'ws/ws-checkDispositivo.php?ac=3',
+				url  : objApp.SERVER+'ws/ws-checkDispositivo.php?ac=4',
 				type : 'POST',
 				data : {'uuid' : self.UUID},
 				success : onCompleteCheckDispositivo,
+				crossDomain: true,
 				error : onErrorCheckDispositivo
 			});				
 		}
