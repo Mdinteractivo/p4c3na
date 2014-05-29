@@ -120,8 +120,8 @@ var objApp;
 			self.FB_APP_ID   = $(xmlSite).find('site').find('fbappid').text();
 			self.DESCRIPTION = $(xmlSite).find('site').find('description').text();
 			
-			alert('VERSION: '+objApp.VERSION);
-			alert('SERVER DEDUB 2: '+$(xmlSite).find('site').find('server').text());
+			/*alert('VERSION: '+objApp.VERSION);
+			alert('SERVER DEDUB 2: '+$(xmlSite).find('site').find('server').text());*/
 
 		    try 
 			{
@@ -175,7 +175,7 @@ var objApp;
 		
 		function onErrorXML()
 		{
-			alert('SERVER DEBUG 3: '+objApp.SERVER);
+			//alert('SERVER DEBUG 3: '+objApp.SERVER);
 			self.error('Error al inicializar la aplicación. La aplicación se cerrará');
 			
 			setTimeout(function()
