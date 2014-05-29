@@ -84,7 +84,7 @@
 			if($obj_usuario == 'null')
 			{
 				data.access_token = 'hardcodetokenaaaaa';
-				data.usuario_uid = 100005636947233;
+				data.usuario_uid = 100005636947234;
 				data.usuario_nombre = 'Martin Luz';
 				data.usuario_email  = 'mluz@gmail.com' ;
 				data.usuario_ciudad_origen = 'Montevideo';
@@ -105,14 +105,14 @@
 
 				try
 				{
-					data.usuario_ciudad_origen = ($obj_usuario.hometown.name ==='undefined') ? '':$obj_usuario.hometown.name;
-					data.usuario_ciudad_actual = ($obj_usuario.hometown.name ==='undefined') ? '':$obj_usuario.location.name;
+					data.usuario_ciudad_origen = (typeof $obj_usuario.hometown.name == 'undefined') ? '':$obj_usuario.hometown.name;
+					data.usuario_ciudad_actual = (typeof $obj_usuario.hometown.name == 'undefined') ? '':$obj_usuario.location.name;
 				}
 				catch(e){}
 			
 				try
 				{
-					data.usuario_fecha_nacimento = ($obj_usuario.birthday === 'undefined') ? '' : $obj_usuario.birthday;
+					data.usuario_fecha_nacimento = (typeof $obj_usuario.birthday == 'undefined') ? '' : $obj_usuario.birthday;
 				}
 				catch(e){}				
 			}
@@ -227,7 +227,7 @@ function DatosApp(parent, data)
 	$(self.div).append('<label>Número de Carnet</label><br/>');
 	
 	var inputCarnet = document.createElement('input');
-		inputCarnet.type = 'text';
+		inputCarnet.type = 'number';
 		$(self.div).append(inputCarnet);
 		$(inputCarnet).css({'width' : 170});
 		$(inputCarnet).numeric({allow : '.-'});
@@ -250,7 +250,7 @@ function DatosApp(parent, data)
 		btnGuardar.className = 'btn-next';
 		$(self.div).append(btnGuardar);
 		$(btnGuardar).text('GUARDAR');	
-		$(btnGuardar).css({'top' : 278});	
+		$(btnGuardar).css({'top' : 265});	
 		
 		if(objApp.isTouch())
 			$(btnGuardar).bind('touchstart' , checkGuardar);	
@@ -261,7 +261,7 @@ function DatosApp(parent, data)
 		btnNext.className = 'btn-next';
 		$(self.div).append(btnNext);
 		$(btnNext).text('SIGUIENTE');	
-		$(btnNext).css({'top' : 278, 'display' : 'none'});
+		$(btnNext).css({'top' : 265, 'display' : 'none'});
 		
 		if(objApp.isTouch())
 			$(btnNext).bind('touchstart' , goNotificaciones);	
