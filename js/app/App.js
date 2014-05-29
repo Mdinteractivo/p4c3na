@@ -86,7 +86,7 @@ var objApp;
 
 			$.ajax
 			({
-				url : 'xml/config-site.xml?ac=1',
+				url : 'xml/config-site.xml',
 				success : onCompleteXML,
 				error : onErrorXML
 			});
