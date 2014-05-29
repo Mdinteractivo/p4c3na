@@ -181,11 +181,7 @@
 			$(divButton).append(btnNext);
 			$(btnNext).text('GUARDAR');	
 			$(btnNext).css({'top' : 10});
-	
-			if(objApp.isTouch())
-				$(btnNext).bind('touchstart' , doGuardar);	
-			else	
-				$(btnNext).bind('click' , doGuardar);
+			$(btnNext).bind('click' , doGuardar);
 
 		$(divAuxiliar).append('<div class="clear"></div>');
 		

@@ -79,6 +79,7 @@
 	position:absolute;
 	left:50%;
 	margin-left:-75px;
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);		
 }
 .btn-next:hover
 {

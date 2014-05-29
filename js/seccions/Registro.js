@@ -518,17 +518,14 @@ function DatosNotificaciones(parent, data)
 		$(self.div).append(divButton);
 		$(divButton).css({'width' : '100%', 'height' : 60, 'float' : 'left', 'position' : 'relative'});
 
-	var btnNext = document.createElement('div');
-		btnNext.className = 'btn-next';
-		$(divButton).append(btnNext);
-		$(btnNext).text('GUARDAR');	
-		$(btnNext).css({'top' : 10});
+	var btnGuardarRegistro = document.createElement('div');
+		btnGuardarRegistro.className = 'btn-next';
+		$(divButton).append(btnGuardarRegistro);
+		$(btnGuardarRegistro).text('GUARDAR');	
+		$(btnGuardarRegistro).css({'top' : 10, 'z-index' : 9});
+		$(btnGuardarRegistro).bind('click' , doGuardar);
 
-		if(objApp.isTouch())
-			$(btnNext).bind('touchstart' , doGuardar);	
-		else	
-			$(btnNext).bind('click' , doGuardar);
-	
+		
 	$.ajax
 	({
 		url  : objApp.SERVER+'ws/ws-obtenerSelecciones.php',
