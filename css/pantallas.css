@@ -43,6 +43,7 @@
 	position: relative;
 	padding-top: 9px;
 	text-align: left;
+	-webkit-transform: translate3d(0,0,0);
 }
 .wrapper-titulo-pantalla h1
 {
