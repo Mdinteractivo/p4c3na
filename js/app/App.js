@@ -165,7 +165,7 @@ var objApp;
 				self.idUsuario = $(xml).find('idUsuario').text();
 				
 				objHeader.setUser($(xml).find('nombre').text());
-				objApp.Navigate('registro', null);
+				objApp.Navigate('inicio', null);
 			}
 			else
 			{
