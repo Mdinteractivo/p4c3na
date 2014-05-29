@@ -20,7 +20,6 @@ var objApp;
 	
 		if(navigator.userAgent.toLowerCase().indexOf("ipad") > -1)
 		{
-			alert('Ipad');
 			$('body').css({'background' : 'url(img/general/background.jpg) no-repeat'});
 			$('body').css({'background-size' : ANCHO_PANTALLA+'px '+ALTO_PANTALLA+'px'});			
 		}
