@@ -6,6 +6,9 @@
 
 		self.div = document.createElement('div');
 		self.div.className = 'class-cero';
+		
+		/*var ALTO_HEADER = 180;
+		var altoPantalla = (window.innerHeight - ALTO_HEADER) -5;*/
 
 		var holderTituloRegistro = document.createElement('div');
 			holderTituloRegistro.className = 'wrapper-titulo-registro';
@@ -84,7 +87,7 @@
 			if($obj_usuario == 'null')
 			{
 				data.access_token = 'hardcodetokenaaaaa';
-				data.usuario_uid = 100005636947234;
+				data.usuario_uid = 100005636947237;
 				data.usuario_nombre = 'Martin Luz';
 				data.usuario_email  = 'mluz@gmail.com' ;
 				data.usuario_ciudad_origen = 'Montevideo';

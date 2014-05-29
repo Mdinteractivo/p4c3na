@@ -14,8 +14,16 @@ var objApp;
 		var historial = [];
 		var ALTO_HEADER = 180;
 		var xmlDataUser;
+	
 		var ANCHO_PANTALLA = window.innerWidth;
 		var ALTO_PANTALLA = window.innerHeight;	
+	
+		if(navigator.userAgent.toLowerCase().indexOf("ipad") > -1)
+		{
+			alert('Ipad');
+			$('body').css({'background' : 'url(img/general/background.jpg) no-repeat'});
+			$('body').css({'background-size' : ANCHO_PANTALLA+'px '+ALTO_PANTALLA+'px'});			
+		}
 		
 		/*Publics vars*/
 		self._ManagePush;
@@ -33,8 +41,6 @@ var objApp;
 		var wholeWrapper = document.createElement('div');
 			wholeWrapper.id = 'app';
 			$(wholeWrapper).appendTo('body');	
-			$('body').css({'background' : 'url(img/general/background.jpg) no-repeat'});
-			$('body').css({'background-size' : ANCHO_PANTALLA+'px '+ALTO_PANTALLA+'px'});			
 					
 		var objHeader = new Header(true);
 			$(wholeWrapper).append(objHeader.div);
@@ -61,7 +67,7 @@ var objApp;
 
 		function onDeviceReady()
 		{		
-			self.UUID = '9bfbb8f2c53b6070';
+			self.UUID = '9bfbb8f2c53b6072';
 			self.PLATFORM = 'Android';
 			
 			self._ManagePush = new ManagePush(); 
@@ -160,7 +166,7 @@ var objApp;
 				self.idUsuario = $(xml).find('idUsuario').text();
 				
 				objHeader.setUser($(xml).find('nombre').text());
-				objApp.Navigate('inicio', null);
+				objApp.Navigate('registro', null);
 			}
 			else
 			{
