@@ -37,19 +37,19 @@
 			$(holderMedia).append(holderTituloMedia);
 
 		var divVolver = document.createElement('div');
-			divVolver.className = 'btn-volver-seccion';
+			divVolver.className = 'btn-volver-inicio';
 			$(holderTituloMedia).append(divVolver);
 			$(divVolver).css({'background' : 'url(img/general/volver_black.png) no-repeat'});
 			$(divVolver).css({'background-size' : '16px', 'background-position' : 'left'});			
 			$(divVolver).css({'color':'#000'});
+			$(divVolver).text('VOLVER');
+			$(divVolver).bind('click' , doCloseMedia);
 	
 		var titulo = document.createElement('h1');
 			$(titulo).text('FOTOS Y VIDEOS');
-			$(titulo).css({'color' : '#000', 'margin-left' : 30});
+			$(titulo).css({'color' : '#000', 'margin-left' : 105});
 			$(holderTituloMedia).append(titulo);
 
-			$(divVolver).bind('click' , doCloseMedia);
-			$(titulo).bind('click' , doCloseMedia);
 
 		var icono = new Image();
 			icono.width = 64;

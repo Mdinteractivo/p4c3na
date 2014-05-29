@@ -39,11 +39,7 @@
 			$(divVolverAPolla).css({'background-size' : '16px', 'background-position' : 'left'});			
 			$(divVolverAPolla).css({'color':'#000', 'padding-left': 18});
 			$(divVolverAPolla).text('VOLVER');
-			
-			if(objApp.isTouch())
-				$(divVolverAPolla).bind('touchstart' , doVolver);	
-			else	
-				$(divVolverAPolla).bind('click' , doVolver);
+			$(divVolverAPolla).bind('click' , doVolver);
 					
 		var holderItems = document.createElement('div');
 			holderItems.id = 'wrapper-datos-notificaciones-perfil';

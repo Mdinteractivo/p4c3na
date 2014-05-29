@@ -38,15 +38,16 @@
 			$(holderGrupo).append(holderTituloGrupo);
 
 		var divVolver = document.createElement('div');
-			divVolver.className = 'btn-volver-seccion';
+			divVolver.className = 'btn-volver-inicio';
 			$(holderTituloGrupo).append(divVolver);
 			$(divVolver).css({'background' : 'url(img/general/volver_black.png) no-repeat'});
 			$(divVolver).css({'background-size' : '16px', 'background-position' : 'left'});			
 			$(divVolver).css({'color':'#000'});
+			$(divVolver).text('VOLVER');
 	
 		var titulo = document.createElement('h1');
 			$(titulo).text('FIXTURE DEL MUNDIAL');
-			$(titulo).css({'color' : '#000', 'margin-left' : 30});
+			$(titulo).css({'color' : '#000', 'margin-left' : 82});
 			$(holderTituloGrupo).append(titulo);
 			$(divVolver).bind('click' , doCloseGrupo);
 
@@ -76,15 +77,13 @@
 
 			if(parseInt($(xml).find('xml').find('finFases').text()) == 0)
 			{
-				//fases de grupo	
 				objContenido = new FasesDeGrupo(xml, self);
-				console.log('FASES');
 			}
 			else
 			{
-				//octavos, cuartos, semi y final
 				objContenido = new Versus(xml);
 			}
+			
 			$(divScroll).append(objContenido.div);	
 		}
 		

@@ -38,19 +38,18 @@
 			$(holderNoticia).append(holderTituloNoticia);
 
 		var divVolver = document.createElement('div');
-			divVolver.className = 'btn-volver-seccion';
+			divVolver.className = 'btn-volver-inicio';
 			$(holderTituloNoticia).append(divVolver);
 			$(divVolver).css({'background' : 'url(img/general/volver_white.png) no-repeat'});
 			$(divVolver).css({'background-size' : '16px', 'background-position' : 'left'});			
-			$(divVolver).css({'color':'#000'});
+			$(divVolver).css({'color':'#FFF'});
+			$(divVolver).text('VOLVER');
+			$(divVolver).bind('click' , doCloseNoticia);
 	
 		var titulo = document.createElement('h1');
 			$(titulo).text('NOTICIAS Y CURIOSIDADES');
-			$(titulo).css({'color' : '#FFF', 'margin-left' : 30});
+			$(titulo).css({'color' : '#FFF', 'margin-left' : 70});
 			$(holderTituloNoticia).append(titulo);
-
-			$(divVolver).bind('click' , doCloseNoticia);
-			$(titulo).bind('click' , doCloseNoticia);
 
 		var icono = new Image();
 			icono.width = 64;
