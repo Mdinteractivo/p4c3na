@@ -48,16 +48,8 @@
 			$(titulo).css({'color' : '#000', 'margin-left' : 30});
 			$(holderTituloMedia).append(titulo);
 
-		if(objApp.isTouch())
-		{
-			$(divVolver).bind('touchstart' , doCloseMedia);
-			$(titulo).bind('touchstart' , doCloseMedia);
-		}
-		else
-		{
 			$(divVolver).bind('click' , doCloseMedia);
 			$(titulo).bind('click' , doCloseMedia);
-		}
 
 		var icono = new Image();
 			icono.width = 64;

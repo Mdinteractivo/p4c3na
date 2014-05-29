@@ -11,8 +11,6 @@
 		var altoItems = 65;
 		
 		var altoPantalla = (window.innerHeight - ALTO_HEADER) - 5;
-		/*var multiplo = Math.ceil((altoPantalla / altoItems));	
-		var alturaFinal = (altoItems * multiplo)  - 20;	*/	
 		
 		self.div = document.createElement('div');
 		self.div.className = 'class-cero';
@@ -51,16 +49,8 @@
 			$(titulo).css({'color' : '#FFF', 'margin-left' : 30});
 			$(holderTituloNoticia).append(titulo);
 
-		if(objApp.isTouch())
-		{
-			$(divVolver).bind('touchstart' , doCloseNoticia);
-			$(titulo).bind('touchstart' , doCloseNoticia);
-		}
-		else
-		{
 			$(divVolver).bind('click' , doCloseNoticia);
 			$(titulo).bind('click' , doCloseNoticia);
-		}
 
 		var icono = new Image();
 			icono.width = 64;

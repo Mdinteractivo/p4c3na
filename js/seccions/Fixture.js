@@ -48,10 +48,6 @@
 			$(titulo).text('FIXTURE DEL MUNDIAL');
 			$(titulo).css({'color' : '#000', 'margin-left' : 30});
 			$(holderTituloGrupo).append(titulo);
-
-		if(objApp.isTouch())
-			$(divVolver).bind('touchstart' , doCloseGrupo);
-		else
 			$(divVolver).bind('click' , doCloseGrupo);
 
 		var icono = new Image();
