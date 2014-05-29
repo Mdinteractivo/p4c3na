@@ -21,9 +21,9 @@
 			$(divVolver).css({'background-size' : '16px', 'background-position' : 'left'});			
 			$(divVolver).css({'color':colorTexto});
 
-		if(objApp.isTouch())
+		/*if(objApp.isTouch())
 			$(divVolver).bind('touchend' , doVolver);
-		else
+		else*/
 			$(divVolver).bind('click' , doVolver);
 		
 		var titulo = document.createElement('h1');

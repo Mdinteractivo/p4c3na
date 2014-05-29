@@ -196,6 +196,7 @@ input,textarea, select
 	margin-left:3px;
 	position:absolute;
 	left:0;
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);		
 }
 
 .btn-volver-seccion
