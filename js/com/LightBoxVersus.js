@@ -3,7 +3,7 @@ function LightBoxVersus(nodo, parent)
 	var self = this;
 				
 	self.div = document.createElement('div');
-	$(self.div).css({'width' : 320, 'min-height' : 100});
+	$(self.div).css({'width' : 320, 'min-height' : 100, '-webkit-transform' : 'translate3d(0,0,0)'});
 	
 	var holderIndicadores = document.createElement('div');
 		$(self.div).append(holderIndicadores);
