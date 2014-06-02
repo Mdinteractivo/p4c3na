@@ -54,6 +54,27 @@ function Facebook(){
 
 			  		console.log('get_obj_user error 1')
 
+
+			  		FB.login(function(response2) {
+		            	console.log('---2login----' )
+		            	console.log(response2)
+
+						  if (response2.authResponse) {
+
+								access_token = response2.authResponse.accessToken;
+								objApp.ocultarCargador()
+						    	get_obj_user()
+
+						   } else {
+
+							 objApp.ocultarCargador()
+						     objApp.error('User cancelled login or did not fully authorize.');
+
+						   }
+						   
+					}, {scope: 'user_birthday, user_hometown, email, publish_stream, publish_actions'})
+
+
 			  }
 			});
 	}
