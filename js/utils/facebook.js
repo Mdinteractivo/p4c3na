@@ -109,7 +109,7 @@ function Facebook(){
 						get_obj_user()
 
 				} else {
-						
+					console.log('intentar login' )
 		            FB.login(function(response2) {
 		            	console.log('----login----' )
 		            	console.log(response2)
@@ -127,7 +127,7 @@ function Facebook(){
 
 						   }
 						   
-					}, {scope: 'user_birthday, user_hometown, email, publish_stream, publish_actions'})
+					}, {scope: 'email'})
 	         	}
          });
 
