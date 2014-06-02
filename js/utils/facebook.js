@@ -39,12 +39,13 @@ function Facebook(){
 			  	 objApp.ocultarCargador()*/
 
 			  	 FB.logout(
-			  	 	function (){
+			  	 	function (e){
+			  	 		console.log(e)
 			  	 		console.log('K cerro la session correctamente')
 			  	 		alert('OK cerro la session correctamente.')
 			  	 	}, 
 
-			  	    function(){
+			  	    function(e){
 			  	    	console.log('Error al cerrar la seccion de FB')
 			  	 		alert('Error al cerrar la seccion de FB')
 			  	    }
