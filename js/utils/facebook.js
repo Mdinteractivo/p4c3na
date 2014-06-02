@@ -33,8 +33,14 @@ function Facebook(){
 			  	/* objApp.error('Ocurrio un error. (error 1)');
 			  	 objApp.ocultarCargador()*/
 
+			  	 FB.logout(function (){
 
-			  	 
+			  	 	
+			  	 }, 
+
+			  	 	function(){
+			  	 		alert('Error al cerrar la seccion de FB')
+			  		 });
 			  }
 			});
 	}
