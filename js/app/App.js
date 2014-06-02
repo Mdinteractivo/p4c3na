@@ -81,6 +81,9 @@ var objApp;
 				alert('CDV variable does not exist. Check that you have included cdv-plugin-fb-connect.js correctly');
 				if (typeof FB == 'undefined') alert('FB variable does not exist. Check that you have included the Facebook JS SDK file.');
 			  
+
+
+
 	    		self._ManagePush.registrar();	
    			}
 
@@ -123,12 +126,7 @@ var objApp;
 			/*alert('VERSION: '+objApp.VERSION);
 			alert('SERVER DEDUB 2: '+$(xmlSite).find('site').find('server').text());*/
 
-		    try 
-			{
-             	FB.init({ appId: $(xmlSite).find('site').find('fbappid').text(), nativeInterface: CDV.FB, useCachedDialogs: false });   
-            } 
-			catch (e){}
-
+	
 			$(xmlSite).find('site').find('seccions').find('seccion').each(function(index, element) 
 			{						
 			   seccionsSite.push($(this));
