@@ -46,7 +46,7 @@ function Facebook(){
 			  	/* objApp.error('Ocurrio un error. (error 1)');
 			  	 objApp.ocultarCargador()*/
 
-			  	 FB.logout(
+			  	/* FB.logout(
 			  	 	function (e){
 			  	 		console.log(e)
 			  	 		console.log('K cerro la session correctamente')
@@ -58,7 +58,7 @@ function Facebook(){
 			  	 		alert('Error al cerrar la seccion de FB')
 			  	    }
 
-			  	 );
+			  	 );*/
 
 			  		console.log('get_obj_user error 1')
 
