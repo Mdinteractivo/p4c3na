@@ -19,28 +19,40 @@ function Facebook(){
 		clearTimeout(inter)
 		objApp.mostrarCargador()
 
+
+			console.log('get_obj_user: ' + access_token)			
 			$.ajax({
 			  dataType: "json",
 			  url: 'https://graph.facebook.com/me?access_token=' + access_token,
 			  type: 'get',
 			  success: function(json){
-
+			  		console.log('get_obj_user success' )
+			  		console.log('json: ' + json )
+			  		console.log('access_token: ' + access_token )
 			  		callback(json, access_token)
 			  		objApp.ocultarCargador()
 			  },
 			  error: function()
 			  {
+			  	console.log('get_obj_user error')
 			  	/* objApp.error('Ocurrio un error. (error 1)');
 			  	 objApp.ocultarCargador()*/
 
-			  	 FB.logout(function (){
+			  	 FB.logout(
+			  	 	function (){
+			  	 		console.log('K cerro la session correctamente')
+			  	 		alert('OK cerro la session correctamente.')
+			  	 	}, 
 
-			  	 	alert('OK cerro la session correctamente.')
-			  	 }, 
-
-			  	 function(){
+			  	    function(){
+			  	    	console.log('Error al cerrar la seccion de FB')
 			  	 		alert('Error al cerrar la seccion de FB')
-			  	  });
+			  	    }
+
+			  	 );
+
+			  		console.log('get_obj_user error 1')
+
 			  }
 			});
 	}
@@ -57,9 +69,10 @@ function Facebook(){
 		 
      	 FB.getLoginStatus(function(response) 
 		 {
+		 		console.log('connected' )
      			console.log(response)
 	          	if (response.status == 'connected') 
-				{
+				{	
 
 						access_token = response.authResponse.accessToken;
 						objApp.ocultarCargador()
@@ -68,7 +81,7 @@ function Facebook(){
 				} else {
 						
 		            FB.login(function(response2) {
-
+		            	console.log('----login----' )
 		            	console.log(response2)
 
 						  if (response2.authResponse) {
