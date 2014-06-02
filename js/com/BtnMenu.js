@@ -7,6 +7,7 @@
 		var color   = $(nodo).attr('color');
 		var texto   = $(nodo).text();
 		var imgItem = $(nodo).attr('key')+'.png';
+		var colorTexto = $(nodo).attr('color-text');		
 		
 		self.div = document.createElement('div');
 		self.div.className = 'btn-menu';
@@ -17,7 +18,7 @@
 			$(self.div).bind('click' , doClick);
 		
 		$(self.div).css({'background' : 'url(img/general/menu/'+color+'_item.png) no-repeat'});
-		$(self.div).css({'background-size' : '320px 68px'});
+		$(self.div).css({'background-size' : '320px 68px', 'color' :  colorTexto});
 	
 		var innerBtn = document.createElement('div');
 			innerBtn.className = 'inner-btn-menu';

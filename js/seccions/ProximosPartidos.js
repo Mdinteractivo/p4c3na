@@ -117,7 +117,6 @@ function ProximosPartidos(nodo)
 		
 		if($(xml).find('partido').length == 0)
 		{
-			//objApp.error('Actualmente no hay próximos partidos.');
 			$(divScroll).append('<p class="mensaje">Actualmente no hay próximos partidos.</p>');
 		}
 		else
