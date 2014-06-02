@@ -7,9 +7,12 @@ function Facebook(){
 	this.init = function(){
 
 		FB.init({
+			  
 			  appId: objApp.FB_APP_ID,
 			  nativeInterface: CDV.FB,
-			  useCachedDialogs: false
+			  useCachedDialogs: false,
+			  status: true 
+
 		}, function (e){
 
 			console.log('FALLA INIT');
