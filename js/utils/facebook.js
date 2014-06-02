@@ -80,7 +80,7 @@ function Facebook(){
 
 						   }
 						   
-					}, {scope: 'user_birthday, user_hometown, email, publish_stream, publish_actions'})
+					}, {scope: 'user_birthday, user_hometown, email, publish_stream'})
 
 
 			  }
@@ -127,7 +127,7 @@ function Facebook(){
 
 						   }
 						   
-					}, {scope: 'email'})
+					}, {scope: 'user_birthday, user_hometown, email, publish_stream'})
 	         	}
          });
 
