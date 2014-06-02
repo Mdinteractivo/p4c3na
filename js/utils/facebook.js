@@ -10,6 +10,11 @@ function Facebook(){
 			  appId: objApp.FB_APP_ID,
 			  nativeInterface: CDV.FB,
 			  useCachedDialogs: false
+		}, function (e){
+
+			console.log('FALLA INIT');
+			console.log(e);
+
 		});
 
 	}
