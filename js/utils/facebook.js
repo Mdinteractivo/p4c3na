@@ -10,13 +10,12 @@ function Facebook(){
 			  
 			  appId: objApp.FB_APP_ID,
 			  nativeInterface: CDV.FB,
-			  useCachedDialogs: false,
-			  status: true 
+			  useCachedDialogs: false
 
 		}, function (e){
 
-			console.log('FALLA INIT');
-			console.log(e);
+		/*	console.log('FALLA INIT');
+			console.log(e);*/
 
 		});
 
@@ -28,15 +27,15 @@ function Facebook(){
 		objApp.mostrarCargador()
 
 
-			console.log('get_obj_user: ' + access_token)			
+			//console.log('get_obj_user: ' + access_token)			
 			$.ajax({
 			  dataType: "json",
 			  url: 'https://graph.facebook.com/me?access_token=' + access_token,
 			  type: 'get',
 			  success: function(json){
-			  		console.log('get_obj_user success' )
+			  /*		console.log('get_obj_user success' )
 			  		console.log('json: ' + json )
-			  		console.log('access_token: ' + access_token )
+			  		console.log('access_token: ' + access_token )*/
 			  		callback(json, access_token)
 			  		objApp.ocultarCargador()
 			  },
@@ -113,17 +112,17 @@ function Facebook(){
 				} else {*/
 
 
-					console.log('intentar login' )
+				//	console.log('intentar login' )
 		            FB.login(function(response2) {
-		            	console.log('----login----' )
+		            /*	console.log('----login----' )
 		            	console.log(response2)
-
+*/
 						  if (response2.authResponse) {
 
 
 						  		FB.login(function(response3) {
 					            	
-					            	console.log(response3)
+					            	//console.log(response3)
 									   
 								}, {scope: 'publish_stream'})
 
