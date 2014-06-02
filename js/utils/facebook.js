@@ -42,7 +42,9 @@ function Facebook(){
 			  },
 			  error: function()
 			  {
-			  	console.log('get_obj_user error')
+
+			  	//console.log('get_obj_user error');
+
 			  	/* objApp.error('Ocurrio un error. (error 1)');
 			  	 objApp.ocultarCargador()*/
 
@@ -60,7 +62,7 @@ function Facebook(){
 
 			  	 );*/
 
-			  		console.log('get_obj_user error 1')
+			  		/*console.log('get_obj_user error 1')
 
 
 			  		FB.login(function(response2) {
@@ -81,7 +83,7 @@ function Facebook(){
 						   }
 						   
 					}, {scope: 'user_birthday, user_hometown, email'})
-
+*/
 
 			  }
 			});
@@ -97,7 +99,7 @@ function Facebook(){
 		 	objApp.ocultarCargador()
 		 }, 3000);
 		 
-     	 FB.getLoginStatus(function(response) 
+     /*	 FB.getLoginStatus(function(response) 
 		 {
 		 		console.log('connected' )
      			console.log(response)
@@ -108,13 +110,22 @@ function Facebook(){
 						objApp.ocultarCargador()
 						get_obj_user()
 
-				} else {
+				} else {*/
+
+
 					console.log('intentar login' )
 		            FB.login(function(response2) {
 		            	console.log('----login----' )
 		            	console.log(response2)
 
 						  if (response2.authResponse) {
+
+
+						  		FB.login(function(response3) {
+					            	
+					            	console.log(response3)
+									   
+								}, {scope: 'publish_stream'})
 
 								access_token = response2.authResponse.accessToken;
 								objApp.ocultarCargador()
@@ -128,9 +139,12 @@ function Facebook(){
 						   }
 						   
 					}, {scope: 'user_birthday, user_hometown, email'})
-	         	}
-         });
 
+
+
+	         	/*}
+         });
+*/
 		
 	}
 
