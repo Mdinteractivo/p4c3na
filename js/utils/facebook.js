@@ -14,7 +14,8 @@ function Facebook(){
 
 	}
 
-	function get_obj_user(){
+	function get_obj_user()
+	{
 		clearTimeout(inter)
 		objApp.mostrarCargador()
 
@@ -27,9 +28,13 @@ function Facebook(){
 			  		callback(json, access_token)
 			  		objApp.ocultarCargador()
 			  },
-			  error: function(){
-			  		objApp.error('Ocurrio un error. (error 1)');
-			  		objApp.ocultarCargador()
+			  error: function()
+			  {
+			  	/* objApp.error('Ocurrio un error. (error 1)');
+			  	 objApp.ocultarCargador()*/
+
+
+			  	 
 			  }
 			});
 	}
@@ -44,9 +49,11 @@ function Facebook(){
 		 	objApp.ocultarCargador()
 		 }, 3000);
 		 
-     	 FB.getLoginStatus(function(response) {
+     	 FB.getLoginStatus(function(response) 
+		 {
      			console.log(response)
-	          	if (response.status == 'connected') {
+	          	if (response.status == 'connected') 
+				{
 
 						access_token = response.authResponse.accessToken;
 						objApp.ocultarCargador()

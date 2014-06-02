@@ -146,6 +146,8 @@ function ProximosPartidos(nodo)
 	
 	self.refrescarLista = function()
 	{
+		objApp.mostrarCargador();
+
 		array_items = [];
 		$(divScroll).empty();
 		

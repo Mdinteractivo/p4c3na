@@ -220,7 +220,7 @@ function LightBoxVersus(nodo, parent)
 
 			objApp.error('Tu apuesta ha sido guardada correctamente');
 							
-			parent.refrescarLista();
+			//parent.refrescarLista();
 		}
 		else if(estado == 2)
 			objApp.error('No puedes apostar en este momento, el partido ya ha comenzado');
