@@ -35,12 +35,12 @@ function Facebook(){
 
 			  	 FB.logout(function (){
 
-			  	 	
+			  	 	alert('OK cerro la session correctamente.')
 			  	 }, 
 
-			  	 	function(){
+			  	 function(){
 			  	 		alert('Error al cerrar la seccion de FB')
-			  		 });
+			  	  });
 			  }
 			});
 	}
