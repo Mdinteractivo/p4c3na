@@ -81,7 +81,6 @@
 		
 		function onSuccessLocation(location)
 		{
-			alert();
 			//Location
 			var lat  = location.coords.latitude;
 			var long = location.coords.longitude;	
