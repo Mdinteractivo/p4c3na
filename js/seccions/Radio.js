@@ -22,9 +22,9 @@
 		$(wrapperRadio).append('<h3>Haz click en el siguiente link para oir la transmisión:</h3>');				
 		
 		var linkRadio = document.createElement('span');
-			$(linkRadio).text('www.foxsportsradio.com');
+			//$(linkRadio).text('www.foxsportsradio.com');
 			$(wrapperRadio).append(linkRadio);
-			$(linkRadio).bind('click' , doClick);
+			//$(linkRadio).bind('click' , doClick);
 
 		if(objApp.isTouch())
 			$(linkRadio).bind('touchend', doClick);
