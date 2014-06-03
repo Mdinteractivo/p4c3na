@@ -66,7 +66,7 @@ var objApp;
 
 		function onDeviceReady()
 		{		
-			self.UUID = '9bfbb8f2c53b6072';
+			self.UUID = '9bfbb8f2c53b6074';
 			self.PLATFORM = 'Android';
 			
 			self._ManagePush = new ManagePush(); 
@@ -80,9 +80,6 @@ var objApp;
 				if (typeof CDV == 'undefined') 
 				alert('CDV variable does not exist. Check that you have included cdv-plugin-fb-connect.js correctly');
 				if (typeof FB == 'undefined') alert('FB variable does not exist. Check that you have included the Facebook JS SDK file.');
-			  
-
-
 
 	    		self._ManagePush.registrar();	
    			}
@@ -157,7 +154,7 @@ var objApp;
 		
 		function onCompleteCheckDispositivo(xml)
 		{
-			if(parseInt($(xml).find('existe').text()) == 1)
+			if(parseInt($(xml).find('existe').text()) == 1 && parseInt($(xml).find('idUsuario').text()) != 0)
 			{				
 				xmlDataUser = xml;
 				self.idUsuario = $(xml).find('idUsuario').text();

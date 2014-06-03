@@ -4,11 +4,12 @@
 	{		
 		var self = this;
 		var animando = false;
-		var array_items = [];
+		var array_tiendas = [];
 		var delay = 200;
 		var ALTO_HEADER = 180;
 		var altoItems = 65;
 		var altoPantalla = (window.innerHeight - ALTO_HEADER) - 5;
+		var map;
 		
 		self.div = document.createElement('div');
 		self.div.className = 'class-cero';	
@@ -31,50 +32,14 @@
 			$(holderItems).append(divScroll);
 			$(divScroll).css({'height' : altoPantalla});
 		
-		//MAPA
-		var holderMapa = document.createElement('div');
-			holderMapa.className = 'holder-mapa-pantalla';
-			$(self.div).append(holderMapa);
-		
-		/**/
-		var holderTituloMapa = document.createElement('div');
-			holderTituloMapa.className = 'wrapper-titulo-pantalla';
-			$(holderTituloMapa).css({'background' : 'url(img/general/menu/yellow_item.png) no-repeat'});
-			$(holderTituloMapa).css({'background-size' : '320px 68px'});
-			$(holderMapa).append(holderTituloMapa);
-
-		var divVolver = document.createElement('div');
-			divVolver.className = 'btn-volver-inicio';
-			$(holderTituloMapa).append(divVolver);
-			$(divVolver).css({'background' : 'url(img/general/volver_black.png) no-repeat'});
-			$(divVolver).css({'background-size' : '16px', 'background-position' : 'left'});			
-			$(divVolver).css({'color':'#000'});
-			$(divVolver).text('VOLVER');
-			$(divVolver).bind('click' , doCloseMap);
-			
-		var titulo = document.createElement('h1');
-			$(titulo).text('DÓNDE VER EL MUNDIAL');
-			$(titulo).css({'color' : '#000', 'margin-left' : 84});
-			$(holderTituloMapa).append(titulo);
-
-		var icono = new Image();
-			icono.width = 64;
-			icono.src = 'img/general/menu/pantallas.png?ac=1';
-			$(holderTituloMapa).append(icono);	
-			$(icono).css({'position' : 'absolute' , 'right' : 5, 'top' : 0});
-
-		/**/
 		var mapaWrapper = document.createElement('div');				
 			mapaWrapper.id = 'mapa-wrapper';
-			$(holderMapa).append(mapaWrapper);
-
-		var holderDireccion = document.createElement('div');
-			holderDireccion.id = 'holder-direccion-pantallas';
-			$(holderMapa).append(holderDireccion);
+			$(divScroll).append(mapaWrapper);
+			$(mapaWrapper).css({'height' : altoPantalla});
 
 		$.ajax
 		({
-			url : objApp.SERVER+'ws/ws-tiendas.php',
+			url : objApp.SERVER+'ws/ws-obtenerTiendas.php',
 			success : onCompleteXML,
 			error : onErrorXML
 		});				
@@ -91,75 +56,124 @@
 			{
 				$(xml).find('xml').find('tienda').each(function(index, element) 
 				{
-					objItemPantalla = new ItemPantalla($(this), self, index);
-					$(divScroll).append(objItemPantalla.div);
-					array_items.push(objItemPantalla);
+					var o = 
+					{
+						'lat' : $(this).find('latitud').text(),
+						'long': $(this).find('longitud').text(),
+						'nombre' :$(this).find('nombre').text(),
+						'dir' : $(this).find('direccion').text(),						
+					}
+					
+					array_tiendas.push(o);
 				});
 			}
-				
-			for(var i = 0; i < array_items.length; ++i)	
-			{
-				array_items[i].inicializar(delay);
-				delay +=200;
-			}
+			
+			geoLocation();	
 		}
 
-		self.showMap = function(nodo)
+		function geoLocation()
 		{
-			if(animando)
-				return;
+			if (navigator.geolocation)
+				navigator.geolocation.getCurrentPosition(onSuccessLocation);
+			else
+				objApp.error("Debes habilitar la geolocalización para esta seccion.");
+		}
+		
+		function onSuccessLocation(location)
+		{
+			//Location
+			var lat  = location.coords.latitude;
+			var long = location.coords.longitude;	
+			var myLatlng = new google.maps.LatLng(lat,long);
 			
-			animando = true;
-			
-			$(mapaWrapper).empty();
-			$(holderDireccion).empty();
-			$(holderDireccion).append($(nodo).find('nombre').text()+' '+$(nodo).find('direccion').text());
-			
-			$(holderItems).transition({scale : 0.5, duration : 500}).transition({opacity : 0});
-			$(holderMapa).stop().delay(500).fadeIn(500, function ()
+			//Mapa
+			var myOptions = 
 			{
-				animando = false;
-
-				var lat  = Number($(nodo).find('latitud').text());
-				var long = Number($(nodo).find('longitud').text());
-		
-				var myLatlng = new google.maps.LatLng(lat,long);
-				
-				var myOptions = 
-				{
-					zoom: 16,
-					center: myLatlng,
-					zoomControl : false,
-					scaleControl : false,
-					mapTypeId: google.maps.MapTypeId.ROADMAP
-				}
-				
-				var map = new google.maps.Map(document.getElementById("mapa-wrapper"), myOptions);
-				
-				var marker = new google.maps.Marker
-				({
-					position  : myLatlng,
-					draggable : false,
-					animation : google.maps.Animation.DROP,
-					title : ""
-				});
-					
-				marker.setMap(map);	
-			});			
-		}	
-		
-		function doCloseMap()
-		{
-			if(animando)
-				return;
-				
-			animando = true;
-	
-			$(holderMapa).fadeOut(500);
-			$(holderItems).delay(500).transition({opacity : 1}).transition({scale : 1, duration : 500});
+				zoom: 16,
+				center: myLatlng,
+				zoomControl : false,
+				scaleControl : false,
+				mapTypeId: google.maps.MapTypeId.ROADMAP
+			}
 			
-			animando = false;
-		}	
+			map = new google.maps.Map(document.getElementById("mapa-wrapper"), myOptions);
+
+			//Marker
+			var pinColor = '06C';
+			var pinImage = 
+				new google.maps.MarkerImage("http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|" + pinColor,
+				new google.maps.Size(21, 34),
+				new google.maps.Point(0,0),
+				new google.maps.Point(10, 34));
+   
+			var pinShadow = 
+				new google.maps.MarkerImage("http://chart.apis.google.com/chart?chst=d_map_pin_shadow",
+				new google.maps.Size(40, 37),
+				new google.maps.Point(0, 0),
+				new google.maps.Point(12, 35));	
+			
+			var marker = new google.maps.Marker
+			({
+				position  : myLatlng,
+				draggable : false,
+				icon: pinImage,
+				shadow: pinShadow,
+				animation : google.maps.Animation.DROP,
+				title : ""
+			});
+			
+			//Informacion
+			var contentString = '<div id="content_map">'+
+						'<div id="bodyContent">'+
+						'<p class="p_map">Tu estás aquí!</p>'+
+						'</div>'+
+						'</div>';
+	
+			var infowindow = new google.maps.InfoWindow({content: contentString});
+
+			google.maps.event.addListener(marker, 'click', function() {infowindow.open(map,marker);});			
+			marker.setMap(map);	
+			
+			construirMarkersTiendas();
+		}
+		
+		function construirMarkersTiendas()
+		{
+			for(var i = 0; i < array_tiendas.length; ++i)
+			{
+				setMarker(array_tiendas[i]);
+			}
+		}		
+		
+		function setMarker(o)
+		{
+			var lat  = o.lat;
+			var long = o.long;
+				
+			var myLatlng = new google.maps.LatLng(lat,long);
+			
+			var marker = new google.maps.Marker
+			({
+				position  : myLatlng,
+				draggable : false,
+				animation : google.maps.Animation.DROP,
+				title : ""
+			});
+			
+			//Informacion
+			var contentString = '<div id="content_map">'+
+						'<div id="bodyContent">'+
+						'<h1 id="firstHeading" class="firstHeading">'+o.nombre+'</h1>'+
+						'<p class="p_map">'+o.dir+'</p>'+
+						'</div>'+
+						'</div>';
+	
+			var infowindow = new google.maps.InfoWindow({content: contentString});
+
+			google.maps.event.addListener(marker, 'click', function() {infowindow.open(map,marker);});
+						
+			marker.setMap(map);	
+		}
 	}
 	
 	window.Pantallas = Pantallas;
