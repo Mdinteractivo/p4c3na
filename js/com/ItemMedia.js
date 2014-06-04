@@ -13,8 +13,6 @@
 		else
 			$(self.div).bind('click' , doClick);
 					
-		/*if(indice == 0)
-			$(self.div).css({'margin-top' : -8});*/
 		
 		var imagenWrapper = document.createElement('div');
 			imagenWrapper.className = 'imagen-item-media';
@@ -25,14 +23,24 @@
 			var imagen = new Image();
 				imagen.width = 92;
 				imagen.src = objApp.SERVER+'global/img/media/'+$(nodo).find('archivo').text();
-				$(imagenWrapper).append(imagen);			
+				$(imagen).css({'display' : 'none'});
+				$(imagenWrapper).append(imagen);
+				$(imagen).load(function()
+				{
+					$(this).fadeIn(500);
+				});			
 		}	
 		else
 		{
 			var imagen = new Image();
 				imagen.width = 92;
 				imagen.src = 'http://i.ytimg.com/vi/'+$(nodo).find('archivo').text()+'/default.jpg';
-				$(imagenWrapper).append(imagen);			
+				$(imagenWrapper).append(imagen);
+				$(imagen).css({'display' : 'none'});
+				$(imagen).load(function()
+				{
+					$(this).fadeIn(500);
+				});	
 		}
 		
 		var tituloPantalla = document.createElement('div');

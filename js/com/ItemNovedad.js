@@ -21,6 +21,11 @@
 			imagen.width = 92;
 			imagen.src = objApp.SERVER+'global/img/noticias/'+$(nodo).find('imagen').text();
 			$(imagenWrapper).append(imagen);
+			$(imagen).css({'display' : 'none'});
+			$(imagen).load(function()
+			{
+				$(this).fadeIn(500);
+			});
 		
 		var tituloPantalla = document.createElement('div');
 			$(tituloPantalla).css({'width' : 200, 'float' : 'left', 'height' : 25, 'overflow' : 'hidden', 'margin-top' : 18});

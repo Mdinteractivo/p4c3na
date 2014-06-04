@@ -54,7 +54,7 @@ input,textarea, select
 	float:left;
 	margin-top:60px;
 	overflow-y:auto;
-	-webkit-overflow-scrolling: touch;
+	/*-webkit-overflow-scrolling: touch !important;*/ 
 }
 .holder-general-item
 {

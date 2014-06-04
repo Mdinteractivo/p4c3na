@@ -143,7 +143,7 @@ var objApp;
 		{			
 			$.ajax
 			({
-				url  : objApp.SERVER+'ws/ws-checkDispositivo.php?ac=4',
+				url  : objApp.SERVER+'ws/ws-checkDispositivo.php?ac=5',
 				type : 'POST',
 				data : {'uuid' : self.UUID},
 				success : onCompleteCheckDispositivo,
@@ -182,7 +182,6 @@ var objApp;
 		
 		function onErrorCheckDispositivo()
 		{
-			
 			self.error('Ha ocurrido un error, por favor intenta más tarde.');
 		}
 			

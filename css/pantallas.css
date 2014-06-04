@@ -63,7 +63,7 @@
 	height:210px;
 	float:left;
 	background:#999;
-	margin-top:-18px;
+	margin-top:0px;
 	background:#FFF url(../img/general/loader.GIF) no-repeat;
 	background-position: center center;
 }

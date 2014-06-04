@@ -24,8 +24,8 @@
 		<seccion id="2" color-text="black" key="fixture"   activa="true" color="yellow">Fixture del mundial</seccion>
 		<seccion id="3" color-text="white" key="polla"     activa="true" color="red">Juego de Pronósticos</seccion>
 		<seccion id="4" color-text="black" key="pantallas" activa="true" color="yellow">Dónde ver el mundial</seccion>
-		<seccion id="5" color-text="white" key="radio"     activa="true" color="red">Escucha el partido en vivo</seccion>
-		<seccion id="6" color-text="black" key="fotos"     activa="true" color="yellow">Fotos y videos</seccion>
+		<!--seccion id="5" color-text="white" key="radio"     activa="true" color="red">Escucha el partido en vivo</seccion-->
+		<seccion id="6" color-text="white" key="fotos"     activa="true" color="red">Fotos y videos</seccion>
 	</seccions>
 	
 		

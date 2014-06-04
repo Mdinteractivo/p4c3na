@@ -26,6 +26,7 @@
 	<preference name="fullscreen" value="true" />
 	<preference name="android-installLocation" value="auto" /> 
 	<preference name="splashscreen" value="splash" />
+	<preference name="android-minSdkVersion" value="12" />
 
 	<!--preference name="SplashScreenDelay" value="5000" /-->
 	<!--ICONS-->		

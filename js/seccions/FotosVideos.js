@@ -32,24 +32,23 @@
 		
 		var holderTituloMedia = document.createElement('div');
 			holderTituloMedia.className = 'wrapper-titulo-media';
-			$(holderTituloMedia).css({'background' : 'url(img/general/menu/yellow_item.png) no-repeat'});
+			$(holderTituloMedia).css({'background' : 'url(img/general/menu/red_item.png) no-repeat'});
 			$(holderTituloMedia).css({'background-size' : '320px 68px'});
 			$(holderMedia).append(holderTituloMedia);
 
 		var divVolver = document.createElement('div');
 			divVolver.className = 'btn-volver-inicio';
 			$(holderTituloMedia).append(divVolver);
-			$(divVolver).css({'background' : 'url(img/general/volver_black.png) no-repeat'});
+			$(divVolver).css({'background' : 'url(img/general/volver_white.png) no-repeat'});
 			$(divVolver).css({'background-size' : '16px', 'background-position' : 'left'});			
-			$(divVolver).css({'color':'#000'});
+			$(divVolver).css({'color':'#FFF'});
 			$(divVolver).text('VOLVER');
 			$(divVolver).bind('click' , doCloseMedia);
 	
 		var titulo = document.createElement('h1');
 			$(titulo).text('FOTOS Y VIDEOS');
-			$(titulo).css({'color' : '#000', 'margin-left' : 105});
+			$(titulo).css({'color' : '#FFF', 'margin-left' : 105});
 			$(holderTituloMedia).append(titulo);
-
 
 		var icono = new Image();
 			icono.width = 64;

@@ -115,6 +115,7 @@
 	background:url(../img/secciones/registro/tick.png) no-repeat;
 	position:absolute;
 	background-size:31px 30px;
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);		
 }
 #wrapper-datos-notificaciones h3
 {
