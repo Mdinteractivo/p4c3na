@@ -25,8 +25,8 @@
 					
 					case 'noticias' : 
 						objContenido = new Noticias(nodo); 
-					break;	
-
+					break;						
+					
 					case 'fixture' : 
 						objContenido = new Fixture(nodo); 
 					break;						

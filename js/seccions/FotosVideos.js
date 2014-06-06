@@ -8,6 +8,8 @@
 		var delay = 200;		
 		var ALTO_HEADER = 180;
 		var altoItems = 65;
+		var dataXml;
+		var mostrandoCategorias = true;
 		
 		var altoPantalla = (window.innerHeight - ALTO_HEADER) -5;
 		
@@ -17,14 +19,39 @@
 		var holderItems = document.createElement('div');
 			$(self.div).append(holderItems);
 			$(holderItems).css({'width' : 320, 'float' : 'left'});
-			
-		var objTituloSeccion = new TituloSeccion(nodo);
-			$(holderItems).append(objTituloSeccion.div);
+
+		/*titulo*/
+		var holderTituloNoticiaGral = document.createElement('div');
+			holderTituloNoticiaGral.className = 'wrapper-titulo-noticia';
+			$(holderTituloNoticiaGral).css({'background' : 'url(img/general/menu/red_item.png) no-repeat'});
+			$(holderTituloNoticiaGral).css({'background-size' : '320px 68px'});
+			$(holderItems).append(holderTituloNoticiaGral);
+
+		var divVolverGral = document.createElement('div');
+			divVolverGral.className = 'btn-volver-inicio';
+			$(holderTituloNoticiaGral).append(divVolverGral);
+			$(divVolverGral).css({'background' : 'url(img/general/volver_white.png) no-repeat'});
+			$(divVolverGral).css({'background-size' : '16px', 'background-position' : 'left'});			
+			$(divVolverGral).css({'color':'#FFF'});
+			$(divVolverGral).text('INICIO');
+			$(divVolverGral).bind('click' , doBack);
+	
+		var titulo = document.createElement('h1');
+			$(titulo).text('FOTOS Y VIDEOS');
+			$(titulo).css({'color' : '#FFF', 'margin-left' : 70});
+			$(holderTituloNoticiaGral).append(titulo);
+
+		var icono = new Image();
+			icono.width = 64;
+			icono.src = 'img/general/menu/fotos.png?ac=1';
+			$(holderTituloNoticiaGral).append(icono);	
+			$(icono).css({'position' : 'absolute' , 'right' : 5, 'top' : 0});
+			/*titulo*/
 
 		var divScroll = document.createElement('div');
 			divScroll.className = 'divScroll';
 			$(holderItems).append(divScroll);
-			$(divScroll).css({'height' : altoPantalla});						
+			$(divScroll).css({'height' : altoPantalla, 'margin-top' : 0});						
 
 		var holderMedia = document.createElement('div');
 			holderMedia.className = 'holder-media-item';
@@ -62,14 +89,37 @@
 		
 		$.ajax
 		({
-			url : objApp.SERVER+'ws/ws-fotosVideos.php',
-			success : onCompleteXML,
+			url : objApp.SERVER+'ws/ws-getCatMedia.php',
+			success : onCompleteXMLCategorias,
 			error : onErrorXML
 		});	
+		
+		function onCompleteXMLCategorias(xml)
+		{
+			dataXml = xml;
+			mostrandoCategorias = true;
+			$(divVolverGral).text('INICIO');
 
+			objApp.ocultarCargador();
+			$(divScroll).empty();
+			
+			$(xml).find('xml').find('categorias').find('categoria').each(function(index, element) 
+			{
+				objItemMediaCategoria = new ItemMediaCategoria($(this), self, index);
+				$(divScroll).append(objItemMediaCategoria.div);
+				$(objItemMediaCategoria.div).transition({opacity : 1, scale : 1, duration : 500});
+			});
+		}		
+		
 		function onCompleteXML(xml)
 		{
+			mostrandoCategorias = false;
+			$(divVolverGral).text('VOLVER');
+
 			objApp.ocultarCargador();
+			$(divScroll).empty();
+			array_items = [];
+			delay = 200;
 
 			if($(xml).find('xml').find('media').length != 0)
 			{
@@ -83,13 +133,18 @@
 			else
 				objApp.error('Actualmente no hay fotos ni videos');
 				
-				
 			for(var i = 0; i < array_items.length; ++i)	
 			{
 				array_items[i].inicializar(delay);
 				delay +=200;
 			}	
 		}
+
+		function doGoCategorias()
+		{
+			objApp.mostrarCargador();
+			onCompleteXMLCategorias(dataXml);
+		}		
 		
 		function onErrorXML()
 		{
@@ -133,6 +188,7 @@
 			$(holderItems).transition({scale : 0.5, duration : 500}).transition({opacity : 0});
 			$(holderMedia).stop().delay(500).fadeIn(500, function(){animando = false;});
 		}
+		
 		function doCloseMedia()
 		{
 			$(holderMediaContenido).empty();
@@ -145,6 +201,28 @@
 			$(holderMedia).stop().fadeOut(500);
 			$(holderItems).delay(500).transition({opacity : 1}).transition({scale : 1, duration : 500});
 			animando = false;	
+		}	
+		
+		function doBack()
+		{
+			if(mostrandoCategorias)
+				objApp.Navigate('inicio', null);
+			else
+				doGoCategorias();
+		}	
+		
+		self.loadCategorias = function(id)
+		{
+			objApp.mostrarCargador();
+
+			$.ajax
+			({
+				url : objApp.SERVER+'ws/ws-fotosVideos.php',
+				type : 'POST',
+				data : {'id' : id},
+				success : onCompleteXML,
+				error : onErrorXML
+			});	
 		}								
 	}
 	

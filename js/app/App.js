@@ -18,7 +18,7 @@ var objApp;
 		var ANCHO_PANTALLA = window.innerWidth;
 		var ALTO_PANTALLA = window.innerHeight;	
 	
-		if(navigator.userAgent.toLowerCase().indexOf("ipad") > -1)
+		if(navigator.userAgent.toLowerCase().indexOf("ipad") > -1 || ALTO_PANTALLA >=800)
 		{
 			$('body').css({'background' : 'url(img/general/background.jpg) no-repeat'});
 			$('body').css({'background-size' : ANCHO_PANTALLA+'px '+ALTO_PANTALLA+'px'});			
