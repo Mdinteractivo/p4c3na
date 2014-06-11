@@ -121,7 +121,7 @@ input,textarea, select
 {
 	position:absolute;
 	top:5px;
-	right:0;
+	left:0;
 }
 .header-seccion #logo-fifa
 {
