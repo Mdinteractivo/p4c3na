@@ -7,6 +7,13 @@
 		self.div = document.createElement('div');
 		self.div.className = 'header-seccion';
 
+		var logofifa = new Image();
+			logofifa.src = 'img/general/logo-fifa.png';
+			logofifa.id = 'logo-fifa';
+			logofifa.width = 107;
+			logofifa.height = 106;
+			$(self.div).append(logofifa);
+			
 		var logo = new Image();
 			logo.src = 'img/general/logo-pacena.png';
 			logo.id = 'logo-pacena';
@@ -21,7 +28,7 @@
 			
 		self.animIn = function()
 		{
-			//$(logofifa).delay(0).css({scale : 0.5, y : -110}).transition({duration : 400, scale : 1, y : 0});
+			$(logofifa).delay(0).css({scale : 0.5, y : -110}).transition({duration : 400, scale : 1, y : 0});
 			$(holderUserName).delay(300).css({opacity : 0}).transition({opacity : 1});
 			$(logo).delay(0).css({scale : 0.5, rotate : -210, opacity : 0}).transition
 			({
