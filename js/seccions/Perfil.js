@@ -17,27 +17,27 @@
 		//Titulo
 		var holderTituloRegistro = document.createElement('div');
 			holderTituloRegistro.className = 'wrapper-titulo-registro';
-			$(holderTituloRegistro).css({'background' : 'url(img/general/menu/yellow_item.png) no-repeat'});
-			$(holderTituloRegistro).css({'background-size' : '320px 68px'});
+			$(holderTituloRegistro).css({'background' : 'url(img/general/menu/item-background.png) no-repeat'});
+			$(holderTituloRegistro).css({'background-size' : '320px 60px'});
 			$(self.div).append(holderTituloRegistro);
 	
 		var titulo = document.createElement('h1');
 			$(titulo).text('REGISTRARSE');
-			$(titulo).css({'color' : '#000', 'margin-left' : 105});
+			$(titulo).css({'color' : '#FFF', 'margin-left' : 105});
 			$(holderTituloRegistro).append(titulo);
 
 		var icono = new Image();
-			icono.width = 36;
+			icono.width = 30;
 			icono.src = 'img/general/menu/registrarse.png?ac=1';
 			$(holderTituloRegistro).append(icono);	
-			$(icono).css({'position' : 'absolute' , 'right' : 20, 'top' : 8});
+			$(icono).css({'position' : 'absolute' , 'right' : 15, 'top' : 8});
 
 		var divVolverAPolla = document.createElement('div');
 			divVolverAPolla.className = 'btn-volver-seccion';
 			$(holderTituloRegistro).append(divVolverAPolla);
-			$(divVolverAPolla).css({'background' : 'url(img/general/volver_black.png) no-repeat'});
+			$(divVolverAPolla).css({'background' : 'url(img/general/volver_white.png) no-repeat'});
 			$(divVolverAPolla).css({'background-size' : '16px', 'background-position' : 'left'});			
-			$(divVolverAPolla).css({'color':'#000', 'padding-left': 18});
+			$(divVolverAPolla).css({'color':'#FFF', 'padding-left': 18});
 			$(divVolverAPolla).text('VOLVER');
 			$(divVolverAPolla).bind('click' , doVolver);
 					

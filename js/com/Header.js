@@ -25,6 +25,13 @@
 			holderUserName.id = 'holder-user-name';
 			$(self.div).append(holderUserName);
 		
+		var btnInicio = new Image();
+			btnInicio.width = 70;
+			btnInicio.id = 'btn-inicio-header';
+			btnInicio.src = 'img/general/btnInicio.png';
+			$(self.div).append(btnInicio);
+			$(btnInicio).css({'position' : 'absolute', 'top' : 0, 'left' : '50%', 'margin-left' : -35});
+			$(btnInicio).bind('click' , doClick);
 			
 		self.animIn = function()
 		{
@@ -42,7 +49,23 @@
 			$(holderUserName).append('<p>'+nombre+'</p>');
 		}
 		
-		self.animIn();		
+		function doClick()
+		{
+			objApp.Navigate('inicio', null);
+		}
+		
+		self.ocultarBtn = function()
+		{
+			$(btnInicio).css({'display' : 'none'});
+		}
+
+		self.mostrarBtn = function()
+		{
+			$(btnInicio).css({'display' : 'block'});
+		}		
+		
+		self.animIn();
+		self.ocultarBtn();		
 	}
 	
 	window.Header = Header;

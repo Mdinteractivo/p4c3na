@@ -9,7 +9,7 @@
 		var ALTO_HEADER = 180;
 		var altoItems = 65;
 		var animando = false;
-		var altoPantalla = (window.innerHeight - ALTO_HEADER) - 10;
+		var altoPantalla = (window.innerHeight - ALTO_HEADER);
 		
 		self.div = document.createElement('div');
 		self.div.className = 'class-cero';
@@ -25,6 +25,22 @@
 			divScroll.className = 'divScroll';
 			$(holderItems).append(divScroll);
 			$(divScroll).css({'height' : altoPantalla});
+			
+		/*--------------------------------------------*/
+		var partidosDelDia = document.createElement('div');
+			partidosDelDia.id = 'wrapper-partidos-del-dia';
+			$(divScroll).append(partidosDelDia);	
+			
+		var tituloPartidosDia = document.createElement('div');
+			tituloPartidosDia.id = 'tituloPartidosDia';
+			$(partidosDelDia).append(tituloPartidosDia);
+			$(tituloPartidosDia).append('<h4>PARTIDOS <span style="color:#ffc600">DEL DÍA</span></h4>');	
+		
+		var holderPartidosDia = document.createElement('div');
+			$(holderPartidosDia).css({'width' : 320, 'height' : 225, 'float' : 'left', 'overflow-y' : 'hidden'});
+			$(partidosDelDia).append(holderPartidosDia);
+			
+		/*--------------------------------------------*/
 
 		var holderGrupo = document.createElement('div');
 			holderGrupo.className = 'holder-noticia-item';
@@ -33,35 +49,35 @@
 		
 		var holderTituloGrupo = document.createElement('div');
 			holderTituloGrupo.className = 'wrapper-titulo-noticia';
-			$(holderTituloGrupo).css({'background' : 'url(img/general/menu/yellow_item.png) no-repeat'});
-			$(holderTituloGrupo).css({'background-size' : '320px 68px'});
+			$(holderTituloGrupo).css({'background' : 'url(img/general/menu/item-background.png) no-repeat'});
+			$(holderTituloGrupo).css({'background-size' : '320px 60px'});
 			$(holderGrupo).append(holderTituloGrupo);
 
 		var divVolver = document.createElement('div');
 			divVolver.className = 'btn-volver-inicio';
 			$(holderTituloGrupo).append(divVolver);
-			$(divVolver).css({'background' : 'url(img/general/volver_black.png) no-repeat'});
+			$(divVolver).css({'background' : 'url(img/general/volver_white.png) no-repeat'});
 			$(divVolver).css({'background-size' : '16px', 'background-position' : 'left'});			
-			$(divVolver).css({'color':'#000'});
+			$(divVolver).css({'color':'#FFF'});
 			$(divVolver).text('VOLVER');
 	
 		var titulo = document.createElement('h1');
 			$(titulo).text('FIXTURE DEL MUNDIAL');
-			$(titulo).css({'color' : '#000', 'margin-left' : 82});
+			$(titulo).css({'color' : '#FFF', 'margin-left' : 82});
 			$(holderTituloGrupo).append(titulo);
 			$(divVolver).bind('click' , doCloseGrupo);
 
 		var icono = new Image();
-			icono.width = 64;
+			icono.width = 35;
 			icono.src = 'img/general/menu/fixture.png?ac=1';
 			$(holderTituloGrupo).append(icono);	
-			$(icono).css({'position' : 'absolute' , 'right' : 5, 'top' : 0});		
+			$(icono).css({'position' : 'absolute' , 'right' : 9, 'top' : 15});		
 		
 		var holderGrupoContenido = document.createElement('div');
 			holderGrupoContenido.id = 'holder-grupo-contenido';
 			holderGrupoContenido.className = 'divScroll';
 			$(holderGrupo).append(holderGrupoContenido);
-			$(holderGrupoContenido).css({'height' : (altoPantalla - 20), 'margin-top' : 0});
+			$(holderGrupoContenido).css({'height' : altoPantalla, 'margin-top' : 0});
 
 		$.ajax
 		({
@@ -75,6 +91,16 @@
 			var objContenido;
 			objApp.ocultarCargador();
 
+			if($(xml).find('partidoDelDia').find('partido').length != 0)
+			{
+				console.log('HAY '+$(xml).find('partidoDelDia').find('partido').length+' PARTIDOS EL DÍA DE HOY');	
+				$(xml).find('partidoDelDia').find('partido').each(function(index, element) 
+				{
+                	var itemPartidoDelDia = new PartidoDelDia(this);
+					    $(holderPartidosDia).append(itemPartidoDelDia.div);
+                });			
+			}
+		
 			if(parseInt($(xml).find('xml').find('finFases').text()) == 0)
 			{
 				objContenido = new FasesDeGrupo(xml, self);
@@ -82,8 +108,7 @@
 			else
 			{
 				objContenido = new Versus(xml);
-			}
-			
+			}			
 			$(divScroll).append(objContenido.div);	
 		}
 		
@@ -94,7 +119,6 @@
 		
 		self.mostrarGrupo = function(grupo)
 		{
-			console.log(objApp.SERVER);
 			if(animando)
 				return;
 
@@ -239,6 +263,7 @@ function Versus(xml)
 	var DELAY = 200;
 	
 	self.div = document.createElement('div');
+	$(self.div).css({'-webkit-overflow-scrolling' : 'touch'});
 	
 	if($(xml).find('partido').length == 0)
 		objApp.error('Ha ocurrido un error, por favor intenta más tarde.');

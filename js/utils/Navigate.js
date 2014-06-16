@@ -20,7 +20,6 @@
 					case 'inicio' : 
 						objContenido = new Inicio(); 
 						objApp.ocultarCargador();
-						
 					break;
 					
 					case 'noticias' : 
@@ -61,7 +60,15 @@
 					
 					case 'perfil' : 
 						objContenido = new Perfil(nodo); 
-					break;																																												
+					break;
+					
+					case 'stats' : 
+						objContenido = new Stats(nodo); 
+					break;	
+					
+					case 'bases' : 
+						objContenido = new Bases(nodo); 
+					break;																																																						
 				}	
 				
 				$(div_holder).html(objContenido.div);		

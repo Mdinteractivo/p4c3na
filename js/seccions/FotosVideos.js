@@ -23,8 +23,8 @@
 		/*titulo*/
 		var holderTituloNoticiaGral = document.createElement('div');
 			holderTituloNoticiaGral.className = 'wrapper-titulo-noticia';
-			$(holderTituloNoticiaGral).css({'background' : 'url(img/general/menu/red_item.png) no-repeat'});
-			$(holderTituloNoticiaGral).css({'background-size' : '320px 68px'});
+			$(holderTituloNoticiaGral).css({'background' : 'url(img/general/menu/item-background.png) no-repeat'});
+			$(holderTituloNoticiaGral).css({'background-size' : '320px 60px'});
 			$(holderItems).append(holderTituloNoticiaGral);
 
 		var divVolverGral = document.createElement('div');
@@ -38,14 +38,14 @@
 	
 		var titulo = document.createElement('h1');
 			$(titulo).text('FOTOS Y VIDEOS');
-			$(titulo).css({'color' : '#FFF', 'margin-left' : 70});
+			$(titulo).css({'color' : '#FFF', 'margin-left' : 110});
 			$(holderTituloNoticiaGral).append(titulo);
 
 		var icono = new Image();
-			icono.width = 64;
+			icono.width = 35;
 			icono.src = 'img/general/menu/fotos.png?ac=1';
 			$(holderTituloNoticiaGral).append(icono);	
-			$(icono).css({'position' : 'absolute' , 'right' : 5, 'top' : 0});
+			$(icono).css({'position' : 'absolute' , 'right' : 9, 'top' : 15});
 			/*titulo*/
 
 		var divScroll = document.createElement('div');
@@ -59,8 +59,8 @@
 		
 		var holderTituloMedia = document.createElement('div');
 			holderTituloMedia.className = 'wrapper-titulo-media';
-			$(holderTituloMedia).css({'background' : 'url(img/general/menu/red_item.png) no-repeat'});
-			$(holderTituloMedia).css({'background-size' : '320px 68px'});
+			$(holderTituloMedia).css({'background' : 'url(img/general/menu/item-background.png) no-repeat'});
+			$(holderTituloMedia).css({'background-size' : '320px 60px'});
 			$(holderMedia).append(holderTituloMedia);
 
 		var divVolver = document.createElement('div');
@@ -74,18 +74,20 @@
 	
 		var titulo = document.createElement('h1');
 			$(titulo).text('FOTOS Y VIDEOS');
-			$(titulo).css({'color' : '#FFF', 'margin-left' : 105});
+			$(titulo).css({'color' : '#FFF', 'margin-left' : 110});
 			$(holderTituloMedia).append(titulo);
 
 		var icono = new Image();
-			icono.width = 64;
+			icono.width = 35;
 			icono.src = 'img/general/menu/fotos.png?ac=1';
 			$(holderTituloMedia).append(icono);	
-			$(icono).css({'position' : 'absolute' , 'right' : 5, 'top' : 0});		
+			$(icono).css({'position' : 'absolute' , 'right' : 9, 'top' : 15});		
 		
 		var holderMediaContenido = document.createElement('div');
 			holderMediaContenido.id = 'holder-media-contenido';
 			$(holderMedia).append(holderMediaContenido);
+			$(holderMediaContenido).css({'height' : (altoPantalla + 20)});
+			
 		
 		$.ajax
 		({
@@ -192,7 +194,8 @@
 		function doCloseMedia()
 		{
 			$(holderMediaContenido).empty();
-
+			$(holderMediaContenido).scrollTop(0);
+			
 			if(animando)
 				return;
 

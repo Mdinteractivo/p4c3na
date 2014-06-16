@@ -4,7 +4,7 @@
 	{
 		var self = this;
 		var ALTO_HEADER = 180;
-		var altoPantalla = (window.innerHeight - ALTO_HEADER) + 10;
+		var altoPantalla = (window.innerHeight - ALTO_HEADER) + 20;
 		var animando = false;
 		var dataXml = null;
 		
@@ -141,12 +141,13 @@
 		var holderParticipaciones = document.createElement('div');
 			holderParticipaciones.id = 'holder-participaciones-polla';
 			$(divScroll).append(holderParticipaciones);
-			$(holderParticipaciones).bind('click' , doClickParticipaciones);		
+			$(holderParticipaciones).bind('click' , doClickParticipaciones);
+			$(holderParticipaciones).css({'margin-top' : 5});
 			
 		var holderPanelParticipacionesTitulo = document.createElement('div');
 			holderPanelParticipacionesTitulo.className = 'wrapper-titulo-noticia';
-			$(holderPanelParticipacionesTitulo).css({'background' : 'url(img/general/menu/red_item.png) no-repeat'});
-			$(holderPanelParticipacionesTitulo).css({'background-size' : '320px 68px'});
+			$(holderPanelParticipacionesTitulo).css({'background' : 'url(img/general/menu/item-background.png) no-repeat'});
+			$(holderPanelParticipacionesTitulo).css({'background-size' : '320px 60px'});
 			$(holderParticipaciones).append(holderPanelParticipacionesTitulo);
 		
 		var titulo = document.createElement('h1');
@@ -155,10 +156,10 @@
 			$(holderPanelParticipacionesTitulo).append(titulo);		
 
 		var icono = new Image();
-			icono.width = 64;
+			icono.width = 35;
 			icono.src = 'img/general/menu/polla.png?ac=1';
 			$(holderPanelParticipacionesTitulo).append(icono);	
-			$(icono).css({'position' : 'absolute' , 'right' : 5, 'top' : 0});		
+			$(icono).css({'position' : 'absolute' , 'right' : 9, 'top' : 10});		
 		
 		var holderParticipacionesContenido = document.createElement('div');
 			holderParticipacionesContenido.id = 'holder-partidos-jugados-contenido';
@@ -169,11 +170,12 @@
 		var holderProximos = document.createElement('div');
 			holderProximos.id = 'holder-proximos-polla';
 			$(divScroll).append(holderProximos);
+			$(holderProximos).css({'margin-top' : 5});
 			
 		var holderPanelProximosTitulo = document.createElement('div');
 			holderPanelProximosTitulo.className = 'wrapper-titulo-noticia';
-			$(holderPanelProximosTitulo).css({'background' : 'url(img/general/menu/red_item.png) no-repeat'});
-			$(holderPanelProximosTitulo).css({'background-size' : '320px 68px'});
+			$(holderPanelProximosTitulo).css({'background' : 'url(img/general/menu/item-background.png) no-repeat'});
+			$(holderPanelProximosTitulo).css({'background-size' : '320px 60px'});
 			$(holderProximos).append(holderPanelProximosTitulo);
 	
 		var titulo = document.createElement('h1');
@@ -183,10 +185,10 @@
 			$(holderProximos).bind('click' , doClickApuestas);		
 
 		var icono = new Image();
-			icono.width = 64;
+			icono.width = 35;
 			icono.src = 'img/general/menu/polla.png?ac=1';
 			$(holderPanelProximosTitulo).append(icono);	
-			$(icono).css({'position' : 'absolute' , 'right' : 5, 'top' : 0});		
+			$(icono).css({'position' : 'absolute' , 'right' : 9, 'top' : 10});		
 		
 		var holderProximosContenido = document.createElement('div');
 			holderProximosContenido.id = 'holder-proximos-partidos-contenido';
@@ -239,6 +241,8 @@
 					$(holderParticipacionesContenido).append(itemPartidoJugado.div);
 				});	
 			}
+			
+			objApp.ocultarCargador();						
 		}	
 				
 		function doClickApuestas()
@@ -283,9 +287,7 @@
 			$(holderLightBox).stop().fadeOut(500);
 			$(holderItems).delay(500).transition({opacity : 1}).transition({scale : 1, duration : 500});
 			animando = false;	
-		}
-		
-		objApp.ocultarCargador();						
+		}		
 	}
 	
 	window.Polla = Polla;

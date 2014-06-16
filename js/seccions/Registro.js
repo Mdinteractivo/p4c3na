@@ -9,20 +9,20 @@
 		
 		var holderTituloRegistro = document.createElement('div');
 			holderTituloRegistro.className = 'wrapper-titulo-registro';
-			$(holderTituloRegistro).css({'background' : 'url(img/general/menu/yellow_item.png) no-repeat'});
-			$(holderTituloRegistro).css({'background-size' : '320px 68px'});
+			$(holderTituloRegistro).css({'background' : 'url(img/general/menu/item-background.png) no-repeat'});
+			$(holderTituloRegistro).css({'background-size' : '320px 60px'});
 			$(self.div).append(holderTituloRegistro);
 	
 		var titulo = document.createElement('h1');
 			$(titulo).text('REGISTRARSE');
-			$(titulo).css({'color' : '#000'});
+			$(titulo).css({'color' : '#FFF'});
 			$(holderTituloRegistro).append(titulo);
 
 		var icono = new Image();
-			icono.width = 36;
+			icono.width = 30;
 			icono.src = 'img/general/menu/registrarse.png?ac=1';
 			$(holderTituloRegistro).append(icono);	
-			$(icono).css({'position' : 'absolute' , 'right' : 20, 'top' : 8});
+			$(icono).css({'position' : 'absolute' , 'right' : 15, 'top' : 8});
 			
 		var holderRegistro = document.createElement('div');
 			holderRegistro.id = 'holder-registro';
@@ -190,7 +190,7 @@ function DatosFacebook(parent, data)
 		btnNext.className = 'btn-next';
 		$(divButton).append(btnNext);
 		$(btnNext).text('SIGUIENTE');	
-		$(btnNext).css({'top' : 10});
+		$(btnNext).css({'top' : 10, 'background' : '#ffc600', 'color' : '#000'});
 		
 		if(objApp.isTouch())
 			$(btnNext).bind('touchstart' , parentNavigate);	
@@ -250,7 +250,7 @@ function DatosApp(parent, data)
 		btnGuardar.className = 'btn-next';
 		$(self.div).append(btnGuardar);
 		$(btnGuardar).text('GUARDAR');	
-		$(btnGuardar).css({'top' : 265});	
+		$(btnGuardar).css({'top' : 265, 'background' : '#ffc600', 'color' : '#000'});	
 		
 		if(objApp.isTouch())
 			$(btnGuardar).bind('touchstart' , checkGuardar);	
@@ -261,7 +261,7 @@ function DatosApp(parent, data)
 		btnNext.className = 'btn-next';
 		$(self.div).append(btnNext);
 		$(btnNext).text('SIGUIENTE');	
-		$(btnNext).css({'top' : 265, 'display' : 'none'});
+		$(btnNext).css({'top' : 265, 'display' : 'none', 'background' : '#ffc600', 'color' : '#000'});
 		
 		if(objApp.isTouch())
 			$(btnNext).bind('touchstart' , goNotificaciones);	

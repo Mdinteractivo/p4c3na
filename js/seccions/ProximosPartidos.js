@@ -1,5 +1,7 @@
 function ProximosPartidos(nodo)
 {
+	console.log('Proximos partidos');	
+
 	var self = this;
 	var ALTO_HEADER = 180;
 	var altoPantalla = (window.innerHeight - ALTO_HEADER);
@@ -9,7 +11,7 @@ function ProximosPartidos(nodo)
 		
 	self.div = document.createElement('div');
 	self.div.className = 'class-cero';
-	$(self.div).css({'-webkit-transform' : 'translate3d(0,0,0)'});	
+	$(self.div).css({'-webkit-transform' : 'translate3d(0,0,0)'});
 
 	$.ajax
 	({
@@ -26,8 +28,8 @@ function ProximosPartidos(nodo)
 						
 	var holderTituloLightBox = document.createElement('div');
 		holderTituloLightBox.className = 'wrapper-titulo-noticia';
-		$(holderTituloLightBox).css({'background' : 'url(img/general/menu/red_item.png) no-repeat'});
-		$(holderTituloLightBox).css({'background-size' : '320px 68px'});
+		$(holderTituloLightBox).css({'background' : 'url(img/general/menu/item-background.png) no-repeat'});
+		$(holderTituloLightBox).css({'background-size' : '320px 60px'});
 		$(holderItems).append(holderTituloLightBox);
 
 	var divVolver = document.createElement('div');
@@ -49,10 +51,10 @@ function ProximosPartidos(nodo)
 		$(divVolver).bind('click' , doClose);
 
 	var icono = new Image();
-		icono.width = 64;
+		icono.width = 35;
 		icono.src = 'img/general/menu/polla.png?ac=1';
 		$(holderTituloLightBox).append(icono);	
-		$(icono).css({'position' : 'absolute' , 'right' : 5, 'top' : 0});		
+		$(icono).css({'position' : 'absolute' , 'right' : 9, 'top' : 10});		
 		
 	var divScroll = document.createElement('div');
 		divScroll.className = 'divScroll';
@@ -68,8 +70,8 @@ function ProximosPartidos(nodo)
 		
 		var holderTituloApuesta = document.createElement('div');
 			holderTituloApuesta.className = 'wrapper-titulo-noticia';
-			$(holderTituloApuesta).css({'background' : 'url(img/general/menu/red_item.png) no-repeat'});
-			$(holderTituloApuesta).css({'background-size' : '320px 68px'});
+			$(holderTituloApuesta).css({'background' : 'url(img/general/menu/item-background.png) no-repeat'});
+			$(holderTituloApuesta).css({'background-size' : '320px 60px'});
 			$(holderApuesta).append(holderTituloApuesta);
 
 		var divVolverApuesta = document.createElement('div');
@@ -102,10 +104,10 @@ function ProximosPartidos(nodo)
 		}
 		
 		var icono = new Image();
-			icono.width = 64;
+			icono.width = 35;
 			icono.src = 'img/general/menu/noticias.png?ac=1';
 			$(holderTituloApuesta).append(icono);	
-			$(icono).css({'position' : 'absolute' , 'right' : 5, 'top' : 0});		
+			$(icono).css({'position' : 'absolute' , 'right' : 9, 'top' : 10});		
 		
 		var holderApuestaContenido = document.createElement('div');
 			holderApuestaContenido.id = 'holder-apuesta-contenido';

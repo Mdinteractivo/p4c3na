@@ -5,22 +5,31 @@
 		var self = this;
 		
 		self.div = document.createElement('div');
-		self.div.className = 'item-media';
+		self.div.className = 'item-categoria-item';
 		$(self.div).css({'opacity' : 0});
+		
+		if((indice%2) == 0) $(self.div).css({'margin-right' : 10});
 		
 		if(objApp.isTouch())
 			$(self.div).bind('click' , doClick);
 		else
 			$(self.div).bind('click' , doClick);
+
+		var tituloPantalla = document.createElement('div');
+			tituloPantalla.className = 'titulo-categoria-noticias';
+			$(self.div).append(tituloPantalla);
+			
+			var textoH4 = $(nodo).find('nombre').text().replace(/\\/g, '');
+			$(tituloPantalla).append('<h4>'+textoH4+'</h4>');
 					
 		var imagenWrapper = document.createElement('div');
-			imagenWrapper.className = 'imagen-item-media';
+			imagenWrapper.className = 'imagen-item-categoria-noticias';
 			$(self.div).append(imagenWrapper);
 		
 		if(parseInt($(nodo).find('video').text()) != 1)
 		{
 			var imagen = new Image();
-				imagen.width = 92;
+				imagen.width = 155;
 				imagen.src = objApp.SERVER+'global/img/noticias/'+$(nodo).find('archivo').text();
 				$(imagen).css({'display' : 'none'});
 				$(imagenWrapper).append(imagen);
@@ -32,8 +41,8 @@
 		else
 		{
 			var imagen = new Image();
-				imagen.width = 92;
-				imagen.src = 'http://i.ytimg.com/vi/'+$(nodo).find('archivo').text()+'/default.jpg';
+				imagen.width = 155;
+				imagen.src = 'http://i.ytimg.com/vi/'+$(nodo).find('archivo').text()+'/hqdefault.jpg';
 				$(imagenWrapper).append(imagen);
 				$(imagen).css({'display' : 'none'});
 				$(imagen).load(function()
@@ -41,13 +50,6 @@
 					$(this).fadeIn(500);
 				});	
 		}
-		
-		var tituloPantalla = document.createElement('div');
-			$(tituloPantalla).css({'width' : 218, 'float' : 'left', 'height' : 55});
-			$(self.div).append(tituloPantalla);
-			
-			var textoH4 = $(nodo).find('nombre').text().replace(/\\/g, '');
-			$(tituloPantalla).append('<h4>'+textoH4+'</h4>');
 		
 		function doClick()
 		{

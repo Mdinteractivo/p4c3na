@@ -1,7 +1,7 @@
 function ProximosPartidos(xml)
 {
 	var self = this;
-		
+	
 	self.div = document.createElement('div');
 	$(self.div).css({'width' : 320});
 	

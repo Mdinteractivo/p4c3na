@@ -25,8 +25,8 @@ function PartidosApostados(nodo)
 						
 	var holderTituloLightBox = document.createElement('div');
 		holderTituloLightBox.className = 'wrapper-titulo-noticia';
-		$(holderTituloLightBox).css({'background' : 'url(img/general/menu/red_item.png) no-repeat'});
-		$(holderTituloLightBox).css({'background-size' : '320px 68px'});
+		$(holderTituloLightBox).css({'background' : 'url(img/general/menu/item-background.png) no-repeat'});
+		$(holderTituloLightBox).css({'background-size' : '320px 60px'});
 		$(holderItems).append(holderTituloLightBox);
 
 	var divVolver = document.createElement('div');
@@ -34,11 +34,12 @@ function PartidosApostados(nodo)
 		$(holderTituloLightBox).append(divVolver);
 		$(divVolver).css({'background' : 'url(img/general/volver_white.png) no-repeat'});
 		$(divVolver).css({'background-size' : '16px', 'background-position' : 'left'});			
-		$(divVolver).css({'color':'#000'});
+		$(divVolver).css({'color':'#FFF'});
+		$(divVolver).text('VOLVER');
 
 	var titulo = document.createElement('h1');
 		$(titulo).text('PARTIDOS JUGADOS');
-		$(titulo).css({'color' : '#FFF', 'margin-left' : 75});
+		$(titulo).css({'color' : '#FFF', 'margin-left' : 87});
 		$(holderTituloLightBox).append(titulo);
 
 	if(objApp.isTouch())
@@ -47,10 +48,10 @@ function PartidosApostados(nodo)
 		$(divVolver).bind('click' , doClose);
 
 	var icono = new Image();
-		icono.width = 64;
+		icono.width = 35;
 		icono.src = 'img/general/menu/polla.png?ac=1';
 		$(holderTituloLightBox).append(icono);	
-		$(icono).css({'position' : 'absolute' , 'right' : 5, 'top' : 0});		
+		$(icono).css({'position' : 'absolute' , 'right' : 9, 'top' : 10});		
 		
 	var divScroll = document.createElement('div');
 		divScroll.className = 'divScroll';
