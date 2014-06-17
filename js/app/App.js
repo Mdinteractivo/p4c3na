@@ -68,7 +68,7 @@ var objApp;
 		for(var k = 0; k < posicionesStars.length; ++k)
 		{
 			var star = new Star(posicionesStars[k]);
-				//$(wrapperHolderSeccion).append(star.div);
+				$(wrapperHolderSeccion).append(star.div);
 		}			
 
 		var holderSeccion = document.createElement('div');
