@@ -113,7 +113,7 @@ var objApp;
 
 			$.ajax
 			({
-				url : 'xml/config-site.xml?ac=1',
+				url : 'xml/config-site.xml',
 				success : onCompleteXML,
 				error : onErrorXML
 			});
@@ -138,7 +138,8 @@ var objApp;
 			}
 			else
 			{
-				self.Navigate(historial[historial.length-1].seccion, historial[historial.length-1].nodo);
+				objApp.Navigate('inicio', null);
+				//self.Navigate(historial[historial.length-2].seccion, historial[historial.length-2].nodo);
 			}
 		}				
 		function onCompleteXML(xmlSite)
