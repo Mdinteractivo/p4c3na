@@ -138,7 +138,7 @@ var objApp;
 			}
 			else
 			{
-				self.Navigate(historial[historial.length-1].seccion, historial[historial.length-1].nodo);
+				self.Navigate(historial[historial.length-2].seccion, historial[historial.length-2].nodo);
 			}
 		}				
 		function onCompleteXML(xmlSite)
