@@ -138,12 +138,8 @@ var objApp;
 			}
 			else
 			{
-<<<<<<< HEAD
 				objApp.Navigate('inicio', null);
 				//self.Navigate(historial[historial.length-2].seccion, historial[historial.length-2].nodo);
-=======
-				self.Navigate(historial[historial.length-2].seccion, historial[historial.length-2].nodo);
->>>>>>> origin/master
 			}
 		}				
 		function onCompleteXML(xmlSite)
