@@ -25,7 +25,6 @@
 		<seccion id="3" color-text="white" key="polla"     activa="true" color="red" top="10">Juego de Pronósticos</seccion>
 		<seccion id="4" color-text="white" key="pantallas" activa="true" color="yellow" top="10">Dónde ver el mundial</seccion>
 		<seccion id="5" color-text="white" key="fotos"     activa="true" color="red" top="15">Fotos y videos</seccion>
-		<!--seccion id="6" color-text="white" key="stats"     activa="true" color="red" top="15">Estadísticas de partidos</seccion-->
 		<seccion id="7" color-text="white" key="bases"     activa="true" color="red" top="10">Bases y condiciones del juego</seccion>
 
 	</seccions>
