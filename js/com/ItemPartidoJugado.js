@@ -31,7 +31,7 @@
 			$(self.div).append(holderTextos);
 			$(holderTextos).append('<p>'+$(nodo).find('local').text()+' VS '+$(nodo).find('visitante').text()+'</p>');
 			$(holderTextos).append('<p>'+getStringFecha($(nodo).find('fecha').text())+'</p>');
-			$(holderTextos).append('<p>Resultado : '+$(nodo).find('resultado').text()+'</p>');
+			$(holderTextos).append('<p>Resultado : '+$(nodo).find('resultado').text()+'  Pronóstico: '+$(nodo).find('pronostico').text()+'</p>');
 			$(holderTextos).append('<p>¡Obtuviste '+$(nodo).find('puntos').text()+' puntos!</p>');
 
 			$(holderTextos).css({'width' : 185, 'font-size' : 14, 'padding-top' : 6});
