@@ -15,6 +15,8 @@
 		
 		self.div = document.createElement('div');
 		self.div.className = 'class-cero';
+		$(self.div).css({'-webkit-transform' : 'translate3d(0,0,0)'});
+
 
 		var holderItems = document.createElement('div');
 			$(self.div).append(holderItems);
