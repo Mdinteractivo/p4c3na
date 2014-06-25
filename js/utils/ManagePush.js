@@ -1,60 +1,57 @@
-function ManagePush(){
-
+function ManagePush()
+{
 	var self = this;
 	var pushNotification;
 	this.token = '';
 	this.plataform = '';
 
-
-
-	 this.registrar = function(){
-
+	this.registrar = function()
+	{
 		pushNotification = window.plugins.pushNotification;
-	
-    	if ( device.platform == 'android' || device.platform == 'Android' )
+		
+		if ( device.platform == 'android' || device.platform == 'Android' )
 		{
-		    pushNotification.register(
-		        successHandler,
-		        errorHandler, {
-		            "senderID":"57995757235",
-		            "ecb":"objApp._ManagePush.onNotificationGCM"
-		        });
-		    self.plataform = 'android'
+			pushNotification.register(
+				successHandler,
+				errorHandler, {
+					"senderID":"57995757235",
+					"ecb":"objApp._ManagePush.onNotificationGCM"
+				});
+			self.plataform = 'android'
 		 
 		}
 		else
 		{
-		    pushNotification.register(
-		        tokenHandler,
-		        errorHandler, {
-		            "badge":"true",
-		            "sound":"true",
-		            "alert":"true",
-		            "ecb":"objApp._ManagePush.onNotificationAPN"
-		        });
-		       self.plataform = 'ios'
+			pushNotification.register(
+				tokenHandler,
+				errorHandler, {
+					"badge":"true",
+					"sound":"true",
+					"alert":"true",
+					"ecb":"objApp._ManagePush.onNotificationAPN"
+				});
+			   self.plataform = 'ios'
 		}
-		
+	
 	}
 
-	this.unregistrar = function (){
-		 
-		try  {
+	this.unregistrar = function()
+	{
+		try  
+		{
 	        pushNotification.unregister(
-	        function(e) {
+	        function(e) 
+			{
 	            //unRegister Success!!!
 	            //alert('unRegister Success');
 	        }, 
-	        function(e) {
+	        function(e) 
+			{
 	            //unRegister Failed!!!
 	           // alert('unRegister Failed');
 	        });
 	    }
-	    catch(err) {
-	      
-	      
-	    }
-		
+	    catch(err) { }		
 	}
 
 
@@ -64,8 +61,8 @@ function ManagePush(){
 		console.log(self.token)
 	}
 
-	function successHandler (result) {
-	  
+	function successHandler (result) 
+	{  
 	}
 	
 	function errorHandler (error) {
@@ -123,14 +120,13 @@ function ManagePush(){
 		    default:
 		    	objApp.error('EVENT -> Unknown, an event was received and we do not know what it is');
 		     
-		 	   break;
+		 	break;
 		  }
 
 	}
 
-
-	function objeto_recibido($obj){
-
+	function objeto_recibido($obj)
+	{
 		console.log($obj)
 	}
 }

@@ -81,7 +81,7 @@
 
 		$.ajax
 		({
-			url : objApp.SERVER+'ws/ws-obtenerPartidos.php',
+			url : objApp.SERVER+'ws/ws-obtenerPartidos.php?ac=1',
 			success : onCompleteXML,
 			error : onErrorXML
 		});	
@@ -91,15 +91,17 @@
 			var objContenido;
 			objApp.ocultarCargador();
 
-			if($(xml).find('partidoDelDia').find('partido').length != 0)
+			if($(xml).find('partidoDelDia').find('partidoDia').length != 0)
 			{
-				console.log('HAY '+$(xml).find('partidoDelDia').find('partido').length+' PARTIDOS EL DÍA DE HOY');	
-				$(xml).find('partidoDelDia').find('partido').each(function(index, element) 
+				console.log('HAY '+$(xml).find('partidoDelDia').find('partidoDia').length+' PARTIDOS EL DÍA DE HOY');	
+				$(xml).find('partidoDelDia').find('partidoDia').each(function(index, element) 
 				{
                 	var itemPartidoDelDia = new PartidoDelDia(this);
 					    $(holderPartidosDia).append(itemPartidoDelDia.div);
                 });			
 			}
+			else
+				$(partidosDelDia).css({'display' : 'none'});
 		
 			if(parseInt($(xml).find('xml').find('finFases').text()) == 0)
 			{
@@ -107,7 +109,7 @@
 			}
 			else
 			{
-				objContenido = new Versus(xml);
+				objContenido = new VersusOctavos(xml);
 			}			
 			$(divScroll).append(objContenido.div);	
 		}
@@ -373,3 +375,69 @@ function Versus(xml)
 	}
 	
 }
+
+/*OCTAVOS*/
+
+function VersusOctavos(xml)
+{
+	var self = this;
+	var array_items = [];
+	var DELAY = 200;
+	
+	self.div = document.createElement('div');
+	$(self.div).css({'-webkit-overflow-scrolling' : 'touch', 'float':'left', 'width' : '100%'});
+	$(self.div).css({'background' : 'url(img/secciones/fixture/field.png) repeat-y'});
+	$(self.div).css({'background-size' : '320px 17px'});
+	
+	var header = document.createElement('div');
+		header.id = 'header-octavos';
+		$(self.div).append(header);
+		$(header).append($(xml).find('tituloHeader').text());
+
+	if($(xml).find('partido').length == 0)
+		objApp.error('Ha ocurrido un error, por favor intenta más tarde.');
+	else
+	{
+		$(xml).find('partido').each(function(index, element) 
+		{						
+			var itemVersus = document.createElement('div');
+				itemVersus.className = 'item-versus-octavos';
+				$(self.div).append(itemVersus); 
+				$(itemVersus).css({'opacity' : 0}); 
+								
+			var bandera1 = new Image();
+				bandera1.src = objApp.SERVER+'global/img/banderas/octavos/bandera'+$(this).find('idLocal').text()
+				+'.png?ac='+objApp.VERSION;
+				bandera1.width = 71;
+				$(itemVersus).append(bandera1);
+				$(bandera1).css({'position' : 'absolute', 'left' : 10 , 'top' : 0});
+				
+			var bandera2 = new Image();
+				bandera2.src = objApp.SERVER+'global/img/banderas/octavos/bandera'+$(this).find('idVisita').text()
+				+'.png?ac='+objApp.VERSION;
+				bandera2.width = 71;
+				$(itemVersus).append(bandera2);	
+				$(bandera2).css({'position' : 'absolute', 'left' : 83 , 'top' : 0});
+
+				$(bandera2).css({'-moz-transform' : 'scaleX(-1)'});
+				$(bandera2).css({'-o-transform' : 'scaleX(-1)'});
+				$(bandera2).css({'-webkit-transform' : 'scaleX(-1)'});
+				$(bandera2).css({'transform' : 'scaleX(-1)'});
+				
+			var holderTexto = document.createElement('div');
+				holderTexto.className = 'holder-texto-octavos';
+				$(itemVersus).append(holderTexto);	
+				$(holderTexto).text(getStringFecha($(this).find('fecha').text()))
+				
+				array_items.push(itemVersus);			
+		});	
+		
+		for(var i = 0; i < array_items.length; ++i)	
+		{
+			$(array_items[i]).css({scale : 0.5}).delay(DELAY).transition({opacity : 1, scale : 1, duration : 500});
+			DELAY +=200;
+		}	
+	}	
+}
+
+
