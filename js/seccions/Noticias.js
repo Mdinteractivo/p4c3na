@@ -219,8 +219,8 @@
 				$(p).html(textoP);		
 			
 			var divSocial = document.createElement('div');
-				//$(holderNoticiaContenido).append(divSocial);
-				$(divSocial).css({'width' : 320, 'height' : 30, 'float' : 'left'});
+				$(holderNoticiaContenido).append(divSocial);
+				//$(divSocial).css({'width' : 320, 'height' : 30, 'float' : 'left'});
 								
 			var like = '<iframe src="//www.facebook.com/plugins/like.php?href='+url+'" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:80px; height:80px;" allowTransparency="true" id="socialFacebook"></iframe>';	
 			//$(divSocial).append(like);		
@@ -230,7 +230,7 @@
 				$(divSocial).append(compartir);
 				$(compartir).bind('click', function()
 				{
-					window.open(urlShareFace+'mdinteractivo.com/pacena/global/share.php?seccion=4&id=2&d=Titulo', '_blank');
+				window.open(urlShareFace+'mdinteractivo.com/pacena/global/share.php?seccion=4&id=2&d=Titulo', '_blank');
 				});		
 
 			$(holderItems).transition({scale : 0.5, duration : 500}).transition({opacity : 0});

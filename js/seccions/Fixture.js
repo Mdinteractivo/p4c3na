@@ -81,7 +81,7 @@
 
 		$.ajax
 		({
-			url : objApp.SERVER+'ws/ws-obtenerPartidos.php?ac=1',
+			url : objApp.SERVER+'ws/ws-obtenerPartidos.php',
 			success : onCompleteXML,
 			error : onErrorXML
 		});	
@@ -101,8 +101,10 @@
                 });			
 			}
 			else
+			{
 				$(partidosDelDia).css({'display' : 'none'});
-		
+			}
+
 			if(parseInt($(xml).find('xml').find('finFases').text()) == 0)
 			{
 				objContenido = new FasesDeGrupo(xml, self);
@@ -153,7 +155,6 @@
 			$(holderItems).delay(500).transition({opacity : 1}).transition({scale : 1, duration : 500});
 			animando = false;	
 		}	
-					
 	}
 	
 	window.Fixture = Fixture;
