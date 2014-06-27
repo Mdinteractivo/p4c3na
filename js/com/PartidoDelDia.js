@@ -32,20 +32,22 @@
 			$(self.div).append(holderHorario);
 			
 		var innerHorario = document.createElement('div');	
+			innerHorario.className = 'inner-horario-partidos-dia';
 			$(innerHorario).css
 			({
 				'width' : 80, 
-				'height' : 20, 
+				'height' : 42, 
 				'background' : '#000', 
 				'position' : 'absolute', 
 				'left' : '50%', 'margin-left' : -40,
-				'top' : 5,
+				'top' : 0,
 				'font-family': 'Oswald',
 				'color' : '#ffc600',
 				'font-size' : 14
 			});
 			$(holderHorario).append(innerHorario);
-			$(innerHorario).text($(nodo).find('fecha').text()+' HRS');
+			$(innerHorario).append('<p>'+$(nodo).find('fecha').text()+' HRS</p>');
+			$(innerHorario).append('<p>'+$(nodo).find('golesLoc').text()+' - '+$(nodo).find('golesVis').text()+'</p>');
 			
 		var holderBandera2 = document.createElement('div');
 			holderBandera2.className = 'holder-banderas-partido-del-dia';	
