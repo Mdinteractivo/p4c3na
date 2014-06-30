@@ -18,7 +18,7 @@ function LightBoxVersus(nodo, parent)
 	var indicadorCentro = document.createElement('div');
 		indicadorCentro.className = 'marcador-pronostico';
 		$(holderIndicadores).append(indicadorCentro);
-		$(indicadorCentro).css({'position' : 'absolute', 'left' : 122, 'top' : 15});
+		$(indicadorCentro).css({'position' : 'absolute', 'left' : 122, 'top' : 15, 'display' : 'none'});
 		$(indicadorCentro).text('EMPATE');
 
 	var indicadorRight = document.createElement('div');
@@ -180,7 +180,13 @@ function LightBoxVersus(nodo, parent)
 	function doCheckResultado()
 	{
 		if($(inputLocal).val().length == 0 || $(inputVisitante).val().length == 0)
+		{
 			objApp.error('Debes ingresar los goles para apostar');
+		}
+		else if($(inputLocal).val() == $(inputVisitante).val())
+		{
+			objApp.error('No puedes apostar a un empate');
+		}
 		else
 		{
 			objApp.mostrarCargador();
